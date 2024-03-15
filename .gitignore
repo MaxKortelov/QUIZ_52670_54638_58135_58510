@@ -1,0 +1,8 @@
+.idea/
+
+quiz-app-webapp/build/
+quiz-app-webapp/node_modules/
+
+#quiz-app-api/public/
+#quiz-app-api/dist/
+#quiz-app-api/node_modules/

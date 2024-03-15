@@ -1,0 +1,70 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "react-app", "prettier", "react-app/jest", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint"],
+  "ignorePatterns": ["config-overrides.js"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 120,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": false,
+        "trailingComma": "none",
+        "bracketSpacing": true,
+        "arrowParens": "always",
+        "htmlWhitespaceSensitivity": "strict",
+        "endOfLine": "auto"
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warning",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^(it|el|element|item|_)$",
+        "args": "all",
+        "argsIgnorePattern": "^(it|el|element|item|_)$",
+        "caughtErrors": "all",
+        "caughtErrorsIgnorePattern": "^(it|el|element|item|_)$"
+      }
+    ],
+    "react/jsx-props-no-spreading": [
+      "error",
+      {
+        "html": "enforce",
+        "custom": "enforce",
+        "explicitSpread": "enforce"
+      }
+    ],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/forbid-prop-types": ["error"]
+  },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "fragment": "Fragment",
+      "flowVersion": "0.53",
+      "version": "detect",
+      "propWrapperFunctions": [
+        "forbidExtraProps",
+        { "property": "freeze", "object": "Object" },
+        { "property": "myFavoriteWrapper" },
+        { "property": "forbidExtraProps", "exact": true }
+      ]
+    }
+  }
+}
