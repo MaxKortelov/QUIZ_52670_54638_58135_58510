@@ -38,14 +38,14 @@ function Login() {
       <Form className={classNames('flex-center flex-column')} onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="name@example.com" required defaultValue='molly_beard@applica.dnp'/>
+          <Form.Control type="email" placeholder="name@example.com" required/>
           <Form.Control.Feedback type="invalid">
             Please provide a valid email.
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="12345678" required defaultValue='235681'/>
+          <Form.Control type="password" placeholder="12345678" required defaultValue='pass'/>
           <Form.Control.Feedback type="invalid">
             Please provide a valid password.
           </Form.Control.Feedback>
