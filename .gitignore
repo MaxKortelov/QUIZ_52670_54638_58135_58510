@@ -6,3 +6,5 @@ quiz-app-webapp/node_modules/
 #quiz-app-api/public/
 quiz-app-api/dist/
 quiz-app-api/node_modules/
+
+Makefile
