@@ -6,11 +6,14 @@ import {IQuestion, quizTypes} from "../models/store/quiz";
 
 const protocol = process.env.REACT_APP_BACKEND_PROTOCOL ?? "http://";
 const host = process.env.REACT_APP_BACKEND_HOST ?? "localhost";
-const port = process.env.REACT_APP_BACKEND_PORT ? ":" + process.env.REACT_APP_BACKEND_PORT : ""
+const port = process.env.REACT_APP_BACKEND_PORT ? ":" + process.env.REACT_APP_BACKEND_PORT : "";
+export const baseURL = protocol + host + port;
+console.log("Base url: ", baseURL);
 
 function createAxiosInstance(token: string): AxiosInstance {
   return axios.create({
-    baseURL: protocol + host + port,
+    baseURL,
+    withCredentials: true,
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -20,7 +23,8 @@ function createAxiosInstance(token: string): AxiosInstance {
 export let api = createAxiosInstance(NO_VALUE);
 
 export const authApi = axios.create({
-  baseURL: protocol + host + port,
+  baseURL,
+  withCredentials: true,
 });
 
 export function responseInterceptor(axios: AxiosInstance): void {
