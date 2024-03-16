@@ -7,7 +7,7 @@ import {setControllers} from "./controllers";
 
 const app: Express = express();
 
-app.use(cors({origin: ["http://localhost:3000", "http://103.45.245.55:3001"]}))
+app.use(cors({origin: ["http://localhost:3000", "http://103.45.245.55:3000"]}))
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
