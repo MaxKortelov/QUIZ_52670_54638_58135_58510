@@ -11,6 +11,8 @@ const whiteList = ["http://localhost:3000", "http://103.45.245.55:3000", "http:/
 
 app.use(cors({
   origin: function (origin, callback) {
+    console.log(whiteList);
+    console.log(origin);
     if (whiteList.indexOf(origin as string) !== -1) {
       callback(null, true)
     } else {
