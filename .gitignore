@@ -2,6 +2,8 @@
 
 quiz-app-webapp/build/
 quiz-app-webapp/node_modules/
+quiz-app-webapp/.env.development
+quiz-app-webapp/.env.production
 
 #quiz-app-api/public/
 quiz-app-api/dist/
