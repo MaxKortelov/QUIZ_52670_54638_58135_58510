@@ -4,7 +4,7 @@ import {ILoginDTO} from "../models/login";
 import {IQuestion, quizTypes} from "../models/store/quiz";
 
 
-const protocol = process.env.REACT_APP_BACKEND_PROTOCOL ?? "https://";
+const protocol = process.env.REACT_APP_BACKEND_PROTOCOL ?? "http://";
 const host = process.env.REACT_APP_BACKEND_HOST ?? "localhost";
 const port = process.env.REACT_APP_BACKEND_PORT ? ":" + process.env.REACT_APP_BACKEND_PORT : ""
 

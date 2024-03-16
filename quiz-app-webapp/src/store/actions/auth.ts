@@ -6,7 +6,7 @@ import {ILoginDTO} from "../../models/login";
 // effects
 export const authenticate = (params: ILoginDTO) => async (dispatch: Dispatch<AuthActions>) => {
   return await login(params).then((authData) => dispatch(setAuthState(authData))).catch((err) => {
-    dispatch(setAuthError(err.data.message))
+    dispatch(setAuthError(err?.data?.message || "User not found"))
   })
 }
 
