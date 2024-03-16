@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+#  db:
+#    build:
+#      dockerfile: Dockerfile
+#      context: ./db
+#    restart: always
+#    environment:
+#      POSTGRES_PASSWORD: root
+#      POSTGRES_USER: root
+#      POSTGRES_DB: quiz
+#    volumes:
+#      - quiz-db:/var/db
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - database
+#    expose:
+#      - 5432
+
+  backend:
+    build: ./../quiz-app-api
+    container_name: backend
+    ports:
+      - "3001:3001"
+#    depends_on:
+#      db:
+#        condition: service_healthy
+    networks:
+      - rest-api
+  webapp:
+    build:
+      dockerfile: Dockerfile
+      context: ./../quiz-app-webapp
+    env_file:
+      - ./../quiz-app-webapp/.env.production
+    ports:
+      - "3000:3000"
+    expose:
+      - 3000
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - rest-api
+networks:
+  rest-api:
+    name: app
