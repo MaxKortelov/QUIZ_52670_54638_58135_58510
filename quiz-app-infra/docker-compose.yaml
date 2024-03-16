@@ -46,4 +46,4 @@ services:
       - rest-api
 networks:
   rest-api:
-    name: app
+    driver: bridge
