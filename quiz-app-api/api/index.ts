@@ -10,7 +10,7 @@ const api = axios.create({
   }
 });
 
-export const getUsers: () => Promise<AxiosResponse<IUser[]>> = async () => await api.get('/templates/O2sVLuWG2aLT/data');
+export const getUsers: () => Promise<AxiosResponse<IUser[]>> = async () => await api.get('templates/yDwYTeWat_GT/data');
 
 export const getQuiz: (url: string) => Promise<AxiosResponse<IQuestionAnswer[]>> = async (url) => await api.get(url);
 
