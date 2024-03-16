@@ -8,7 +8,7 @@ const protocol = (process.env.REACT_APP_BACKEND_PROTOCOL || "").toString() ?? "h
 const host = (process.env.REACT_APP_BACKEND_HOST || "").toString() ?? "localhost";
 const port = process.env.REACT_APP_BACKEND_PORT ? ":" + (process.env.REACT_APP_BACKEND_PORT || "").toString() : "";
 export const baseURL = process.env.REACT_APP_ENV === "dev" ? protocol + host + port : 'http://103.45.245.55:3001';
-console.log("Base url: ", protocol, host, port);
+console.log("Base url: ", baseURL);
 
 function createAxiosInstance(token: string): AxiosInstance {
   return axios.create({
