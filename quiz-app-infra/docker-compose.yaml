@@ -1,34 +1,36 @@
 version: "3.7"
 
 services:
-#  db:
-#    build:
-#      dockerfile: Dockerfile
-#      context: ./db
-#    restart: always
-#    environment:
-#      POSTGRES_PASSWORD: root
-#      POSTGRES_USER: root
-#      POSTGRES_DB: quiz
-#    volumes:
-#      - quiz-db:/var/db
-#    ports:
-#      - "5432:5432"
-#    networks:
-#      - database
-#    expose:
-#      - 5432
+  db:
+    build:
+      dockerfile: Dockerfile
+      context: ./db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: quiz
+    volumes:
+      - quiz-db:/~var/db
+    ports:
+      - "5432:5432"
+    networks:
+      - database
+    expose:
+      - 5432
 
   backend:
     build: ./../quiz-app-api
     container_name: backend
     ports:
       - "3001:3001"
-#    depends_on:
-#      db:
-#        condition: service_healthy
+    depends_on:
+      db:
+        condition: service_healthy
     networks:
       - rest-api
+      - database
+
   webapp:
     build:
       dockerfile: Dockerfile
@@ -47,3 +49,6 @@ services:
 networks:
   rest-api:
     driver: bridge
+  database:
+volumes:
+  quiz-db:
