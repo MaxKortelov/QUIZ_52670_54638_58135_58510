@@ -14,7 +14,6 @@ export function encryptPassword(password: string): EncryptedPassword {
 export function validatePassword(password: string, hash: Buffer, salt: string): boolean {
   // To verify the same - salt (stored in DB) with same other parameters used while creating hash (1000 iterations, 64 length and sha512 digest)
   const newHash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512');
-
   // check if hash (stored in DB) and newly generated hash (newHash) are the same
   return crypto.timingSafeEqual(hash, newHash)
 }

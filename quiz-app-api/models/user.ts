@@ -56,6 +56,16 @@ export class NewUser {
   password: string;
 }
 
+export class LoginUser {
+  @IsString()
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  @MinLength(8)
+  password: string;
+}
+
 export class DBUser {
   uuid: string;
   email: string;
