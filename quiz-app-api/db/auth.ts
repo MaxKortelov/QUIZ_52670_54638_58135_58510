@@ -1,6 +1,6 @@
 import db from "../db";
 import {DBUser, mapDbUserToUser, NewUser, User} from "../types/user";
-import {encryptPassword} from "../utils/crypto";
+import {encryptPassword, uniqueId} from "../utils/crypto";
 
 // export function addUser({username, email, password}: NewUser): User {
 export async function addUser({username, email, password}: NewUser): Promise<User> {
@@ -23,4 +23,9 @@ export async function addUser({username, email, password}: NewUser): Promise<Use
 export async function findUser(email: string): Promise<DBUser> {
   const result = await db.query('SELECT * FROM "user" WHERE email = $1', [email]);
   return result.rows[0] as DBUser;
+}
+
+export async function addResetPasswordToken(email: string): Promise<string> {
+  const token = uniqueId();
+  return db.query('UPDATE "user" SET reset_password_token = $1 WHERE email = $2', [token, email]).then(() => token);
 }

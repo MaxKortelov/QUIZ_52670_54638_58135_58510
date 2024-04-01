@@ -1,11 +1,13 @@
 import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
 import {Email, LoginUser, mapDbUserToUser, NewUser} from "../types/user";
-import {addUser, findUser} from "../db/auth";
+import {addResetPasswordToken, addUser, findUser} from "../db/auth";
 import errorService from "../services/error.service";
 import {validatePassword} from "../utils/crypto";
 import {EmailOptions} from "../types/services/email.service";
 import {sendEmail} from "../services/email.service";
+import {resetPasswordTemplateHTML} from "../utils/templates";
+import {ORIGIN} from "../@shared/env-vars";
 
 export async function registerUser(req: Request, res: Response) {
   await validateBody(req, NewUser)
@@ -41,16 +43,15 @@ export async function sendEmailResetPassword(req: Request, res: Response) {
       const user = await findUser(loginUser.email);
       return user;
     })
-    .then(user => {
+    .then(async (user) => {
       if(user) {
+        const token = await addResetPasswordToken(user.email);
         const emailOptions: EmailOptions = {
           to: [user.email],
           subject: "Reset your password",
-          html: "This is a test email"
+          html: resetPasswordTemplateHTML(`${ORIGIN}/reset_password?token=${token}`)
         }
         return emailOptions;
-        // sendEmail(emailOptions);
-
       } else {
         throw new Error(`User ${req.body.email} doesn't exist`)
       }

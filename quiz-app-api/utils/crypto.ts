@@ -1,5 +1,6 @@
 import * as crypto from "crypto";
 import {EncryptedPassword} from "../types/utils/crypto";
+import { v4 as uuidv4 } from 'uuid';
 
 export function encryptPassword(password: string): EncryptedPassword {
   // Creating a unique salt for a particular user
@@ -16,4 +17,8 @@ export function validatePassword(password: string, hash: Buffer, salt: string): 
   const newHash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512');
   // check if hash (stored in DB) and newly generated hash (newHash) are the same
   return crypto.timingSafeEqual(hash, newHash)
+}
+
+export function uniqueId(): string {
+  return uuidv4();
 }

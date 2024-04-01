@@ -25,7 +25,8 @@
     "pg": "^8.11.3",
     "sql-migrations": "^1.0.7",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
@@ -35,6 +36,7 @@
     "@types/pg": "^8.11.4",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
+    "@types/uuid": "^9.0.8",
     "class-validator": "^0.14.1",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20",

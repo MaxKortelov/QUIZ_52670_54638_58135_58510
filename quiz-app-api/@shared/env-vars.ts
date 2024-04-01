@@ -5,6 +5,8 @@ dotenv.config();
 export const port = Number(process.env.PORT) || 3001;
 export const token = process.env.TOKEN;
 
+export const ORIGIN = process.env.ALLOWED_ORIGIN;
+
 export const databaseOptions = {
   user: process.env.DB_USER,
   host: process.env.DB_HOST,

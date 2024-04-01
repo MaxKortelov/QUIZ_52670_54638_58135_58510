@@ -2,21 +2,17 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express, { Express } from "express";
 import path from "path";
-import { port } from "./@shared/env-vars";
+import {ORIGIN, port} from "./@shared/env-vars";
 import { setControllers } from "./controllers";
 import db from "./db";
 import "dotenv/config";
 import swaggerDocs from "./utils/swagger";
 
 const app: Express = express();
-const origin =
-  process.env.NODE_ENV === "dev"
-    ? "http://localhost:3000"
-    : "http://103.45.245.55:3000";
 
 app.use(
   cors({
-    origin,
+    origin: ORIGIN,
     credentials: true,
   }),
 );
