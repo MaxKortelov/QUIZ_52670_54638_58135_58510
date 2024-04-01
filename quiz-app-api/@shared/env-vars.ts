@@ -1,5 +1,4 @@
 import dotenv from "dotenv";
-import {TransportOptions} from "nodemailer";
 
 dotenv.config();
 
