@@ -1,7 +1,7 @@
 import express, {Response, Router} from "express";
 import {checkAnswers, findQuiz} from "../services/quizService";
-import {QUIZ} from "../models/quiz";
-import {ICustomRequest} from "../models/user";
+import {QUIZ} from "../types/quiz";
+import {ICustomRequest} from "../types/user";
 
 export const router: Router = express.Router();
 

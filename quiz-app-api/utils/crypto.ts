@@ -1,5 +1,5 @@
 import * as crypto from "crypto";
-import {EncryptedPassword} from "../models/utils/crypto";
+import {EncryptedPassword} from "../types/utils/crypto";
 
 export function encryptPassword(password: string): EncryptedPassword {
   // Creating a unique salt for a particular user

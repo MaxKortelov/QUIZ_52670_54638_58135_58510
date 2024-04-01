@@ -1,5 +1,5 @@
 import {getUsers} from "../api";
-import {ICustomRequest, IUser, IUserData} from "../models/user";
+import {ICustomRequest, IUser, IUserData} from "../types/user";
 import {NextFunction, Response} from "express";
 
 export async function verifyToken(req: ICustomRequest, res: Response, next: NextFunction) {

@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 import {token} from "../@shared/env-vars";
-import {IUser} from "../models/user";
-import {IQuestionAnswer} from "../models/quiz";
+import {IUser} from "../types/user";
+import {IQuestionAnswer} from "../types/quiz";
 
 const api = axios.create({
   baseURL: 'https://api.json-generator.com',

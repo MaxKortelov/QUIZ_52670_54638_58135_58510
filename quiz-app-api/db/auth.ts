@@ -1,5 +1,5 @@
 import db from "../db";
-import {DBUser, mapDbUserToUser, NewUser, User} from "../models/user";
+import {DBUser, mapDbUserToUser, NewUser, User} from "../types/user";
 import {encryptPassword} from "../utils/crypto";
 
 // export function addUser({username, email, password}: NewUser): User {

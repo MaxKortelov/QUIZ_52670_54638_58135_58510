@@ -3,7 +3,7 @@ import {TransportOptions} from "nodemailer";
 
 dotenv.config();
 
-export const port = process.env.PORT || 3001;
+export const port = Number(process.env.PORT) || 3001;
 export const token = process.env.TOKEN;
 
 export const databaseOptions = {

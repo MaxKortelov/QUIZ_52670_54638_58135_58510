@@ -6,6 +6,7 @@ import { port } from "./@shared/env-vars";
 import { setControllers } from "./controllers";
 import db from "./db";
 import "dotenv/config";
+import swaggerDocs from "./utils/swagger";
 
 const app: Express = express();
 const origin =
@@ -23,8 +24,6 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-setControllers(app);
-
 app.listen(port, async function () {
   console.log("CORS-enabled web server listening on port 3001");
 
@@ -34,4 +33,7 @@ app.listen(port, async function () {
       console.info("Connected to quiz database on port 5432 successfully"),
     )
     .catch(() => console.error("Failed to connect to quiz database"));
+
+  setControllers(app);
+  swaggerDocs(app, port);
 });

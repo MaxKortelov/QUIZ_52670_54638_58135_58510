@@ -1,5 +1,5 @@
 import {getQuiz} from "../api";
-import {IQuestion, mapToQuestionList, QUIZ, quizTypes} from "../models/quiz";
+import {IQuestion, mapToQuestionList, QUIZ, quizTypes} from "../types/quiz";
 
 
 export async function findQuiz(type: QUIZ): Promise<IQuestion[] | Error> {

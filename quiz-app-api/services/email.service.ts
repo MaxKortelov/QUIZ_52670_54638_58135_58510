@@ -1,4 +1,4 @@
-import {EmailOptions} from "../models/utils/services/email.service";
+import {EmailOptions} from "../types/utils/services/email.service";
 import nodemailer, {Transport, TransportOptions} from "nodemailer";
 import {nodeMailerOptions} from "../@shared/env-vars";
 
