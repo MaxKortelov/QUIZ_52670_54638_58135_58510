@@ -68,7 +68,7 @@ export async function sendEmailResetPassword(req: Request, res: Response) {
     });
 }
 
-export async function resetUserPassword(req: Request, res: Response) {
+export async function updateUserPassword(req: Request, res: Response) {
   await validateBody(req, ResetPassword)
     .then((v) => {
       const entity = v as ResetPassword;
