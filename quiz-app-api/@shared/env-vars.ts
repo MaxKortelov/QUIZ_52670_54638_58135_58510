@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import {TransportOptions} from "nodemailer";
 
 dotenv.config();
 
@@ -12,3 +13,14 @@ export const databaseOptions = {
   password: process.env.DB_PASSWORD,
   port: Number(process.env.DB_PORT),
 };
+
+export const nodeMailerOptions = {
+  mailSender: process.env.NODEMAILER_SENDER as string,
+  mailSenderName: process.env.NODEMAILER_SENDER_NAME as string,
+  service: process.env.NODEMAILER_SERVICE as string,
+  host: process.env.NODEMAILER_HOST as string,
+  port: Number(process.env.NODEMAILER_PORT),
+  secure: Boolean(process.env.NODEMAILER_SECURE),
+  user: process.env.NODEMAILER_USER as string,
+  password: process.env.NODEMAILER_PASSWORD as string,
+}

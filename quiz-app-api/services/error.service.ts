@@ -18,6 +18,13 @@ class ErrorService {
     res.statusCode = 409;
     res.send(body);
   }
+
+  public serverError(res: Response, errors: Array<string> = []) {
+    const body = Object.create(this.errorObject);
+    body.errors = errors.length > 0 ? errors : ["Server error"];
+    res.statusCode = 500;
+    res.send(body);
+  }
 }
 
 const errorService = new ErrorService();
