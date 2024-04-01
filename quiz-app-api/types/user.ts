@@ -72,6 +72,14 @@ export class Email {
   email: string;
 }
 
+export class ResetPassword {
+  @IsString()
+  token: string;
+
+  @IsString()
+  password: string;
+}
+
 export class DBUser {
   uuid: string;
   email: string;

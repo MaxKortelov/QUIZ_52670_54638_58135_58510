@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
-import {Email, LoginUser, mapDbUserToUser, NewUser} from "../types/user";
-import {addResetPasswordToken, addUser, findUser} from "../db/auth";
+import {Email, LoginUser, mapDbUserToUser, NewUser, ResetPassword} from "../types/user";
+import {addResetPasswordToken, addUser, findUser, resetPassword} from "../db/auth";
 import errorService from "../services/error.service";
-import {validatePassword} from "../utils/crypto";
+import {encryptPassword, validatePassword} from "../utils/crypto";
 import {EmailOptions} from "../types/services/email.service";
 import {sendEmail} from "../services/email.service";
 import {resetPasswordTemplateHTML} from "../utils/templates";
@@ -66,4 +66,19 @@ export async function sendEmailResetPassword(req: Request, res: Response) {
       errorService.validationError(res, ["User with this email doesn't exist"]);
       res.end();
     });
+}
+
+export async function resetUserPassword(req: Request, res: Response) {
+  await validateBody(req, ResetPassword)
+    .then((v) => {
+      const entity = v as ResetPassword;
+      const encryptedPassword = encryptPassword(entity.password);
+      return resetPassword(encryptedPassword, entity.token);
+    })
+    .then(user => {
+      res.statusCode = 200;
+      res.send(user);
+      res.end();
+    })
+    .catch(() => errorService.serverError(res, ["Token is not valid"]));
 }

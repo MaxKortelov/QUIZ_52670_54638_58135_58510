@@ -6,7 +6,7 @@ import errorService from "../services/error.service";
 import {validatePassword} from "../utils/crypto";
 import {sendEmail} from "../services/email.service";
 import {EmailOptions} from "../types/services/email.service";
-import {login, registerUser, sendEmailResetPassword} from "../handlers/auth";
+import {login, registerUser, resetUserPassword, sendEmailResetPassword} from "../handlers/auth";
 
 export const router: Router = express.Router();
 /**
@@ -32,3 +32,5 @@ router.post('/user/register', registerUser);
 router.post('/user/login', login);
 
 router.post('/user/email_action_password_reset', sendEmailResetPassword);
+
+router.post('/user/confirmation_password_reset', resetUserPassword);
