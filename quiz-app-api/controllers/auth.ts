@@ -1,12 +1,5 @@
-import express, {Request, Response, Router} from 'express';
-import {Email, LoginUser, mapDbUserToUser, NewUser} from "../types/user";
-import {validateBody} from "../validators/entity.validator";
-import {addUser, findUser} from "../db/auth";
-import errorService from "../services/error.service";
-import {validatePassword} from "../utils/crypto";
-import {sendEmail} from "../services/email.service";
-import {EmailOptions} from "../types/services/email.service";
-import {login, registerUser, updateUserPassword, sendEmailResetPassword} from "../handlers/auth";
+import express, {Router} from 'express';
+import {login, registerUser, sendEmailResetPassword, updateUserPassword} from "../handlers/auth";
 
 export const router: Router = express.Router();
 /**
