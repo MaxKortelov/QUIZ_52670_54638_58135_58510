@@ -1,6 +1,5 @@
 import {validate} from "class-validator";
-import {Request, Response} from 'express';
-import errorService from "../services/error.service";
+import {Request} from 'express';
 
 
 export async function validateBody<A extends object>(req: Request, Entity: { new(): A }): Promise<Array<string> | A> {
