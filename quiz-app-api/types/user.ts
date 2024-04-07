@@ -1,39 +1,4 @@
-import {Request} from "express";
 import {IsEmail, IsString, MinLength} from "class-validator";
-
-
-// todo - start delete
-export interface IUser {
-  id: string;
-  email: string;
-  roles: string[],
-  apiKey: string;
-  password: string;
-  profile: {
-    "name": string;
-    "company": string;
-    "dob": string; //Date
-    "address": string;
-    "location": {
-      "lat": number;
-      "long": number;
-    },
-    password: string;
-    username: string;
-    createdAt: string; // Date
-    updatedAt: string; // Date
-  }
-}
-
-export interface IUserData {
-  email: string;
-  password: string
-}
-
-export interface ICustomRequest extends Request{
-  user?: IUser
-}
-// todo - end delete
 
 export class User {
   uuid: string;
