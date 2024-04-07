@@ -1,7 +1,8 @@
 import {getUsers} from "../api";
-import {ICustomRequest, IUser, IUserData} from "../types/user";
+import {ICustomRequest} from "../types/user";
 import {NextFunction, Response} from "express";
 
+//TODO - delete
 export async function verifyToken(req: ICustomRequest, res: Response, next: NextFunction) {
   if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
     const user = await getUsers().then(({data: users}) => {

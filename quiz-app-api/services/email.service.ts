@@ -1,5 +1,5 @@
-import {EmailOptions} from "../types/utils/services/email.service";
-import nodemailer, {Transport, TransportOptions} from "nodemailer";
+import {EmailOptions} from "../types/services/email.service";
+import nodemailer from "nodemailer";
 import {nodeMailerOptions} from "../@shared/env-vars";
 
 const connectToTransporter = () => {
