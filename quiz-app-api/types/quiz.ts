@@ -1,3 +1,7 @@
+import "reflect-metadata";
+import {ArrayMinSize, IsArray, IsString, MinLength, ValidateNested} from "class-validator";
+import {IsValidArrayOfObjects} from "../utils/decorators";
+
 export interface IQuestion {
   id: string;
   question: string;
@@ -25,4 +29,45 @@ export type QUIZ = 'GENERAL_KNOWLEDGE_FACTFULNESS'
 
 export const quizTypes: Record<QUIZ, string> = {
   GENERAL_KNOWLEDGE_FACTFULNESS: '/templates/u_IjFiS6ID-M/data'
+}
+
+export class Answer {
+  @IsString()
+  id: string;
+
+  @IsString()
+  text: string;
+}
+
+export class NewQuestion {
+  @IsString()
+  @MinLength(8)
+  question: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @ArrayMinSize(2)
+  @IsValidArrayOfObjects(Answer)
+  answers: Array<Answer>;
+
+  @IsString()
+  answerId: string;
+}
+
+export class Question extends NewQuestion{
+  @IsString()
+  @MinLength(2)
+  quizType: string;
+}
+
+export class NewQuiz {
+  @IsString()
+  @MinLength(2)
+  quizType: string;
+
+  @IsArray()
+  @ValidateNested({each: true})
+  @ArrayMinSize(1)
+  @IsValidArrayOfObjects(NewQuestion)
+  questions: Array<NewQuestion>;
 }
