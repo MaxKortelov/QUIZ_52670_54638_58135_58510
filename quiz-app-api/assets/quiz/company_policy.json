@@ -1,0 +1,185 @@
+{
+  "quizType": "Company Policy Test",
+  "questions": [
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Ask a friend who works in a different department"
+        },
+        {
+          "id": "2",
+          "text": "Read the employee handbook or company intranet"
+        },
+        {
+          "id": "3",
+          "text": "There are probably no written policies, it's all up to your manager"
+        }
+      ],
+      "answerId": "2",
+      "question": "Where should you look for information on your company's policies?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "It's not that important, most policies are common sense"
+        },
+        {
+          "id": "2",
+          "text": "Only managers need to know the policies"
+        },
+        {
+          "id": "3",
+          "text": "It helps you understand your rights and responsibilities as an employee"
+        }
+      ],
+      "answerId": "3",
+      "question": "Why is it important to be familiar with company policies?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Politely remind them of the policy"
+        },
+        {
+          "id": "2",
+          "text": "Report the violation to your supervisor or HR representative"
+        },
+        {
+          "id": "3",
+          "text": "Ignore it, it's not your place to get involved"
+        }
+      ],
+      "answerId": "2",
+      "question": "You witness a coworker violating a company policy. What should you do?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Dress code and personal appearance"
+        },
+        {
+          "id": "2",
+          "text": "Internet and social media usage on company equipment"
+        },
+        {
+          "id": "3",
+          "text": "Vacation and sick leave procedures"
+        }
+      ],
+      "answerId": "3",
+      "question": "Company policies can cover a wide range of topics. Which of these is most likely NOT included in a company policy?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "There will probably be no notification, you'll just have to figure it out"
+        },
+        {
+          "id": "2",
+          "text": "Your manager will verbally tell you about any changes"
+        },
+        {
+          "id": "3",
+          "text": "The company will typically announce policy updates through email, the employee handbook, or company meetings"
+        }
+      ],
+      "answerId": "3",
+      "question": "Company policies are subject to change. How will you likely be informed of updates?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Create a safe and productive work environment"
+        },
+        {
+          "id": "2",
+          "text": "Make more work for employees"
+        },
+        {
+          "id": "3",
+          "text": "Benefit only the company, not the employees"
+        }
+      ],
+      "answerId": "1",
+      "question": "Following company policies helps to:"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "A coworker who has been there a long time"
+        },
+        {
+          "id": "2",
+          "text": "No one, it's best to just avoid anything that might be a policy violation"
+        },
+        {
+          "id": "3",
+          "text": "Your supervisor or HR representative"
+        }
+      ],
+      "answerId": "3",
+      "question": "If you have a question about a company policy, who should you ask?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "It depends on the manager's mood"
+        },
+        {
+          "id": "2",
+          "text": "The employee handbook or company intranet will likely outline potential consequences"
+        },
+        {
+          "id": "3",
+          "text": "There are no consequences for violating policies"
+        }
+      ],
+      "answerId": "2",
+      "question": "Some company policies may have disciplinary actions for violations. Where would you find information on these actions?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "To help maintain a fair and ethical work environment"
+        },
+        {
+          "id": "2",
+          "text": "To get someone in trouble"
+        },
+        {
+          "id": "3",
+          "text": "There's no reason to report anything, the company will find out eventually"
+        }
+      ],
+      "answerId": "1",
+      "question": "Why is it important to report a suspected policy violation?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Make informed decisions about your work and avoid potential problems"
+        },
+        {
+          "id": "2",
+          "text": "Do whatever you want as long as you get your job done"
+        },
+        {
+          "id": "3",
+          "text": "Ignore instructions from your manager if they seem to contradict a policy"
+        }
+      ],
+      "answerId": "1",
+      "question": "Company policies can impact your daily work activities. Knowing the policies allows you to:"
+    }
+  ]
+}
