@@ -85,3 +85,14 @@ export class StartQuizSession {
   @IsEmail()
   quizTypeId: string;
 }
+
+export class QuizSession {
+  @IsString()
+  userId: string;
+
+  @IsString()
+  quizTypeId: string;
+
+  @IsArray()
+  questionSequence: Array<string>;
+}

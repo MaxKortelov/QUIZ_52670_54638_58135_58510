@@ -23,8 +23,8 @@ export async function addAnswers(questionId: string, answers: Array<NewAnswer>):
 }
 
 export async function loadInitialQuizzes() {
-  const quizяes = listFilesSync("assets/quiz");
-  for await (let quizFile of quizяes) {
+  const quizzes = listFilesSync("assets/quiz");
+  for await (let quizFile of quizzes) {
     const quiz = bufferToJson(readFileSync("assets/quiz/" + quizFile)) as unknown as NewQuiz;
     const quizExists = await checkQuiz(quiz.quizType);
     if(quizExists) continue;
@@ -37,4 +37,8 @@ export async function loadInitialQuizzes() {
 async function checkQuiz(quizName: string): Promise<boolean> {
   const quiz = await getQuizType(quizName);
   return !!quiz;
+}
+
+export async function createQuizSession(quizTypeId: string, userId: string): Promise<void> {
+  return;
 }

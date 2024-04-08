@@ -3,8 +3,9 @@ import {validateBody} from "../validators/entity.validator";
 import {NewQuiz, StartQuizSession} from "../types/quiz";
 import errorService from "../services/error.service";
 import * as quizDB from "../db/quiz";
-import {addQuestions} from "../services/quiz.service";
+import {addQuestions, createQuizSession} from "../services/quiz.service";
 import {getQuizTypeList} from "../db/quiz";
+import {findUser} from "../db/auth";
 
 export async function addQuizToDB(req: Request, res: Response) {
   await validateBody(req, NewQuiz).then((result) => result as NewQuiz)
@@ -36,7 +37,9 @@ export async function quizSessions(_req: Request, res: Response) {
 
 export async function startQuizSession(req: Request, res: Response) {
     try {
-      const _quizSessionReqestData = await validateBody(req, StartQuizSession) as StartQuizSession;
+      const quizSessionReqestData = await validateBody(req, StartQuizSession) as StartQuizSession;
+      const user = await findUser(quizSessionReqestData.email);
+      const quizSession = await createQuizSession(quizSessionReqestData.quizTypeId, user.uuid);
       res.send({})
     } catch (_) {
       errorService.serverError(res, ["Something went wrong"])
