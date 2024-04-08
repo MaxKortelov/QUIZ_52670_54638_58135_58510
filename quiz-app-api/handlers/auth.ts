@@ -1,7 +1,14 @@
 import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
-import {Email, LoginUser, mapDbUserToUser, NewUser, ResetPassword} from "../types/user";
-import {addResetPasswordToken, addUser, findUser, resetPassword} from "../db/auth";
+import {Email, LoginUser, mapDbUserToUser, NewUser, ResetPassword, VerifyEmail} from "../types/user";
+import {
+  addResetPasswordToken,
+  addUser,
+  addVerifyEmailToken,
+  findUser,
+  resetPassword,
+  verificationEmail
+} from "../db/auth";
 import errorService from "../services/error.service";
 import {encryptPassword, validatePassword} from "../utils/crypto.util";
 import {EmailOptions} from "../types/services/email.service";
@@ -12,9 +19,19 @@ import {ORIGIN} from "../@shared/env-vars";
 export async function registerUser(req: Request, res: Response) {
   await validateBody(req, NewUser)
     .then((user) => addUser(user as NewUser))
-    .then(user => {
+    .then(async (user) => {
+      const token = await addVerifyEmailToken(user.email);
+      const emailOptions: EmailOptions = {
+        to: [user.email],
+        subject: "Reset your password",
+        html: resetPasswordTemplateHTML(`${ORIGIN}/reset_password?token=${token}`)
+      }
+      return emailOptions;
+    })
+    .then(sendEmail)
+    .then(() => {
       res.statusCode = 201;
-      res.send(user);
+      res.send("Message was successfully sent to email");
       res.end();
     })
     .catch(() => errorService.existedEntityError(res));
@@ -26,6 +43,7 @@ export async function login(req: Request, res: Response) {
       const loginUser = u as LoginUser;
       const user = await findUser(loginUser.email);
       validatePassword(loginUser.password, user.password_hash, user.password_salt);
+      if(!user.user_confirmed) errorService.validationError(res, ["User email is not confirmed"])
       return mapDbUserToUser(user);
     })
     .then(user => {
@@ -70,15 +88,35 @@ export async function sendEmailResetPassword(req: Request, res: Response) {
 
 export async function updateUserPassword(req: Request, res: Response) {
   await validateBody(req, ResetPassword)
-    .then((v) => {
+    .then(async (v) => {
       const entity = v as ResetPassword;
+      const user = await findUser(entity.email);
+
+      if(user.reset_password_token !== entity.token) throw new Error("Token is not valid");
+
       const encryptedPassword = encryptPassword(entity.password);
       return resetPassword(encryptedPassword, entity.token);
     })
-    .then(user => {
+    .then((user) => {
       res.statusCode = 200;
       res.send(user);
       res.end();
     })
     .catch(() => errorService.serverError(res, ["Token is not valid"]));
+}
+
+export async function verifyEmail(req: Request, res: Response) {
+  try {
+    const { token, email } = await validateBody(req, VerifyEmail) as VerifyEmail;
+    const user = await findUser(email);
+
+    if(user.reset_password_token !== token) throw new Error("Token is not valid");
+    await verificationEmail(email);
+
+    res.statusCode = 200;
+    res.send("Email is verified");
+    res.end();
+  } catch (_) {
+    errorService.serverError(res, ["Token is not valid"])
+  }
 }

@@ -1,5 +1,5 @@
 import express, {Router} from 'express';
-import {login, registerUser, sendEmailResetPassword, updateUserPassword} from "../handlers/auth";
+import {login, registerUser, sendEmailResetPassword, updateUserPassword, verifyEmail} from "../handlers/auth";
 
 export const router: Router = express.Router();
 /**
@@ -27,3 +27,5 @@ router.post('/user/login', login);
 router.post('/user/email_action_password_reset', sendEmailResetPassword);
 
 router.post('/user/password_update', updateUserPassword);
+
+router.post('/user/email/verify', verifyEmail);

@@ -30,8 +30,19 @@ export async function addResetPasswordToken(email: string): Promise<string> {
   return db.query('UPDATE "user" SET reset_password_token = $1 WHERE email = $2', [token, email]).then(() => token);
 }
 
+export async function addVerifyEmailToken(email: string): Promise<string> {
+  const token = uniqueId();
+  return db.query('UPDATE "user" SET verify_email_token = $1 WHERE email = $2', [token, email]).then(() => token);
+}
+
 export async function resetPassword({ salt, hash }: EncryptedPassword, token: string): Promise<void> {
   //@ts-ignore
   await db.query('UPDATE "user" SET reset_password_token = NULL, password_hash = $1, password_salt = $2 WHERE reset_password_token = $3', [hash, salt, token]);
+  return;
+}
+
+export async function verificationEmail(email: string): Promise<void> {
+  //@ts-ignore
+  await db.query('UPDATE "user" SET verify_email_token = NULL, user_confirmed = true WHERE email = $1', [email]);
   return;
 }

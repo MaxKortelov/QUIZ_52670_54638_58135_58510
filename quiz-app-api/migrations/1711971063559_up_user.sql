@@ -10,5 +10,6 @@ CREATE TABLE "user" (
     date_created DATE DEFAULT CURRENT_DATE,
     date_updated DATE DEFAULT CURRENT_DATE,
     reset_password_token varchar,
+    verify_email_token varchar,
     user_confirmed boolean DEFAULT false
 );

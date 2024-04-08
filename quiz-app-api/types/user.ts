@@ -42,6 +42,10 @@ export class ResetPassword {
   token: string;
 
   @IsString()
+  @IsEmail()
+  email: string;
+
+  @IsString()
   password: string;
 }
 
@@ -54,6 +58,9 @@ export class DBUser {
   deleted: boolean
   date_created: string; // Date
   date_updated: string; // Date
+  reset_password_token: string;
+  verify_email_token: string;
+  user_confirmed: string;
 }
 
 export function mapDbUserToUser(dbUser: DBUser): User {
@@ -64,4 +71,13 @@ export function mapDbUserToUser(dbUser: DBUser): User {
     date_created: dbUser.date_created,
     date_updated: dbUser.date_updated
   }
+}
+
+export class VerifyEmail {
+  @IsString()
+  token: string;
+
+  @IsString()
+  @IsEmail()
+  email: string;
 }

@@ -40,5 +40,6 @@ async function checkQuiz(quizName: string): Promise<boolean> {
 }
 
 export async function createQuizSession(quizTypeId: string, userId: string): Promise<void> {
+
   return;
 }
