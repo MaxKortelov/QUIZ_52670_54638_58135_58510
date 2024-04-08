@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import {ArrayMinSize, IsArray, IsString, MinLength, ValidateNested} from "class-validator";
-import {IsValidArrayOfObjects} from "../utils/decorators";
+import {IsValidArrayOfObjects} from "../utils/decorators.util";
 
 export interface IQuestion {
   id: string;

@@ -6,7 +6,7 @@ import {ORIGIN, port} from "./@shared/env-vars";
 import { setControllers } from "./controllers";
 import db from "./db";
 import "dotenv/config";
-import swaggerDocs from "./utils/swagger";
+import swaggerDocs from "./utils/swagger.util";
 
 const app: Express = express();
 

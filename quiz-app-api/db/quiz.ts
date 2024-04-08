@@ -1,5 +1,6 @@
 import db from "./index";
 import {Answer, NewAnswer, NewQuestion} from "../types/quiz";
+import {toArrayText} from "../utils/db.util";
 
 export async function addQuestionType(value: string): Promise<string> {
   const {rows} = await db.query('SELECT * FROM question_type WHERE description = $1', [value]);
@@ -17,7 +18,7 @@ export async function addQuestion(questionTypeId: string, question: NewQuestion)
 }
 
 export async function addCorrectAnswersToQuestion(questionId: string, correctAnswers: Array<Answer>): Promise<void> {
-  const answers = `{${correctAnswers.map(it => `"${it.uuid}"`).join(', ')}}`;
+  const answers = toArrayText(correctAnswers.map(it => it.uuid));
   await db.query('UPDATE question SET correct_answers = $1 WHERE uuid = $2', [answers, questionId]);
 }
 

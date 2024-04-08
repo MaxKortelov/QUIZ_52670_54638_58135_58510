@@ -3,7 +3,7 @@ import {validateBody} from "../validators/entity.validator";
 import {Email, LoginUser, mapDbUserToUser, NewUser, ResetPassword} from "../types/user";
 import {addResetPasswordToken, addUser, findUser, resetPassword} from "../db/auth";
 import errorService from "../services/error.service";
-import {encryptPassword, validatePassword} from "../utils/crypto";
+import {encryptPassword, validatePassword} from "../utils/crypto.util";
 import {EmailOptions} from "../types/services/email.service";
 import {sendEmail} from "../services/email.service";
 import {resetPasswordTemplateHTML} from "../utils/templates";
