@@ -4,6 +4,7 @@ import {Email, mapDbUserToUser} from "../types/user";
 import {findUser} from "../db/auth";
 import errorService from "../services/error.service";
 
+// todo - remove vulnerability that allows to load other users data by email
 export async function getUser(req: Request, res: Response) {
   await validateBody(req, Email)
     .then(async (it) => {
