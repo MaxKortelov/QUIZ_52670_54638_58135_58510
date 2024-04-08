@@ -4,6 +4,7 @@ import {NewQuiz} from "../types/quiz";
 import errorService from "../services/error.service";
 import * as quizDB from "../db/quiz";
 import {addQuestions} from "../services/quiz.service";
+import {getQuizTypeList} from "../db/quiz";
 
 export async function addQuizToDB(req: Request, res: Response) {
   await validateBody(req, NewQuiz).then((result) => result as NewQuiz)
@@ -21,4 +22,13 @@ export async function addQuizToDB(req: Request, res: Response) {
         errorService.serverError(res, ["Something went wrong"])
       }
     })
+}
+
+export async function quizSessions(_req: Request, res: Response) {
+    try {
+      const quizSessions = await getQuizTypeList();
+      res.send({quizSessions})
+    } catch (_) {
+      errorService.serverError(res, ["Something went wrong"])
+    }
 }

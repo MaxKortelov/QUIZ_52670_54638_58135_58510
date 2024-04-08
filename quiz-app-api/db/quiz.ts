@@ -31,3 +31,8 @@ export async function getQuizType(quizName: string): Promise<QuizType> {
   const result = await db.query('SELECT * FROM question_type WHERE description = $1;', [quizName])
   return result.rows[0] as QuizType;
 }
+
+export async function getQuizTypeList(): Promise<QuizType[]> {
+  const result = await db.query('SELECT * FROM question_type;')
+  return result.rows as QuizType[];
+}
