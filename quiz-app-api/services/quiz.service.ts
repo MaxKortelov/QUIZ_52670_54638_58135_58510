@@ -1,5 +1,7 @@
-import {Answer, NewAnswer, NewQuestion} from "../types/quiz";
-import {addQuestion, addCorrectAnswersToQuestion, addAnswer} from "../db/quiz"
+import {Answer, NewAnswer, NewQuestion, NewQuiz} from "../types/quiz";
+import * as quizDB from "../db/quiz"
+import {addAnswer, addCorrectAnswersToQuestion, addQuestion, getQuizType} from "../db/quiz"
+import {bufferToJson, listFilesSync, readFileSync} from "../utils/fs.util";
 
 export async function addQuestions(questionTypeId: string, questions: Array<NewQuestion>): Promise<void> {
   for await (let question of questions) {
@@ -18,4 +20,21 @@ export async function addAnswers(questionId: string, answers: Array<NewAnswer>):
     result.push(createdAnswer);
   }
   return result;
+}
+
+export async function loadInitialQuizzes() {
+  const quizяes = listFilesSync("assets/quiz");
+  for await (let quizFile of quizяes) {
+    const quiz = bufferToJson(readFileSync("assets/quiz/" + quizFile)) as unknown as NewQuiz;
+    const quizExists = await checkQuiz(quiz.quizType);
+    if(quizExists) continue;
+    const quizTypeId = await quizDB.addQuestionType(quiz.quizType);
+    await addQuestions(quizTypeId, quiz.questions);
+    console.log(`Quiz ${quiz.quizType} added to database`);
+  }
+}
+
+async function checkQuiz(quizName: string): Promise<boolean> {
+  const quiz = await getQuizType(quizName);
+  return !!quiz;
 }

@@ -17,13 +17,14 @@ interface IQuestionOptions {
   text: string;
 }
 
-export function mapToQuestionList(dto: IQuestionAnswer[]): IQuestion[] {
-  return dto.map(it => ({
-    id: it.id,
-    question: it.question,
-    options: it.options
-  }))
-}
+// todo - delete after quiz added
+// export function mapToQuestionList(dto: IQuestionAnswer[]): IQuestion[] {
+//   return dto.map(it => ({
+//     id: it.id,
+//     question: it.question,
+//     options: it.options
+//   }))
+// }
 
 export type QUIZ = 'GENERAL_KNOWLEDGE_FACTFULNESS'
 
@@ -81,4 +82,12 @@ export class Answer {
 
   @IsString()
   question_id: string;
+}
+
+export class QuizType {
+  @IsString()
+  uuid: string;
+
+  @IsString()
+  description: string;
 }

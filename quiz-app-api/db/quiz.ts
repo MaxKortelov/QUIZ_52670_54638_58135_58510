@@ -1,5 +1,5 @@
 import db from "./index";
-import {Answer, NewAnswer, NewQuestion} from "../types/quiz";
+import {Answer, NewAnswer, NewQuestion, QuizType} from "../types/quiz";
 import {toArrayText} from "../utils/db.util";
 
 export async function addQuestionType(value: string): Promise<string> {
@@ -25,4 +25,9 @@ export async function addCorrectAnswersToQuestion(questionId: string, correctAns
 export async function addAnswer(questionId: string, answer: NewAnswer): Promise<Answer> {
   const result = await db.query('INSERT INTO answer (answer_text, question_id) VALUES ($1, $2) RETURNING row_to_json(answer);', [answer.text, questionId])
   return result.rows[0].row_to_json as Answer;
+}
+
+export async function getQuizType(quizName: string): Promise<QuizType> {
+  const result = await db.query('SELECT * FROM question_type WHERE description = $1;', [quizName])
+  return result.rows[0] as QuizType;
 }
