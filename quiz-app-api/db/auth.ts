@@ -3,7 +3,6 @@ import {DBUser, mapDbUserToUser, NewUser, User} from "../types/user";
 import {encryptPassword, uniqueId} from "../utils/crypto.util";
 import {EncryptedPassword} from "../types/utils/crypto";
 
-// export function addUser({username, email, password}: NewUser): User {
 export async function addUser({username, email, password}: NewUser): Promise<User> {
   const user = await findUser(email);
 

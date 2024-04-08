@@ -17,21 +17,6 @@ interface IQuestionOptions {
   text: string;
 }
 
-// todo - delete after quiz added
-// export function mapToQuestionList(dto: IQuestionAnswer[]): IQuestion[] {
-//   return dto.map(it => ({
-//     id: it.id,
-//     question: it.question,
-//     options: it.options
-//   }))
-// }
-
-export type QUIZ = 'GENERAL_KNOWLEDGE_FACTFULNESS'
-
-export const quizTypes: Record<QUIZ, string> = {
-  GENERAL_KNOWLEDGE_FACTFULNESS: '/templates/u_IjFiS6ID-M/data'
-}
-
 export class NewAnswer {
   @IsString()
   id: string;

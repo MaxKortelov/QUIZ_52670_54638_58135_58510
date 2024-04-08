@@ -3,8 +3,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const port = Number(process.env.PORT) || 3001;
-//todo - delete after new quiz created
-// export const token = process.env.TOKEN;
 
 export const ORIGIN = process.env.ALLOWED_ORIGIN;
 
