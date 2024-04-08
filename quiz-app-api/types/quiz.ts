@@ -31,7 +31,7 @@ export const quizTypes: Record<QUIZ, string> = {
   GENERAL_KNOWLEDGE_FACTFULNESS: '/templates/u_IjFiS6ID-M/data'
 }
 
-export class Answer {
+export class NewAnswer {
   @IsString()
   id: string;
 
@@ -47,8 +47,8 @@ export class NewQuestion {
   @IsArray()
   @ValidateNested({ each: true })
   @ArrayMinSize(2)
-  @IsValidArrayOfObjects(Answer)
-  answers: Array<Answer>;
+  @IsValidArrayOfObjects(NewAnswer)
+  answers: Array<NewAnswer>;
 
   @IsString()
   answerId: string;
@@ -70,4 +70,15 @@ export class NewQuiz {
   @ArrayMinSize(1)
   @IsValidArrayOfObjects(NewQuestion)
   questions: Array<NewQuestion>;
+}
+
+export class Answer {
+  @IsString()
+  uuid: string;
+
+  @IsString()
+  answer_text: string;
+
+  @IsString()
+  question_id: string;
 }

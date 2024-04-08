@@ -2,9 +2,23 @@ import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
 import {NewQuiz} from "../types/quiz";
 import errorService from "../services/error.service";
+import * as quizDB from "../db/quiz";
+import {addQuestions} from "../services/quiz.service";
 
 export async function addQuizToDB(req: Request, res: Response) {
-  await validateBody(req, NewQuiz).then(() => {
-    res.send("ok")
-  }).catch((errors: Array<string>) => errorService.validationError(res, errors))
+  await validateBody(req, NewQuiz).then((result) => result as NewQuiz)
+    .then(async (quiz) => {
+      try {
+        const quizTypeId = await quizDB.addQuestionType(quiz.quizType).catch((errors: Array<string>) => errorService.validationError(res, errors));
+        if (quizTypeId) {
+          await addQuestions(quizTypeId, quiz.questions)
+        } else {
+          errorService.serverError(res, ["Server error - questionType"])
+        }
+
+        res.send({message: "Quiz was successfully added."})
+      } catch (_) {
+        errorService.serverError(res, ["Something went wrong"])
+      }
+    })
 }
