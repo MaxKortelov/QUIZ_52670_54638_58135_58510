@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import {ArrayMinSize, IsArray, IsString, MinLength, ValidateNested} from "class-validator";
+import {ArrayMinSize, IsArray, IsEmail, IsString, MinLength, ValidateNested} from "class-validator";
 import {IsValidArrayOfObjects} from "../utils/decorators.util";
 
 export interface IQuestion {
@@ -75,4 +75,13 @@ export class QuizType {
 
   @IsString()
   description: string;
+}
+
+export class StartQuizSession {
+  @IsString()
+  email: string;
+
+  @IsString()
+  @IsEmail()
+  quizTypeId: string;
 }

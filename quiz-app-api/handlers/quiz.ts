@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
-import {NewQuiz} from "../types/quiz";
+import {NewQuiz, StartQuizSession} from "../types/quiz";
 import errorService from "../services/error.service";
 import * as quizDB from "../db/quiz";
 import {addQuestions} from "../services/quiz.service";
@@ -27,7 +27,17 @@ export async function addQuizToDB(req: Request, res: Response) {
 export async function quizSessions(_req: Request, res: Response) {
     try {
       const quizSessions = await getQuizTypeList();
-      res.send({quizSessions})
+      res.statusCode = 200
+      res.send({quizSessions});
+    } catch (_) {
+      errorService.serverError(res, ["Something went wrong"])
+    }
+}
+
+export async function startQuizSession(req: Request, res: Response) {
+    try {
+      const _quizSessionReqestData = await validateBody(req, StartQuizSession) as StartQuizSession;
+      res.send({})
     } catch (_) {
       errorService.serverError(res, ["Something went wrong"])
     }
