@@ -6,7 +6,7 @@ import errorService from "../services/error.service";
 import {encryptPassword, validatePassword} from "../utils/crypto.util";
 import {EmailOptions} from "../types/services/email.service";
 import {sendEmail} from "../services/email.service";
-import {resetPasswordTemplateHTML} from "../utils/templates";
+import {resetPasswordTemplateHTML} from "../utils/templates.util";
 import {ORIGIN} from "../@shared/env-vars";
 
 export async function registerUser(req: Request, res: Response) {
