@@ -1,0 +1,185 @@
+{
+  "quizType": "Cybersecurity Test",
+  "questions": [
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Open the attachment immediately"
+        },
+        {
+          "id": "2",
+          "text": "Delete the email without opening it"
+        },
+        {
+          "id": "3",
+          "text": "Forward the email to your IT department and ask if it's legitimate"
+        }
+      ],
+      "answerId": "3",
+      "question": "You receive an email with a suspicious attachment labeled What should you do?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "A short word you can easily remember"
+        },
+        {
+          "id": "2",
+          "text": "A combination of upper and lowercase letters, numbers, and symbols"
+        },
+        {
+          "id": "3",
+          "text": "our birthday or pet's name"
+        }
+      ],
+      "answerId": "2",
+      "question": "Strong passwords are essential for cybersecurity. What makes a strong password?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Politely remind them to lock their computer when they leave their desk"
+        },
+        {
+          "id": "2",
+          "text": "Use their computer to check your personal email"
+        },
+        {
+          "id": "3",
+          "text": "Ignore it, it's not your problem"
+        }
+      ],
+      "answerId": "1",
+      "question": "You notice a coworker leaving their computer unlocked when they step away from their desk. What should you do? "
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "It creates a sense of urgency and asks you to click on a link or download an attachment"
+        },
+        {
+          "id": "2",
+          "text": "It looks professional and comes from a seemingly reputable sender"
+        },
+        {
+          "id": "3",
+          "text": "It offers you a free prize or reward"
+        }
+      ],
+      "answerId": "1",
+      "question": "Phishing attacks try to trick you into revealing personal information. How can you identify a potential phishing email?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Checking social media"
+        },
+        {
+          "id": "2",
+          "text": "Logging in to online banking or other sensitive accounts"
+        },
+        {
+          "id": "3",
+          "text": "Browsing general websites"
+        }
+      ],
+      "answerId": "2",
+      "question": "Public Wi-Fi networks can be less secure. What should you avoid doing on public Wi-Fi?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Ignore it and hope nothing happens"
+        },
+        {
+          "id": "2",
+          "text": "Change your password for all your online accounts"
+        },
+        {
+          "id": "3",
+          "text": "Report the incident to your IT department immediately"
+        }
+      ],
+      "answerId": "3",
+      "question": "Your company has a policy requiring employees to report any suspected security breaches. What should you do if you accidentally click on a suspicious link in an email?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "It makes your computer run faster"
+        },
+        {
+          "id": "2",
+          "text": "Security patches fix vulnerabilities that hackers can exploit"
+        },
+        {
+          "id": "3",
+          "text": "It's only necessary for personal devices, not work computers"
+        }
+      ],
+      "answerId": "2",
+      "question": "Keeping your software up to date with the latest security patches is important. Why?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Sharing it freely with colleagues via email"
+        },
+        {
+          "id": "2",
+          "text": "Printing it out and leaving it on your desk"
+        },
+        {
+          "id": "3",
+          "text": "Only share it with those who need access and use secure methods like a company file sharing platform"
+        }
+      ],
+      "answerId": "3",
+      "question": "What is a good practice for protecting sensitive company data?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Keep them in a secure location, like a locked drawer or cabinet"
+        },
+        {
+          "id": "2",
+          "text": "Leave them on your desk"
+        },
+        {
+          "id": "3",
+          "text": "Take them home for your convenience"
+        }
+      ],
+      "answerId": "1",
+      "question": "Strong physical security measures are also important for cybersecurity. What should you do with company laptops or USB drives when not in use?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "You don't need to worry about it, IT will handle everything"
+        },
+        {
+          "id": "2",
+          "text": "Attend company-provided cybersecurity awareness training and stay updated on company security policies"
+        },
+        {
+          "id": "3",
+          "text": "Ignore any security warnings you receive"
+        }
+      ],
+      "answerId": "2",
+      "question": "Cybersecurity is an ongoing responsibility. What is the best way to stay informed about the latest cyber threats? "
+    }
+  ]
+}
