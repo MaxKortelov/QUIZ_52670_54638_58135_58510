@@ -37,9 +37,9 @@ export async function quizSessions(_req: Request, res: Response) {
 
 export async function startQuizSession(req: Request, res: Response) {
     try {
-      const quizSessionReqestData = await validateBody(req, StartQuizSession) as StartQuizSession;
-      const user = await findUser(quizSessionReqestData.email);
-      const quizSession = await createQuizSession(quizSessionReqestData.quizTypeId, user.uuid);
+      const quizSessionRequestData = await validateBody(req, StartQuizSession) as StartQuizSession;
+      const user = await findUser(quizSessionRequestData.email);
+      const quizSession = await createQuizSession(quizSessionRequestData.quizTypeId, user.uuid);
       res.send({})
     } catch (_) {
       errorService.serverError(res, ["Something went wrong"])

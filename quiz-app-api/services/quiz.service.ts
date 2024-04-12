@@ -1,7 +1,15 @@
 import {Answer, NewAnswer, NewQuestion, NewQuiz} from "../types/quiz";
 import * as quizDB from "../db/quiz"
-import {addAnswer, addCorrectAnswersToQuestion, addQuestion, getQuizType} from "../db/quiz"
+import {
+  addAnswer,
+  addCorrectAnswersToQuestion,
+  addQuestion, addQuizSession,
+  getQuizQuestion,
+  getQuizQuestions,
+  getQuizType
+} from "../db/quiz"
 import {bufferToJson, listFilesSync, readFileSync} from "../utils/fs.util";
+import {SessionOptions} from "../types/services/quiz.service";
 
 export async function addQuestions(questionTypeId: string, questions: Array<NewQuestion>): Promise<void> {
   for await (let question of questions) {
@@ -39,7 +47,18 @@ async function checkQuiz(quizName: string): Promise<boolean> {
   return !!quiz;
 }
 
-export async function createQuizSession(quizTypeId: string, userId: string): Promise<void> {
+// export class QuizQuestion {
+//
+// }
 
+export async function createQuizSession(quizTypeId: string, userId: string): Promise<void> {
+  const questions = await getQuizQuestions(quizTypeId);
+  const questionSequence = questions.map(it => it.uuid).sort(() => Math.random() - 0.5);
+
+  const sessionOptions: SessionOptions = { quizTypeId, userId, questionSequence };
+
+  const quizSession = await addQuizSession(sessionOptions);
+
+  console.log(quizSession)
   return;
 }

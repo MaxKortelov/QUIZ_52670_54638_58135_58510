@@ -46,6 +46,23 @@ export class Question extends NewQuestion{
   quizType: string;
 }
 
+export class QuestionDB {
+  uuid: string;
+  question_text: string;
+  correct_answers: string;
+  question_type_id: string;
+}
+
+export class AnswerDB {
+  uuid: string;
+  answer_text: string;
+  question_id: string;
+}
+
+export class QuestionWithAnswersDB extends QuestionDB {
+  answers: Array<AnswerDB>;
+}
+
 export class NewQuiz {
   @IsString()
   @MinLength(2)
@@ -79,10 +96,10 @@ export class QuizType {
 
 export class StartQuizSession {
   @IsString()
+  @IsEmail()
   email: string;
 
   @IsString()
-  @IsEmail()
   quizTypeId: string;
 }
 
@@ -95,4 +112,15 @@ export class QuizSession {
 
   @IsArray()
   questionSequence: Array<string>;
+}
+
+export class QuizSessionDB {
+  uuid: string;
+  question_sequence: Array<string>;
+  question_answer: Record<string, string>;
+  question_type_id: string;
+  user_id: string;
+  duration: number;
+  date_started: string;
+  date_ended: string;
 }
