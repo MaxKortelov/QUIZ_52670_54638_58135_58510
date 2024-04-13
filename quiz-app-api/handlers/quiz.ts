@@ -71,7 +71,7 @@ export async function startQuizSession(req: Request, res: Response) {
     await addQuizQuestionAnswer(quizSessionRequestData, user.uuid).then(() => findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid));
     const question = await findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid);
 
-    if (!question) return errorService.serverError(res, [`No unanswered questions left in the quiz. Please submit.`])
+    if (!question) return errorService.conflict(res, [`No unanswered questions left in the quiz. Please submit.`])
 
     const quizSession = await getQuizSession(quizSessionRequestData.quizSessionId, user.uuid);
     const data = {

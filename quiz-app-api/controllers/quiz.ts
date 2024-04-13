@@ -12,3 +12,5 @@ router.get('/generate', generateQuizSession);
 router.get('/start', startQuizSession);
 
 router.get('/question/save', saveQuizQuestion);
+
+router.get('/submit', saveQuizQuestion);
