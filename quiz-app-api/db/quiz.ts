@@ -6,7 +6,7 @@ import {
   QuestionDB,
   QuestionWithAnswersDB,
   QuizSessionDB,
-  QuizType
+  QuizType, SaveQuizQuestion
 } from "../types/quiz";
 import {toArrayText} from "../utils/db.util";
 import {SessionOptions} from "../types/services/quiz.service";
@@ -95,4 +95,14 @@ export async function getQuizSession(quizSessionId: string, userId: string): Pro
   if (quiz.rows.length === 0) throw new Error("Quiz not found. Please try again");
 
   return quiz.rows[0] as QuizSessionDB;
+}
+
+export async function addQuestionAnswer(quizSessionRequestData: SaveQuizQuestion, userId: string): Promise<void> {
+  const {question_answer} = await getQuizSession(quizSessionRequestData.quizSessionId, userId);
+
+  const new_question_answer = {...question_answer, [quizSessionRequestData.questionId]: quizSessionRequestData.answerId};
+  //@ts-ignore
+  await db.query('UPDATE quiz_session SET question_answer = $1 WHERE uuid = $2 AND user_id = $3;', [new_question_answer, quizSessionRequestData.quizSessionId, userId]);
+
+  return;
 }

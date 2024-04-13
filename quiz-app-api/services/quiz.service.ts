@@ -5,13 +5,13 @@ import {
   NewQuestion,
   NewQuiz, questionWithAnswersDBToQuizQuestion,
   QuizData, QuizQuestion,
-  QuizSessionInfo
+  QuizSessionInfo, SaveQuizQuestion
 } from "../types/quiz";
 import * as quizDB from "../db/quiz"
 import {
   addAnswer,
   addCorrectAnswersToQuestion,
-  addQuestion,
+  addQuestion, addQuestionAnswer,
   addQuizSession,
   findEmptyQuizSession,
   getQuizQuestion,
@@ -97,4 +97,9 @@ export async function initiateQuizSession(quizSessionId: string, userId: string)
     dateStarted: new Date(quizSession.date_started),
     dateEnded: new Date(quizSession.date_ended)
   }
+}
+
+export async function addQuizQuestionAnswer(quizSessionRequestData: SaveQuizQuestion, userId: string) {
+  await addQuestionAnswer(quizSessionRequestData, userId);
+  return
 }

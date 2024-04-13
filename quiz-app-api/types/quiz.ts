@@ -194,3 +194,18 @@ export function answerDBToNewAnswer(data: AnswerDB): NewAnswer {
     text: data.answer_text
   }
 }
+
+export class SaveQuizQuestion {
+  @IsString()
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  quizSessionId: string;
+
+  @IsString()
+  questionId: string;
+
+  @IsString()
+  answerId: string;
+}

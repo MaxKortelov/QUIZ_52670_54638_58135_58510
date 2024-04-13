@@ -1,10 +1,15 @@
 import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
-import {GenerateQuizSession, NewQuiz, StartQuizSession} from "../types/quiz";
+import {GenerateQuizSession, NewQuiz, SaveQuizQuestion, StartQuizSession} from "../types/quiz";
 import errorService from "../services/error.service";
 import * as quizDB from "../db/quiz";
-import {getQuizTypeList} from "../db/quiz";
-import {addQuestions, createQuizSession, initiateQuizSession} from "../services/quiz.service";
+import {getQuizSession, getQuizTypeList} from "../db/quiz";
+import {
+  addQuestions,
+  addQuizQuestionAnswer,
+  createQuizSession, findNextQuizQuestion,
+  initiateQuizSession,
+} from "../services/quiz.service";
 import {findUser} from "../db/auth";
 
 export async function addQuizToDB(req: Request, res: Response) {
@@ -54,6 +59,31 @@ export async function startQuizSession(req: Request, res: Response) {
     const quizData = await initiateQuizSession(quizSessionRequestData.quizSessionId, user.uuid)
     res.statusCode = 200;
     res.send(quizData);
+  } catch (_) {
+    errorService.serverError(res, ["Something went wrong"])
+  }
+}
+
+  export async function saveQuizQuestion(req: Request, res: Response) {
+  try {
+    const quizSessionRequestData = await validateBody(req, SaveQuizQuestion) as SaveQuizQuestion;
+    const user = await findUser(quizSessionRequestData.email);
+    await addQuizQuestionAnswer(quizSessionRequestData, user.uuid).then(() => findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid));
+    const question = await findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid);
+
+    if (!question) return errorService.serverError(res, [`No unanswered questions left in the quiz. Please submit.`])
+
+    const quizSession = await getQuizSession(quizSessionRequestData.quizSessionId, user.uuid);
+    const data = {
+      question,
+      questionsAmount: quizSession.question_sequence.length,
+      currentQuestionCount: quizSession.question_sequence.findIndex(it => it === question.questionId) + 1,
+      dateStarted: new Date(quizSession.date_started),
+      dateEnded: new Date(quizSession.date_ended)
+    };
+
+    res.statusCode = 200;
+    res.send(data);
   } catch (_) {
     errorService.serverError(res, ["Something went wrong"])
   }
