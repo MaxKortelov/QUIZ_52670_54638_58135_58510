@@ -3,4 +3,5 @@ export class SessionOptions {
   userId: string;
   questionSequence: Array<string>;
   duration?: number;
+  attempts?: number;
 }

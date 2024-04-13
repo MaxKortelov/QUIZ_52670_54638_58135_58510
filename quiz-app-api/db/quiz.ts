@@ -42,6 +42,11 @@ export async function getQuizType(quizName: string): Promise<QuizType> {
   return result.rows[0] as QuizType;
 }
 
+export async function getQuizTypeById(questionTypeId: string): Promise<QuizType> {
+  const result = await db.query('SELECT * FROM question_type WHERE uuid = $1;', [questionTypeId])
+  return result.rows[0] as QuizType;
+}
+
 export async function getQuizTypeList(): Promise<QuizType[]> {
   const result = await db.query('SELECT * FROM question_type;')
   return result.rows as QuizType[];
@@ -61,9 +66,33 @@ export async function getQuizQuestion(questionId: string): Promise<QuestionWithA
   return question as QuestionWithAnswersDB;
 }
 
-export async function addQuizSession({quizTypeId, userId, questionSequence, duration = 30}: SessionOptions): Promise<QuizSessionDB> {
+export async function addQuizSession({quizTypeId, userId, questionSequence, duration = 30, attempts = 10}: SessionOptions): Promise<QuizSessionDB> {
   //@ts-ignore
-  const result = await db.query(`INSERT INTO quiz_session (question_sequence, question_type_id, user_id, duration, date_ended) VALUES ($1, $2, $3, $4, CURRENT_TIMESTAMP + $5::INTERVAL) RETURNING row_to_json(quiz_session)`, [questionSequence, quizTypeId, userId, duration, `${duration} minutes`]);
+  const result = await db.query(`INSERT INTO quiz_session (question_sequence, question_type_id, user_id, duration, attempts) VALUES ($1, $2, $3, $4, $5) RETURNING row_to_json(quiz_session)`, [questionSequence, quizTypeId, userId, duration, attempts]);
 
   return asJSONDB(result.rows[0]).row_to_json as QuizSessionDB;
+}
+
+// For quiz that is not started
+export async function findEmptyQuizSession(quizTypeId: string, userId: string): Promise<QuizSessionDB | undefined> {
+  //@ts-ignore
+  const result = await db.query(`SELECT * FROM quiz_session WHERE question_type_id = $1 AND user_id = $2;`, [quizTypeId, userId]);
+
+  return result.rows[0] as QuizSessionDB;
+}
+
+export async function startQuizSession(quizSessionId: string, userId: string): Promise<void> {
+  const quizSession = await getQuizSession(quizSessionId, userId);
+  const duration = `${quizSession.duration} minutes`;
+  await db.query('UPDATE quiz_session SET date_started = CURRENT_TIMESTAMP, date_ended = CURRENT_TIMESTAMP + $1::INTERVAL  WHERE uuid = $2 AND user_id = $3;', [duration, quizSessionId, userId]);
+
+  return;
+}
+
+export async function getQuizSession(quizSessionId: string, userId: string): Promise<QuizSessionDB> {
+  const quiz = await db.query('SELECT * FROM quiz_session WHERE uuid = $1 AND user_id = $2;', [quizSessionId, userId]);
+
+  if (quiz.rows.length === 0) throw new Error("Quiz not found. Please try again");
+
+  return quiz.rows[0] as QuizSessionDB;
 }

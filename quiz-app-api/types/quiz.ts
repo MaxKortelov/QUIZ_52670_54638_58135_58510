@@ -40,7 +40,20 @@ export class NewQuestion {
   answerId: string;
 }
 
-export class Question extends NewQuestion{
+export class QuizQuestion{
+  @IsString()
+  questionId: string;
+
+  @IsString()
+  @MinLength(8)
+  question: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @ArrayMinSize(2)
+  @IsValidArrayOfObjects(NewAnswer)
+  answers: Array<NewAnswer>;
+
   @IsString()
   @MinLength(2)
   quizType: string;
@@ -94,13 +107,22 @@ export class QuizType {
   description: string;
 }
 
-export class StartQuizSession {
+export class GenerateQuizSession {
   @IsString()
   @IsEmail()
   email: string;
 
   @IsString()
   quizTypeId: string;
+}
+
+export class StartQuizSession {
+  @IsString()
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  quizSessionId: string;
 }
 
 export class QuizSession {
@@ -121,6 +143,54 @@ export class QuizSessionDB {
   question_type_id: string;
   user_id: string;
   duration: number;
+  date_created: string;
   date_started: string;
   date_ended: string;
+  attempts: number;
+  attempts_used: number;
+  result: number | null;
+}
+
+export class QuizSessionInfo {
+  quizSessionId: string;
+  questionAmount: number;
+  quizDuration: number;
+  quizAttempts: number;
+  quizAttemptsUsed: number;
+  dateCreated: Date;
+}
+
+export function mapQuizSessionDBToQuizSessionInfo(data: QuizSessionDB): QuizSessionInfo {
+  return {
+    quizSessionId: data.uuid,
+    questionAmount: data.question_sequence.length,
+    quizDuration: data.duration,
+    quizAttempts: data.attempts,
+    quizAttemptsUsed: data.attempts_used,
+    dateCreated: new Date(data.date_created)
+  }
+}
+
+export class QuizData {
+  question: QuizQuestion;
+  dateStarted: Date;
+  dateEnded: Date;
+  currentQuestionCount: number;
+  questionsAmount: number;
+}
+
+export function questionWithAnswersDBToQuizQuestion(data: QuestionWithAnswersDB, quizType: string): QuizQuestion {
+  return {
+    questionId: data.uuid,
+    question: data.question_text,
+    answers: data.answers.map(answerDBToNewAnswer),
+    quizType
+  }
+}
+
+export function answerDBToNewAnswer(data: AnswerDB): NewAnswer {
+  return {
+    id: data.uuid,
+    text: data.answer_text
+  }
 }

@@ -24,3 +24,6 @@ export const nodeMailerOptions = {
   user: process.env.NODEMAILER_USER as string,
   password: process.env.NODEMAILER_PASSWORD as string,
 }
+
+export const TIME_PER_QUESTION = Number(process.env.TIME_PER_QUESTION)
+export const ATTEMPTS_PER_QUIZ = Number(process.env.ATTEMPTS_PER_QUIZ)

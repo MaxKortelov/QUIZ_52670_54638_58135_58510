@@ -1,10 +1,10 @@
 import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
-import {NewQuiz, StartQuizSession} from "../types/quiz";
+import {GenerateQuizSession, NewQuiz, StartQuizSession} from "../types/quiz";
 import errorService from "../services/error.service";
 import * as quizDB from "../db/quiz";
-import {addQuestions, createQuizSession} from "../services/quiz.service";
 import {getQuizTypeList} from "../db/quiz";
+import {addQuestions, createQuizSession, initiateQuizSession} from "../services/quiz.service";
 import {findUser} from "../db/auth";
 
 export async function addQuizToDB(req: Request, res: Response) {
@@ -17,7 +17,7 @@ export async function addQuizToDB(req: Request, res: Response) {
         } else {
           errorService.serverError(res, ["Server error - questionType"])
         }
-
+        res.statusCode = 201;
         res.send({message: "Quiz was successfully added."})
       } catch (_) {
         errorService.serverError(res, ["Something went wrong"])
@@ -35,13 +35,26 @@ export async function quizSessions(_req: Request, res: Response) {
     }
 }
 
-export async function startQuizSession(req: Request, res: Response) {
+export async function generateQuizSession(req: Request, res: Response) {
     try {
-      const quizSessionRequestData = await validateBody(req, StartQuizSession) as StartQuizSession;
+      const quizSessionRequestData = await validateBody(req, GenerateQuizSession) as GenerateQuizSession;
       const user = await findUser(quizSessionRequestData.email);
       const quizSession = await createQuizSession(quizSessionRequestData.quizTypeId, user.uuid);
-      res.send({})
+      res.statusCode = 200;
+      res.send(quizSession)
     } catch (_) {
       errorService.serverError(res, ["Something went wrong"])
     }
+}
+
+export async function startQuizSession(req: Request, res: Response) {
+  try {
+    const quizSessionRequestData = await validateBody(req, StartQuizSession) as StartQuizSession;
+    const user = await findUser(quizSessionRequestData.email);
+    const quizData = await initiateQuizSession(quizSessionRequestData.quizSessionId, user.uuid)
+    res.statusCode = 200;
+    res.send(quizData);
+  } catch (_) {
+    errorService.serverError(res, ["Something went wrong"])
+  }
 }

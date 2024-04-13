@@ -1,15 +1,27 @@
-import {Answer, NewAnswer, NewQuestion, NewQuiz} from "../types/quiz";
+import {
+  Answer,
+  mapQuizSessionDBToQuizSessionInfo,
+  NewAnswer,
+  NewQuestion,
+  NewQuiz, questionWithAnswersDBToQuizQuestion,
+  QuizData, QuizQuestion,
+  QuizSessionInfo
+} from "../types/quiz";
 import * as quizDB from "../db/quiz"
 import {
   addAnswer,
   addCorrectAnswersToQuestion,
-  addQuestion, addQuizSession,
+  addQuestion,
+  addQuizSession,
+  findEmptyQuizSession,
   getQuizQuestion,
   getQuizQuestions,
-  getQuizType
+  getQuizSession,
+  getQuizType, getQuizTypeById, startQuizSession
 } from "../db/quiz"
 import {bufferToJson, listFilesSync, readFileSync} from "../utils/fs.util";
 import {SessionOptions} from "../types/services/quiz.service";
+import {ATTEMPTS_PER_QUIZ, TIME_PER_QUESTION} from "../@shared/env-vars";
 
 export async function addQuestions(questionTypeId: string, questions: Array<NewQuestion>): Promise<void> {
   for await (let question of questions) {
@@ -47,18 +59,42 @@ async function checkQuiz(quizName: string): Promise<boolean> {
   return !!quiz;
 }
 
-// export class QuizQuestion {
-//
-// }
+export async function createQuizSession(quizTypeId: string, userId: string): Promise<QuizSessionInfo> {
+  const existedSession = await findEmptyQuizSession(quizTypeId, userId);
+  if (existedSession) return mapQuizSessionDBToQuizSessionInfo(existedSession);
 
-export async function createQuizSession(quizTypeId: string, userId: string): Promise<void> {
   const questions = await getQuizQuestions(quizTypeId);
   const questionSequence = questions.map(it => it.uuid).sort(() => Math.random() - 0.5);
+  const duration = questionSequence.length * TIME_PER_QUESTION;
+  const attempts = ATTEMPTS_PER_QUIZ;
 
-  const sessionOptions: SessionOptions = { quizTypeId, userId, questionSequence };
+  const sessionOptions: SessionOptions = { quizTypeId, userId, questionSequence, duration, attempts };
 
   const quizSession = await addQuizSession(sessionOptions);
 
-  console.log(quizSession)
-  return;
+  return mapQuizSessionDBToQuizSessionInfo(quizSession);
+}
+
+export async function findNextQuizQuestion(quizSessionId: string, userId: string): Promise<QuizQuestion | undefined> {
+  const quizSession = await getQuizSession(quizSessionId, userId);
+  const answeredQuestions = Object.keys(quizSession.question_answer);
+  const currentQuestionId = quizSession.question_sequence.find(q => !answeredQuestions.includes(q)); // Find first question that is not answered
+  const {uuid: quizType} = await getQuizTypeById(quizSession.question_type_id);
+
+  return currentQuestionId ? questionWithAnswersDBToQuizQuestion(await getQuizQuestion(currentQuestionId), quizType) : undefined;
+}
+
+export async function initiateQuizSession(quizSessionId: string, userId: string): Promise<QuizData> {
+  const question = await findNextQuizQuestion(quizSessionId, userId);
+
+  if (!question) throw new Error("Quiz is not valid");
+  await startQuizSession(quizSessionId, userId).catch(() => {throw new Error("Quiz was not started")});
+  const quizSession = await getQuizSession(quizSessionId, userId);
+  return {
+    question,
+    questionsAmount: quizSession.question_sequence.length,
+    currentQuestionCount: quizSession.question_sequence.findIndex(it => it === question.questionId) + 1,
+    dateStarted: new Date(quizSession.date_started),
+    dateEnded: new Date(quizSession.date_ended)
+  }
 }
