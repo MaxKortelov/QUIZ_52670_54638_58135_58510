@@ -79,7 +79,7 @@ export async function findNextQuizQuestion(quizSessionId: string, userId: string
   const quizSession = await getQuizSession(quizSessionId, userId);
   const answeredQuestions = Object.keys(quizSession.question_answer);
   const currentQuestionId = quizSession.question_sequence.find(q => !answeredQuestions.includes(q)); // Find first question that is not answered
-  const {uuid: quizType} = await getQuizTypeById(quizSession.question_type_id);
+  const { description: quizType} = await getQuizTypeById(quizSession.question_type_id);
 
   return currentQuestionId ? questionWithAnswersDBToQuizQuestion(await getQuizQuestion(currentQuestionId), quizType) : undefined;
 }
