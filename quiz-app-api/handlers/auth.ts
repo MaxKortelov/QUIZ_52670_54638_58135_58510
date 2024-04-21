@@ -13,7 +13,7 @@ import errorService from "../services/error.service";
 import {encryptPassword, validatePassword} from "../utils/crypto.util";
 import {EmailOptions} from "../types/services/email.service";
 import {sendEmail} from "../services/email.service";
-import {resetPasswordTemplateHTML} from "../utils/templates.util";
+import {resetPasswordTemplateHTML, verifyEmailTemplateHTML} from "../utils/templates.util";
 import {ORIGIN} from "../@shared/env-vars";
 
 export async function registerUser(req: Request, res: Response) {
@@ -23,8 +23,8 @@ export async function registerUser(req: Request, res: Response) {
       const token = await addVerifyEmailToken(user.email);
       const emailOptions: EmailOptions = {
         to: [user.email],
-        subject: "Reset your password",
-        html: resetPasswordTemplateHTML(`${ORIGIN}/reset_password?token=${token}`)
+        subject: "Verify your email",
+        html: verifyEmailTemplateHTML(`${ORIGIN}/reset_password?token=${token}`)
       }
       return emailOptions;
     })
