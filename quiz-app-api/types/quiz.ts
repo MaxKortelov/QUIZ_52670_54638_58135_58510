@@ -62,7 +62,7 @@ export class QuizQuestion{
 export class QuestionDB {
   uuid: string;
   question_text: string;
-  correct_answers: string;
+  correct_answers: string[];
   question_type_id: string;
 }
 
@@ -208,4 +208,13 @@ export class SaveQuizQuestion {
 
   @IsString()
   answerId: string;
+}
+
+export class SubmitQuiz {
+  @IsString()
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  quizSessionId: string;
 }

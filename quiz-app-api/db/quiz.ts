@@ -106,3 +106,15 @@ export async function addQuestionAnswer(quizSessionRequestData: SaveQuizQuestion
 
   return;
 }
+
+export async function saveAndCountQuizResult(quizSessionId: string, userId: string): Promise<void> {
+  const {question_answer, question_type_id} = await getQuizSession(quizSessionId, userId);
+  const questions = await getQuizQuestions(question_type_id);
+  const answersCheckList = questions.map(({correct_answers, uuid: questionId}) => question_answer[questionId] === correct_answers[0]);
+  const result = 100 * answersCheckList.filter(it => it).length / answersCheckList.length;
+  console.log(Math.ceil(result))
+  //@ts-ignore
+  // await db.query('UPDATE quiz_session SET question_answer = $1 WHERE uuid = $2 AND user_id = $3;', [new_question_answer, quizSessionRequestData.quizSessionId, userId]);
+
+  return;
+}

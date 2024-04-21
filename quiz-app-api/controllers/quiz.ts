@@ -1,5 +1,12 @@
 import express, {Router} from "express";
-import {addQuizToDB, generateQuizSession, quizSessions, startQuizSession, saveQuizQuestion} from "../handlers/quiz";
+import {
+  addQuizToDB,
+  generateQuizSession,
+  quizSessions,
+  startQuizSession,
+  saveQuizQuestion,
+  submitQuiz
+} from "../handlers/quiz";
 
 export const router: Router = express.Router();
 
@@ -13,4 +20,4 @@ router.get('/start', startQuizSession);
 
 router.get('/question/save', saveQuizQuestion);
 
-router.get('/submit', saveQuizQuestion);
+router.get('/submit', submitQuiz);

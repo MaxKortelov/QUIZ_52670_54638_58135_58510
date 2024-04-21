@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "NODE_ENV=prod node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"NODE_ENV=dev nodemon -q dist/index.js\"",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "migration:create": "node migrate create",
     "migrate": "node migrate migrate",
     "migration:rollback": "node migrate rollback"

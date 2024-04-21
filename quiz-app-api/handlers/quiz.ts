@@ -1,13 +1,14 @@
 import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
-import {GenerateQuizSession, NewQuiz, SaveQuizQuestion, StartQuizSession} from "../types/quiz";
+import {GenerateQuizSession, NewQuiz, SaveQuizQuestion, StartQuizSession, SubmitQuiz} from "../types/quiz";
 import errorService from "../services/error.service";
 import * as quizDB from "../db/quiz";
-import {getQuizSession, getQuizTypeList} from "../db/quiz";
+import {getQuizSession, getQuizTypeList, saveAndCountQuizResult} from "../db/quiz";
 import {
   addQuestions,
   addQuizQuestionAnswer,
-  createQuizSession, findNextQuizQuestion,
+  createQuizSession,
+  findNextQuizQuestion,
   initiateQuizSession,
 } from "../services/quiz.service";
 import {findUser} from "../db/auth";
@@ -84,6 +85,32 @@ export async function startQuizSession(req: Request, res: Response) {
 
     res.statusCode = 200;
     res.send(data);
+  } catch (_) {
+    errorService.serverError(res, ["Something went wrong"])
+  }
+}
+
+export async function submitQuiz(req: Request, res: Response) {
+  try {
+    const submitQuizData = await validateBody(req, SubmitQuiz) as SubmitQuiz;
+    const user = await findUser(submitQuizData.email);
+    await saveAndCountQuizResult(submitQuizData.quizSessionId, user.uuid);
+    // await addQuizQuestionAnswer(quizSessionRequestData, user.uuid).then(() => findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid));
+    // const question = await findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid);
+    //
+    // if (!question) return errorService.conflict(res, [`No unanswered questions left in the quiz. Please submit.`])
+    //
+    // const quizSession = await getQuizSession(quizSessionRequestData.quizSessionId, user.uuid);
+    // const data = {
+    //   question,
+    //   questionsAmount: quizSession.question_sequence.length,
+    //   currentQuestionCount: quizSession.question_sequence.findIndex(it => it === question.questionId) + 1,
+    //   dateStarted: new Date(quizSession.date_started),
+    //   dateEnded: new Date(quizSession.date_ended)
+    // };
+    //
+    // res.statusCode = 200;
+    // res.send(data);
   } catch (_) {
     errorService.serverError(res, ["Something went wrong"])
   }

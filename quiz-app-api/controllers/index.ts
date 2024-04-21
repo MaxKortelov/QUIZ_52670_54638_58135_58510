@@ -7,5 +7,5 @@ import {Express} from "express";
 export function setControllers(app: Express) {
   app.use('/auth', auth)
   app.use('/quiz', quiz)
-  app.use('/quiz', user)
+  app.use('/user', user)
 }
