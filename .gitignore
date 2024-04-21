@@ -11,4 +11,6 @@ quiz-app-webapp/.env.*
 quiz-app-api/dist/
 quiz-app-api/node_modules/
 
+.env
+
 Makefile
