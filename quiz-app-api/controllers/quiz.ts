@@ -21,6 +21,6 @@ router.post('/start', startQuizSession);
 
 router.post('/question/save', validateQuizSession, saveQuizQuestion);
 
-router.post('/question/next', nextQuizQuestion);
+router.post('/question/next', validateQuizSession, nextQuizQuestion);
 
-router.post('/submit', submitQuiz);
+router.post('/submit', validateQuizSession, submitQuiz);
