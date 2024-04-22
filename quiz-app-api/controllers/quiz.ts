@@ -7,6 +7,7 @@ import {
   saveQuizQuestion,
   submitQuiz, nextQuizQuestion
 } from "../handlers/quiz";
+import {validateQuizSession} from "../services/quiz-validation.service";
 
 export const router: Router = express.Router();
 
@@ -18,7 +19,7 @@ router.post('/generate', generateQuizSession);
 
 router.post('/start', startQuizSession);
 
-router.post('/question/save', saveQuizQuestion);
+router.post('/question/save', validateQuizSession, saveQuizQuestion);
 
 router.post('/question/next', nextQuizQuestion);
 

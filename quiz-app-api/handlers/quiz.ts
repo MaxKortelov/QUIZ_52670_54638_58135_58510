@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import {Request, Response, NextFunction} from "express";
 import {validateBody} from "../validators/entity.validator";
 import {GenerateQuizSession, NewQuiz, SaveQuizQuestion, StartQuizSession, SubmitQuiz} from "../types/quiz";
 import errorService from "../services/error.service";
