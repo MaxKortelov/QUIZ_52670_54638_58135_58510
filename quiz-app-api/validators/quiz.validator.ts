@@ -16,6 +16,4 @@ export async function validateQuizSession(req: Request, res: Response, next: Nex
   } catch (e) {
     errorService.validationError(res, ["Cannot validate quiz session"]);
   }
-
-
 }
