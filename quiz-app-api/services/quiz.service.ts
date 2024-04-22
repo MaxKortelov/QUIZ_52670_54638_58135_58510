@@ -85,10 +85,11 @@ export async function findNextQuizQuestion(quizSessionId: string, userId: string
 }
 
 export async function initiateQuizSession(quizSessionId: string, userId: string): Promise<QuizData> {
+  await startQuizSession(quizSessionId, userId).catch(() => {throw new Error("Quiz was not started")});
+
   const question = await findNextQuizQuestion(quizSessionId, userId);
 
   if (!question) throw new Error("Quiz is not valid");
-  await startQuizSession(quizSessionId, userId).catch(() => {throw new Error("Quiz was not started")});
   const quizSession = await getQuizSession(quizSessionId, userId);
   return {
     question,

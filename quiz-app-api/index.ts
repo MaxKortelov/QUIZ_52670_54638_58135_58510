@@ -9,6 +9,8 @@ import "dotenv/config";
 import swaggerDocs from "./utils/swagger.util";
 import {loadInitialQuizzes} from "./services/quiz.service";
 
+process.env.TZ = 'Europe/Warsaw';
+
 const app: Express = express();
 
 app.use(

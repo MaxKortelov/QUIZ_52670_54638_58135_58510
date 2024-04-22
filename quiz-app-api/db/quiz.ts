@@ -76,8 +76,7 @@ export async function addQuizSession({quizTypeId, userId, questionSequence, dura
 
 // For quiz that is not started
 export async function findEmptyQuizSession(quizTypeId: string, userId: string): Promise<QuizSessionDB | undefined> {
-  //@ts-ignore
-  const result = await db.query(`SELECT * FROM quiz_session WHERE question_type_id = $1 AND user_id = $2;`, [quizTypeId, userId]);
+  const result = await db.query(`SELECT * FROM quiz_session WHERE question_type_id = $1 AND user_id = $2 ;`, [quizTypeId, userId]);
 
   return result.rows[0] as QuizSessionDB;
 }
@@ -85,7 +84,7 @@ export async function findEmptyQuizSession(quizTypeId: string, userId: string): 
 export async function startQuizSession(quizSessionId: string, userId: string): Promise<void> {
   const quizSession = await getQuizSession(quizSessionId, userId);
   const duration = `${quizSession.duration} minutes`;
-  await db.query('UPDATE quiz_session SET date_started = CURRENT_TIMESTAMP, date_ended = CURRENT_TIMESTAMP + $1::INTERVAL, attempts_used = attempts_used + 1 WHERE uuid = $2 AND user_id = $3;', [duration, quizSessionId, userId]);
+  await db.query('UPDATE quiz_session SET date_started = CURRENT_TIMESTAMP, date_ended = CURRENT_TIMESTAMP + $1::INTERVAL, attempts_used = attempts_used + 1, question_answer = $2 WHERE uuid = $3 AND user_id = $4;', [duration, {}, quizSessionId, userId]);
 
   return;
 }
