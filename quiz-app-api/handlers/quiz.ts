@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction} from "express";
+import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
 import {GenerateQuizSession, NewQuiz, SaveQuizQuestion, StartQuizSession, SubmitQuiz} from "../types/quiz";
 import errorService from "../services/error.service";
@@ -111,7 +111,7 @@ export async function submitQuiz(req: Request, res: Response) {
 
     const data = {
       quizSessionId: submitQuizData.quizSessionId,
-      result: quizSessionResult
+      result: quizSessionResult + '%'
     }
 
     res.statusCode = 200;

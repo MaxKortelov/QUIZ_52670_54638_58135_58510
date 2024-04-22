@@ -6,7 +6,8 @@ import {
   QuestionDB,
   QuestionWithAnswersDB,
   QuizSessionDB,
-  QuizType, SaveQuizQuestion
+  QuizType,
+  SaveQuizQuestion
 } from "../types/quiz";
 import {toArrayText} from "../utils/db.util";
 import {SessionOptions} from "../types/services/quiz.service";
@@ -97,6 +98,14 @@ export async function getQuizSession(quizSessionId: string, userId: string): Pro
   return quiz.rows[0] as QuizSessionDB;
 }
 
+export async function getQuizSessionById(quizSessionId: string): Promise<QuizSessionDB> {
+  const quiz = await db.query('SELECT * FROM quiz_session WHERE uuid = $1;', [quizSessionId]);
+
+  if (quiz.rows.length === 0) throw new Error("Quiz not found. Please try again");
+
+  return quiz.rows[0] as QuizSessionDB;
+}
+
 export async function addQuestionAnswer(quizSessionRequestData: SaveQuizQuestion, userId: string): Promise<void> {
   const {question_answer} = await getQuizSession(quizSessionRequestData.quizSessionId, userId);
 
@@ -113,7 +122,7 @@ export async function saveAndCountQuizResult(quizSessionId: string, userId: stri
   const answersCheckList = questions.map(({correct_answers, uuid: questionId}) => question_answer[questionId] === correct_answers[0]);
   const result = 100 * answersCheckList.filter(it => it).length / answersCheckList.length;
 
-  await db.query('UPDATE quiz_session SET result = $1 WHERE uuid = $2 AND user_id = $3 RETURNING quiz_session;', [result, quizSessionId, userId]);
+  await db.query('UPDATE quiz_session SET result = $1, date_ended = CURRENT_TIMESTAMP WHERE uuid = $2 AND user_id = $3 RETURNING quiz_session;', [result, quizSessionId, userId]);
 
   return result;
 }

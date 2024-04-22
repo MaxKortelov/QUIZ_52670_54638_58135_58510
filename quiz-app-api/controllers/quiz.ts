@@ -2,12 +2,13 @@ import express, {Router} from "express";
 import {
   addQuizToDB,
   generateQuizSession,
+  nextQuizQuestion,
   quizSessions,
-  startQuizSession,
   saveQuizQuestion,
-  submitQuiz, nextQuizQuestion
+  startQuizSession,
+  submitQuiz
 } from "../handlers/quiz";
-import {validateQuizSession} from "../services/quiz-validation.service";
+import {validateQuizSession} from "../validators/quiz.validator";
 
 export const router: Router = express.Router();
 
