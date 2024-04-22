@@ -5,19 +5,21 @@ import {
   quizSessions,
   startQuizSession,
   saveQuizQuestion,
-  submitQuiz
+  submitQuiz, nextQuizQuestion
 } from "../handlers/quiz";
 
 export const router: Router = express.Router();
 
-router.get('/add', addQuizToDB);
+router.post('/add', addQuizToDB);
 
 router.get('/list', quizSessions);
 
-router.get('/generate', generateQuizSession);
+router.post('/generate', generateQuizSession);
 
-router.get('/start', startQuizSession);
+router.post('/start', startQuizSession);
 
-router.get('/question/save', saveQuizQuestion);
+router.post('/question/save', saveQuizQuestion);
 
-router.get('/submit', submitQuiz);
+router.post('/question/next', nextQuizQuestion);
+
+router.post('/submit', submitQuiz);

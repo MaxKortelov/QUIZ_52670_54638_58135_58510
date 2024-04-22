@@ -101,5 +101,5 @@ export async function initiateQuizSession(quizSessionId: string, userId: string)
 
 export async function addQuizQuestionAnswer(quizSessionRequestData: SaveQuizQuestion, userId: string) {
   await addQuestionAnswer(quizSessionRequestData, userId);
-  return
+  return;
 }

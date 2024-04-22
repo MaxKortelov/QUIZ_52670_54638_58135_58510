@@ -67,7 +67,7 @@ export async function getQuizQuestion(questionId: string): Promise<QuestionWithA
 }
 
 export async function addQuizSession({quizTypeId, userId, questionSequence, duration = 30, attempts = 10}: SessionOptions): Promise<QuizSessionDB> {
-  //@ts-ignore
+
   const result = await db.query(`INSERT INTO quiz_session (question_sequence, question_type_id, user_id, duration, attempts) VALUES ($1, $2, $3, $4, $5) RETURNING row_to_json(quiz_session)`, [questionSequence, quizTypeId, userId, duration, attempts]);
 
   return asJSONDB(result.rows[0]).row_to_json as QuizSessionDB;
@@ -84,7 +84,7 @@ export async function findEmptyQuizSession(quizTypeId: string, userId: string): 
 export async function startQuizSession(quizSessionId: string, userId: string): Promise<void> {
   const quizSession = await getQuizSession(quizSessionId, userId);
   const duration = `${quizSession.duration} minutes`;
-  await db.query('UPDATE quiz_session SET date_started = CURRENT_TIMESTAMP, date_ended = CURRENT_TIMESTAMP + $1::INTERVAL  WHERE uuid = $2 AND user_id = $3;', [duration, quizSessionId, userId]);
+  await db.query('UPDATE quiz_session SET date_started = CURRENT_TIMESTAMP, date_ended = CURRENT_TIMESTAMP + $1::INTERVAL, attempts_used = attempts_used + 1 WHERE uuid = $2 AND user_id = $3;', [duration, quizSessionId, userId]);
 
   return;
 }
@@ -101,20 +101,19 @@ export async function addQuestionAnswer(quizSessionRequestData: SaveQuizQuestion
   const {question_answer} = await getQuizSession(quizSessionRequestData.quizSessionId, userId);
 
   const new_question_answer = {...question_answer, [quizSessionRequestData.questionId]: quizSessionRequestData.answerId};
-  //@ts-ignore
+
   await db.query('UPDATE quiz_session SET question_answer = $1 WHERE uuid = $2 AND user_id = $3;', [new_question_answer, quizSessionRequestData.quizSessionId, userId]);
 
   return;
 }
 
-export async function saveAndCountQuizResult(quizSessionId: string, userId: string): Promise<void> {
+export async function saveAndCountQuizResult(quizSessionId: string, userId: string): Promise<any> {
   const {question_answer, question_type_id} = await getQuizSession(quizSessionId, userId);
   const questions = await getQuizQuestions(question_type_id);
   const answersCheckList = questions.map(({correct_answers, uuid: questionId}) => question_answer[questionId] === correct_answers[0]);
   const result = 100 * answersCheckList.filter(it => it).length / answersCheckList.length;
-  console.log(Math.ceil(result))
-  //@ts-ignore
-  // await db.query('UPDATE quiz_session SET question_answer = $1 WHERE uuid = $2 AND user_id = $3;', [new_question_answer, quizSessionRequestData.quizSessionId, userId]);
 
-  return;
+  await db.query('UPDATE quiz_session SET result = $1 WHERE uuid = $2 AND user_id = $3 RETURNING quiz_session;', [result, quizSessionId, userId]);
+
+  return result;
 }

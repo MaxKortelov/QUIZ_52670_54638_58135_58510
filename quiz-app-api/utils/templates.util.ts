@@ -77,7 +77,7 @@ export function verifyEmailTemplateHTML(url: string): string {
                 <table border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td align="center" style="padding: 20px 0;">
-                      <a href="${url}" style="display: inline-block; background-color: #007bff; color: #ffffff; font-size: 18px; text-decoration: none; padding: 12px 24px; border-radius: 6px;">Reset Password</a>
+                      <a href="${url}" style="display: inline-block; background-color: #007bff; color: #ffffff; font-size: 18px; text-decoration: none; padding: 12px 24px; border-radius: 6px;">Verify</a>
                     </td>
                   </tr>
                 </table>

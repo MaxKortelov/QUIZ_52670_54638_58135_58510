@@ -70,6 +70,19 @@ export async function startQuizSession(req: Request, res: Response) {
     const quizSessionRequestData = await validateBody(req, SaveQuizQuestion) as SaveQuizQuestion;
     const user = await findUser(quizSessionRequestData.email);
     await addQuizQuestionAnswer(quizSessionRequestData, user.uuid).then(() => findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid));
+
+    res.statusCode = 200;
+    res.send({ message: "Answer is saved successfully" });
+  } catch (_) {
+    errorService.serverError(res, ["Something went wrong"])
+  }
+}
+
+export async function nextQuizQuestion(req: Request, res: Response) {
+  try {
+    const quizSessionRequestData = await validateBody(req, SaveQuizQuestion) as SaveQuizQuestion;
+    const user = await findUser(quizSessionRequestData.email);
+    await addQuizQuestionAnswer(quizSessionRequestData, user.uuid).then(() => findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid));
     const question = await findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid);
 
     if (!question) return errorService.conflict(res, [`No unanswered questions left in the quiz. Please submit.`])
@@ -94,23 +107,15 @@ export async function submitQuiz(req: Request, res: Response) {
   try {
     const submitQuizData = await validateBody(req, SubmitQuiz) as SubmitQuiz;
     const user = await findUser(submitQuizData.email);
-    await saveAndCountQuizResult(submitQuizData.quizSessionId, user.uuid);
-    // await addQuizQuestionAnswer(quizSessionRequestData, user.uuid).then(() => findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid));
-    // const question = await findNextQuizQuestion(quizSessionRequestData.quizSessionId, user.uuid);
-    //
-    // if (!question) return errorService.conflict(res, [`No unanswered questions left in the quiz. Please submit.`])
-    //
-    // const quizSession = await getQuizSession(quizSessionRequestData.quizSessionId, user.uuid);
-    // const data = {
-    //   question,
-    //   questionsAmount: quizSession.question_sequence.length,
-    //   currentQuestionCount: quizSession.question_sequence.findIndex(it => it === question.questionId) + 1,
-    //   dateStarted: new Date(quizSession.date_started),
-    //   dateEnded: new Date(quizSession.date_ended)
-    // };
-    //
-    // res.statusCode = 200;
-    // res.send(data);
+    const quizSessionResult = await saveAndCountQuizResult(submitQuizData.quizSessionId, user.uuid);
+
+    const data = {
+      quizSessionId: submitQuizData.quizSessionId,
+      result: quizSessionResult
+    }
+
+    res.statusCode = 200;
+    res.send(data);
   } catch (_) {
     errorService.serverError(res, ["Something went wrong"])
   }
