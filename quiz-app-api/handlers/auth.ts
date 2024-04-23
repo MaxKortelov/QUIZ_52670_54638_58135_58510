@@ -109,8 +109,9 @@ export async function verifyEmail(req: Request, res: Response) {
   try {
     const { token, email } = await validateBody(req, VerifyEmail) as VerifyEmail;
     const user = await findUser(email);
+    console.log("token", token, user)
 
-    if(user.reset_password_token !== token) throw new Error("Token is not valid");
+    if(user.verify_email_token !== token) throw new Error("Token is not valid");
     await verificationEmail(email);
 
     res.statusCode = 200;
