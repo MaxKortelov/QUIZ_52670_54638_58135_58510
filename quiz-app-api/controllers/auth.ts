@@ -1,5 +1,6 @@
 import express, {Router} from 'express';
 import {login, registerUser, sendEmailResetPassword, updateUserPassword, verifyEmail} from "../handlers/auth";
+import {validateEmailVerification} from "../validators/auth.validator";
 
 export const router: Router = express.Router();
 /**
@@ -22,7 +23,7 @@ export const router: Router = express.Router();
 */
 router.post('/user/register', registerUser);
 
-router.post('/user/login', login);
+router.post('/user/login', validateEmailVerification, login);
 
 router.post('/user/email_action_password_reset', sendEmailResetPassword);
 
