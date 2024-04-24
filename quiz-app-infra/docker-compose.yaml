@@ -10,8 +10,8 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_USER: root
       POSTGRES_DB: quiz
-      TZ: 'GMT+2'
-      PGTZ: 'GMT+2'
+#      TZ: Factory
+#      PGTZ: Factory
     volumes:
       - quiz-db:/~var/db
     ports:

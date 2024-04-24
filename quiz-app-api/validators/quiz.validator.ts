@@ -7,7 +7,7 @@ export async function validateQuizSession(req: Request, res: Response, next: Nex
     const {quizSessionId} = req.body;
     const {date_ended} = await getQuizSessionById(quizSessionId);
     const isQuizSessionEnded = new Date().getTime() > new Date(date_ended).getTime();
-    console.log(new Date(), new Date(date_ended))
+
     if(isQuizSessionEnded) {
       return errorService.lockedResourse(res, ["Quiz session is finished"]);
     }

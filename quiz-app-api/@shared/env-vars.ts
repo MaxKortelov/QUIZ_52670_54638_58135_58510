@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import {ClientConfig} from "pg";
 
 dotenv.config();
 
@@ -6,12 +7,12 @@ export const port = Number(process.env.PORT) || 3001;
 
 export const ORIGIN = process.env.ALLOWED_ORIGIN;
 
-export const databaseOptions = {
+export const databaseOptions: ClientConfig = {
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: Number(process.env.DB_PORT),
+  port: Number(process.env.DB_PORT)
 };
 
 export const nodeMailerOptions = {
