@@ -116,6 +116,94 @@
  *         email: test@test.com
  *         token: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
  *
+ *     NewAnswer:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: Unique id of the answer
+ *         text:
+ *           type: string
+ *           description: answer text
+ *       example:
+ *         id: 1
+ *         text: What is the smallest planet in sonar system?
+ *
+ *     NewQuiz:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         quizType:
+ *           type: string
+ *           description: Type of the quiz
+ *         questions:
+ *           type: arr
+ *           items:
+ *             $ref: '#/components/schemas/NewAnswer'
+ *           description: list of answers
+ *       example:
+ *         quizType: Cosmic quiz
+ *         questions: [{id: 1, text: What is the smallest planet in sonar system?}]
+ *
+ *     QuizType:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         uuid:
+ *           type: string
+ *           description: Unique id of the quiz type
+ *         description:
+ *           type: string
+ *           description: Name of the quiz type
+ *       example:
+ *         uuid: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *         description: Cosmic quiz
+ *
+ *     GenerateQuizSession:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: Email
+ *         quizTypeId:
+ *           type: string
+ *           description: Quiz type unique id
+ *       example:
+ *         email: test@test.com
+ *         quizTypeId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *
+ *     QuizSessionInfo:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         quizSessionId:
+ *           type: string
+ *           description: Quiz session unique id
+ *         questionAmount:
+ *           type: number
+ *           description: Number of questions
+ *         quizDuration:
+ *           type: number
+ *           description: Time session will be available in minutes
+ *         quizAttempts:
+ *           type: number
+ *           description: Number of attempts
+ *         quizAttemptsUsed:
+ *           type: number
+ *           description: Number of attempts that are used
+ *         dateCreated:
+ *           type: Date
+ *           description: Date, when quiz session was generated (Time zone should be converted)
+ *       example:
+ *         quizSessionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *         questionAmount: 10
+ *         quizDuration: 30
+ *         quizAttempts: 10
+ *         quizAttemptsUsed: 1
+ *         dateCreated: 2024-04-24T00:00:00.000Z
+ *
  *     ResponseSuccess:
  *       type: object
  *       properties:
@@ -124,6 +212,7 @@
  *           description: Successful message
  *       example:
  *         message: Action was successfully completed
+ *
  *     ResponseError:
  *       type: object
  *       properties:

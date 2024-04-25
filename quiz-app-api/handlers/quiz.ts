@@ -12,6 +12,7 @@ import {
   initiateQuizSession,
 } from "../services/quiz.service";
 import {findUser} from "../db/auth";
+import {responseMessage} from "../utils/api.util";
 
 export async function addQuizToDB(req: Request, res: Response) {
   await validateBody(req, NewQuiz).then((result) => result as NewQuiz)
@@ -24,7 +25,7 @@ export async function addQuizToDB(req: Request, res: Response) {
           errorService.serverError(res, ["Server error - questionType"])
         }
         res.statusCode = 201;
-        res.send({message: "Quiz was successfully added."})
+        res.send(responseMessage("Quiz was successfully added."));
       } catch (_) {
         errorService.serverError(res, ["Something went wrong"])
       }
@@ -46,8 +47,8 @@ export async function generateQuizSession(req: Request, res: Response) {
       const quizSessionRequestData = await validateBody(req, GenerateQuizSession) as GenerateQuizSession;
       const user = await findUser(quizSessionRequestData.email);
       const quizSession = await createQuizSession(quizSessionRequestData.quizTypeId, user.uuid);
-      res.statusCode = 200;
-      res.send(quizSession)
+      res.statusCode = 201;
+      res.send({ quizSession })
     } catch (_) {
       errorService.serverError(res, ["Something went wrong"])
     }
