@@ -8,7 +8,7 @@ export async function validateEmailVerification(req: Request, res: Response, nex
     const {user_confirmed} = await findUser(email);
 
     if (!user_confirmed) {
-      return errorService.lockedResourse(res, ["Email should be verified"]);
+      return errorService.lockedResource(res, ["Email should be verified"]);
     }
 
     next();

@@ -10,6 +10,11 @@ const options: swaggerJsdoc.Options = {
       title: "REST API Docs",
       version,
     },
+    servers: [
+      {
+        url: "http://localhost:3001",
+      },
+    ],
     // todo - uncomment when auth added
     // components: {
     //   securitySchemes: {
@@ -26,7 +31,7 @@ const options: swaggerJsdoc.Options = {
       },
     ],
   },
-  apis: ["./controllers/*.ts"],
+  apis: ["./controllers/*.ts", "./types/*.ts"]
 };
 
 const swaggerSpec = swaggerJsdoc(options);

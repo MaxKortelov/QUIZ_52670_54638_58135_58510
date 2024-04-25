@@ -15,6 +15,7 @@ import {EmailOptions} from "../types/services/email.service";
 import {sendEmail} from "../services/email.service";
 import {resetPasswordTemplateHTML, verifyEmailTemplateHTML} from "../utils/templates.util";
 import {ORIGIN} from "../@shared/env-vars";
+import {responseMessage} from "../utils/api.util";
 
 export async function registerUser(req: Request, res: Response) {
   await validateBody(req, NewUser)
@@ -31,7 +32,7 @@ export async function registerUser(req: Request, res: Response) {
     .then(sendEmail)
     .then(() => {
       res.statusCode = 201;
-      res.send("Message was successfully sent to email");
+      res.send(responseMessage("Message was successfully sent to email"));
       res.end();
     })
     .catch(() => errorService.existedEntityError(res));
@@ -77,7 +78,7 @@ export async function sendEmailResetPassword(req: Request, res: Response) {
     .then(sendEmail)
     .then(() => {
       res.statusCode = 200;
-      res.send("Message was successfully sent")
+      res.send(responseMessage("Message was successfully sent"))
       res.end();
     }, () => errorService.serverError(res, ["Something went wrong. Message was not sent"]))
     .catch(() => {

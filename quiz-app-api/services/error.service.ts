@@ -14,7 +14,7 @@ class ErrorService {
 
   public existedEntityError(res: Response, errors: Array<string> = []) {
     const body = Object.create(this.errorObject);
-    body.errors = ["User already exists", ...errors];
+    body.errors = ["Entity already exists", ...errors];
     res.statusCode = 409;
     res.send(body);
   }
@@ -33,7 +33,7 @@ class ErrorService {
     res.send(body);
   }
 
-  public lockedResourse(res: Response, errors: Array<string> = []) {
+  public lockedResource(res: Response, errors: Array<string> = []) {
     const body = Object.create(this.errorObject);
     body.errors = errors.length > 0 ? errors : ["The resource is locked"];
     res.statusCode = 423;

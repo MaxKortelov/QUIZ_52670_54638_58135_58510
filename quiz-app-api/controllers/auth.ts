@@ -4,25 +4,78 @@ import {validateEmailVerification} from "../validators/auth.validator";
 
 export const router: Router = express.Router();
 /**
- * @openapi
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Auth API
+ */
+
+/**
+ * @swagger
  * /auth/user/register:
  *   post:
- *     description: Register new user
+ *     summary: Register new user
+ *     tags: [Auth]
  *     requestBody:
- *        content:
- *          application/json:
- *            schema:
- *              - $ref: '#/models/user/NewUser'
- *     produces:
- *        - application/json
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/NewUser'
  *     responses:
  *       201:
- *         description: Returns created user.
+ *         description: The user was successfully registered
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseSuccess'
  *       500:
- *         description: Internal server error.
-*/
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ *       409:
+ *         description: Conflict
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
 router.post('/user/register', registerUser);
 
+/**
+ * @swagger
+ * /auth/user/login:
+ *   post:
+ *     summary: Login user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/LoginUser'
+ *     responses:
+ *       200:
+ *         description: The user was successfully registered
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ *       400:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
 router.post('/user/login', validateEmailVerification, login);
 
 router.post('/user/email_action_password_reset', sendEmailResetPassword);

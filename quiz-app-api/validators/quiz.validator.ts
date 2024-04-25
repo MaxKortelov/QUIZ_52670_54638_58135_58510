@@ -9,7 +9,7 @@ export async function validateQuizSession(req: Request, res: Response, next: Nex
     const isQuizSessionEnded = new Date().getTime() > new Date(date_ended).getTime();
 
     if(isQuizSessionEnded) {
-      return errorService.lockedResourse(res, ["Quiz session is finished"]);
+      return errorService.lockedResource(res, ["Quiz session is finished"]);
     }
 
     next();

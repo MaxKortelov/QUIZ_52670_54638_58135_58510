@@ -4,8 +4,8 @@ export class User {
   uuid: string;
   email: string;
   username: string;
-  date_created: string; //Date
-  date_updated: string; //Date
+  dateCreated: string; //Date
+  dateUpdated: string; //Date
 }
 
 export class NewUser {
@@ -68,8 +68,8 @@ export function mapDbUserToUser(dbUser: DBUser): User {
     uuid: dbUser.uuid,
     email: dbUser.email,
     username: dbUser.username,
-    date_created: dbUser.date_created,
-    date_updated: dbUser.date_updated
+    dateCreated: dbUser.date_created,
+    dateUpdated: dbUser.date_updated
   }
 }
 
