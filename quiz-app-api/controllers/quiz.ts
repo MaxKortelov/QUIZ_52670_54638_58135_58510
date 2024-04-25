@@ -105,6 +105,35 @@ router.get('/list', quizSessions);
  */
 router.post('/generate', generateQuizSession);
 
+/**
+ * @swagger
+ * /quiz/start:
+ *   post:
+ *     summary: Start new quiz session
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/StartQuizSession'
+ *     responses:
+ *       200:
+ *         description: The quiz session was successfully started
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 quizSession:
+ *                   $ref: '#/components/schemas/QuizData'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
 router.post('/start', startQuizSession);
 
 router.post('/question/save', validateQuizSession, saveQuizQuestion);

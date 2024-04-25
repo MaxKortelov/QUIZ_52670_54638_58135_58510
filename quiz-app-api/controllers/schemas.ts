@@ -204,6 +204,68 @@
  *         quizAttemptsUsed: 1
  *         dateCreated: 2024-04-24T00:00:00.000Z
  *
+ *     QuizData:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         question:
+ *           $ref: '#/components/schemas/QuizQuestion'
+ *         dateStarted:
+ *           type: Date
+ *           description: Date, when new quiz session was started (Time zone should be converted)
+ *         dateEnded:
+ *           type: Date
+ *           description: Date, when quiz session was ended (Time zone should be converted)
+ *         currentQuestionCount:
+ *           type: number
+ *           description: Index of current questions (Starts from 1)
+ *         questionsAmount:
+ *           type: number
+ *           description: Number of questions in quiz session
+ *       example:
+ *         question: {questionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1, question: What is the smallest planet in solar system?, answers: [{id: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1, text: Earth}], quizType: Cosmic quiz}
+ *         dateStarted: 2024-04-24T00:00:00.000Z
+ *         dateEnded: 2024-04-24T00:30:00.000Z
+ *         currentQuestionCount: 10
+ *         questionsAmount: 1
+ *
+ *     QuizQuestion:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         questionId:
+ *           type: string
+ *           description: Unique question id
+ *         question:
+ *           type: string
+ *           description: Question of specific quiz
+ *         answers:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/NewAnswer'
+ *         quizType:
+ *           type: string
+ *           description: Name of quiz type
+ *       example:
+ *         questionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *         question: What is the smallest planet in solar system?
+ *         answers: [{id: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1, text: Earth}]
+ *         quizType: Cosmic quiz
+ *
+ *     StartQuizSession:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: Email
+ *         quizSessionId:
+ *           type: string
+ *           description: Unique quiz session Id
+ *       example:
+ *         email: test@test.com
+ *         quizSessionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *
  *     ResponseSuccess:
  *       type: object
  *       properties:
