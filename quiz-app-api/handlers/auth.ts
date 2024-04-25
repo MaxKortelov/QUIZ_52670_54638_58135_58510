@@ -103,7 +103,7 @@ export async function updateUserPassword(req: Request, res: Response) {
       res.send(user);
       res.end();
     })
-    .catch(() => errorService.serverError(res, ["Token is not valid"]));
+    .catch(() => errorService.validationError(res, ["Token is not valid"]));
 }
 
 export async function verifyEmail(req: Request, res: Response) {
@@ -118,6 +118,6 @@ export async function verifyEmail(req: Request, res: Response) {
     res.send("Email is verified");
     res.end();
   } catch (_) {
-    errorService.serverError(res, ["Token is not valid"])
+    errorService.validationError(res, ["Token is not valid"])
   }
 }
