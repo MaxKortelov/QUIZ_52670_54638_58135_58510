@@ -136,8 +136,86 @@ router.post('/generate', generateQuizSession);
  */
 router.post('/start', startQuizSession);
 
+/**
+ * @swagger
+ * /quiz/question/save:
+ *   post:
+ *     summary: Save answer to a question of a specific session
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SaveQuizQuestion'
+ *     responses:
+ *       200:
+ *         description: The quiz session was successfully started
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseSuccess'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
 router.post('/question/save', validateQuizSession, saveQuizQuestion);
 
+/**
+ * @swagger
+ * /quiz/question/next:
+ *   post:
+ *     summary: Save answer to a question of a specific session and returns next question
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SaveQuizQuestion'
+ *     responses:
+ *       200:
+ *         description: The quiz session was successfully started
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/QuizData'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
 router.post('/question/next', validateQuizSession, nextQuizQuestion);
 
+/**
+ * @swagger
+ * /quiz/submit:
+ *   post:
+ *     summary: Save answer to a question of a specific session and returns next question
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SubmitQuiz'
+ *     responses:
+ *       200:
+ *         description: The quiz session was successfully started
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/QuizResult'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
 router.post('/submit', validateQuizSession, submitQuiz);

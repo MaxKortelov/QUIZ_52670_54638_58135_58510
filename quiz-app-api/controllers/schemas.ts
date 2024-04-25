@@ -261,10 +261,60 @@
  *           description: Email
  *         quizSessionId:
  *           type: string
- *           description: Unique quiz session Id
+ *           description: Unique quiz session id
  *       example:
  *         email: test@test.com
  *         quizSessionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *
+ *     SubmitQuiz:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: Email
+ *         quizSessionId:
+ *           type: string
+ *           description: Unique quiz session id
+ *       example:
+ *         email: test@test.com
+ *         quizSessionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *
+ *     QuizResult:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         quizSessionId:
+ *           type: string
+ *           description: Unique quiz session id
+ *         result:
+ *           type: string
+ *           description: Percentage of correct answers
+ *       example:
+ *         quizSessionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *         result: "80%"
+ *
+ *     SaveQuizQuestion:
+ *       type: object
+ *       required: true
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: Email
+ *         quizSessionId:
+ *           type: string
+ *           description: Unique quiz session id
+ *         questionId:
+ *           type: string
+ *           description: Unique question id
+ *         answerId:
+ *           type: string
+ *           description: Unique answer id
+ *       example:
+ *         email: test@test.com
+ *         quizSessionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *         questionId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
+ *         answerId: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
  *
  *     ResponseSuccess:
  *       type: object
