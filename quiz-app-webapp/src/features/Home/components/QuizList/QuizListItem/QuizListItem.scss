@@ -1,0 +1,15 @@
+@import "styles/colors";
+
+.quizListItem {
+  border-radius: 30px;
+  background: $primary;
+  color: $white;
+  min-height: 120px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 20px;
+  text-align: center;
+}
