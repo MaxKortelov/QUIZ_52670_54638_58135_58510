@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "TSC_COMPILE_ON_ERROR=true react-scripts start",
-    "start:devv": "react-scripts start",
+    "start:dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
