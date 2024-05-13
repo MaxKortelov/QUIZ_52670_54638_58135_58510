@@ -15,3 +15,9 @@ export const makeLoginRequest = (data: LoginModel): LoginRequest => ({
   email: data.email,
   password: data.password,
 });
+
+export type ResetPasswordRequest = {
+  email: string;
+  password: string;
+  token: string;
+};
