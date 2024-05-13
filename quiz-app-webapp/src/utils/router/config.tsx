@@ -17,13 +17,24 @@ import {
   URL_NOTIFICATIONS,
   URL_QUIZ_INTRO,
   URL_QUIZ,
+  URL_RESET_PASSWORD_EMAIL,
+  URL_RESET_PASSWORD_EMAIL_INFO,
+  URL_RESET_PASSWORD,
+  URL_RESET_PASSWORD_SUCCESS,
+  URL_CHANGE_PASSWORD
 } from '../constants/clientUrl';
 
-import { SignInForm } from "features/Authorization/SignInForm";
-import { SignUpForm } from "features/Authorization/SignUpForm";
-import { VerifyAccount } from "features/Authorization/VerifyAccount";
+import {
+  SignInForm,
+  SignUpForm,
+  VerifyAccount,
+  ResetPasswordEmail,
+  ResetPasswordEmailInfo,
+  ResetPassword,
+  ResetPasswordSuccess,
+  Authorization
+} from "features/Authorization";
 
-const Authorization = lazy(() => import('features/Authorization'));
 const NotFound = lazy(() => import('features/ErrorPages/NotFound'));
 const Forbidden = lazy(() => import('features/ErrorPages/Forbidden'));
 const Support = lazy(() => import('features/Support'));
@@ -132,6 +143,38 @@ export const router = createBrowserRouter([
         element: (
             <Authorization>
               <VerifyAccount />
+            </Authorization>
+        ),
+      },
+      {
+        path: URL_RESET_PASSWORD_EMAIL.route,
+        element: (
+            <Authorization>
+              <ResetPasswordEmail />
+            </Authorization>
+        ),
+      },
+      {
+        path: URL_RESET_PASSWORD_EMAIL_INFO.route,
+        element: (
+            <Authorization>
+              <ResetPasswordEmailInfo />
+            </Authorization>
+        ),
+      },
+      {
+        path: URL_RESET_PASSWORD.route,
+        element: (
+            <Authorization>
+              <ResetPassword />
+            </Authorization>
+        ),
+      },
+      {
+        path: URL_RESET_PASSWORD_SUCCESS.route,
+        element: (
+            <Authorization>
+              <ResetPasswordSuccess />
             </Authorization>
         ),
       },
