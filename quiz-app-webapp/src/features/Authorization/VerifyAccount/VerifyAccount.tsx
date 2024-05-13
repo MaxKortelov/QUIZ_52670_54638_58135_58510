@@ -4,7 +4,7 @@ import { URL_LOGIN } from "utils/constants/clientUrl";
 import { Button } from "antd";
 import { SubmitButton } from "components/SubmitButton";
 
-import './VerifyAccount.scss';
+import '../AuthInfo.scss';
 
 export const VerifyAccount = () => {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ export const VerifyAccount = () => {
         <div className="authPage">
             <h2 className="authLabel">Verify Your Account</h2>
 
-            <div className="authPageVerifyText">
+            <div className="authPageInfoText">
                 <p>A verification email has been sent to your email address</p>
                 <p>Please check your inbox and confirm your account by clicking the verification link</p>
                 <p>

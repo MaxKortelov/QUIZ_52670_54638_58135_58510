@@ -43,11 +43,16 @@
   text-align: center;
 }
 
-.noAccount {
+.noAccount, .forgotPassword {
   color: #8692A6;
 }
+
 .noAccountSignUp {
   color: $primary;
+  cursor: pointer;
+}
+
+.forgotPassword {
   cursor: pointer;
 }
 
