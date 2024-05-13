@@ -1,3 +1,42 @@
-$color-white: #fff;
-$color-red: rgba(255, 47, 0, 0.88);
-$color-green: rgba(33, 236, 0, 0.88);
+$white: #FFFFFF;
+$lightGrey: #FEFEFE;
+$gray: #C4C4C4;
+$black: #000000;
+$primary: #4EA9E6;
+$secondary: #4EA9E6;
+$error: #ff4d4f;
+$regularText: #696F79;
+
+$peopleListCardBackground: #F2F3F8;
+$profileImageBackground: #FAFAFA;
+
+$placeholderColor: #BFBFBF;
+
+$borderGrayColor: rgba(0, 0, 0, 0.5);
+$borderGray: 1px solid $borderGrayColor;
+
+$borderLightGrayColor: #E0E0E5;
+$borderLightGray: 1px solid $borderLightGrayColor;
+
+$headerSelectedItemOverride: #F0F0F0;
+
+$shadowColor: rgba(196,196,196,0.05);
+
+$buttonHoverShadowColor: #873EE333;
+
+$disabledFieldBorder: #D9D9D9;
+$disabledFieldBackground: rgba(0, 0, 0, 0.04);
+
+$stepsIconColor: rgba(0, 0, 0, 0.45);
+$stepsTextColor: rgba(0, 0, 0, 0.88);
+
+%boxWithShadow {
+  background: $lightGrey;
+  border-radius: 10px;
+  border: 1px solid #F5F6FB;
+  box-shadow: 0px -5px 30px 0 $shadowColor,
+  -5px 0px 30px 0 $shadowColor,
+  5px 0px 30px 0 $shadowColor,
+  0px 5px 30px 0 $shadowColor;
+  cursor: auto;
+}

@@ -1,0 +1,32 @@
+@import "styles/labels";
+@import "styles/colors";
+
+$inputWidth: 480px;
+$inputWidthMobile: 320px;
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+.ant-input, .ant-input-affix-wrapper, .ant-input-number {
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: $borderGray;
+  font-family: $montserratMedium;
+
+  &:not(.ant-input-affix-wrapper) {
+    background: $white !important;
+    background-color: $white !important;
+  }
+}
+
+.ant-input, .ant-input-password, .ant-input-number {
+  height: 40px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  overflow: hidden;
+}

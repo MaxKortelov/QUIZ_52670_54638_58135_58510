@@ -1,0 +1,43 @@
+@import "styles/colors";
+
+$cvLabelWidth: 180px;
+$cvLabelWidthMobile: 100px;
+
+$montserratRegular: MontserratRegular, sans-serif;
+$montserratMedium: MontserratMedium, sans-serif;
+$montserratSemiBold: MontserratSemiBold, sans-serif;
+$montserratBold: MontserratBold, sans-serif;
+
+%mainLabelRegular {
+  font-family: $montserratRegular;
+  font-weight: 400;
+  font-size: 56px;
+}
+
+%mainLabelBold {
+  font-family: $montserratRegular;
+  font-weight: 700;
+  font-size: 56px;
+}
+
+%mainLabelMedium {
+  font-family: $montserratMedium;
+  font-weight: 500;
+}
+
+%mainLabelSemiBold {
+  font-family: $montserratSemiBold;
+}
+
+%applicationPageLabel {
+  font-family: $montserratBold;
+  font-size: 24px;
+  margin-bottom: 22px;
+  border-bottom: 2px solid $gray;
+  padding-bottom: 8px;
+
+  .label {
+    font-family: $montserratBold;
+    font-size: 24px;
+  }
+}
