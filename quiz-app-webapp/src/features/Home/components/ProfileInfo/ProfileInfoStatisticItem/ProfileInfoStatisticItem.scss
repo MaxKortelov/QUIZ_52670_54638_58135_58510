@@ -1,0 +1,25 @@
+@import "styles/labels";
+
+.profileInfoStatisticItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.profileInfoStatisticItemContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profileInfoStatisticItemTitle {
+  font-family: $montserratBold;
+  font-size: 28px;
+  color: #696F79;
+}
+
+.profileInfoStatisticItemDescription {
+  font-family: $montserratRegular;
+  color: #696F79;
+}
