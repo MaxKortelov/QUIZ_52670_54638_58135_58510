@@ -6,11 +6,11 @@ export const getItems = (logOut: () => void) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigate = useNavigate();
 
-  const profile = {
-    label: 'Home',
+  const dashboard = {
+    label: 'Dashboard',
     className: 'headerMenuItem',
-    id: 'home',
-    key: 'home',
+    id: 'dashboard',
+    key: 'dashboard',
     onClick: () => {
       navigate(URL_HOME.path());
     },
@@ -34,5 +34,5 @@ export const getItems = (logOut: () => void) => {
     },
   };
 
-  return [profile, changePassword, logOutItem] as MenuItem[];
+  return [dashboard, changePassword, logOutItem] as MenuItem[];
 };
