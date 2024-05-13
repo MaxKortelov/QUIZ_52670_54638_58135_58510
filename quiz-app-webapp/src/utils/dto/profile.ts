@@ -22,3 +22,8 @@ export const profileResponseToModel = (data: ProfileResponse): ProfileModel => (
   dateCreated: createNewDate(data.dateCreated),
   dateUpdated: createNewDate(data.dateUpdated),
 });
+
+export type ChangePasswordRequest = {
+  oldPassword: string;
+  newPassword: string;
+};
