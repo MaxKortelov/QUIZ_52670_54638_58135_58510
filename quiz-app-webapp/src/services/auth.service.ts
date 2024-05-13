@@ -1,5 +1,5 @@
 import { api } from 'utils/api';
-import { LoginModel, makeLoginRequest } from 'utils/dto/authorization';
+import {LoginModel, makeLoginRequest, ResetPasswordRequest} from 'utils/dto/authorization';
 import { QUIZ_EMAIL, QUIZ_IS_LOGGED } from "utils/constants";
 import { profileResponseToModel } from "utils/dto/profile";
 
@@ -35,8 +35,26 @@ const resendVerifyEmail = async (email: string) => {
   }
 };
 
+const resetPasswordGenerateToken = async (email: string) => {
+  try {
+    await api.authorization.resetPasswordGenerateToken(email);
+  } catch (e: any) {
+    throw e;
+  }
+};
+
+const resetPassword = async (values: ResetPasswordRequest) => {
+  try {
+    await api.authorization.resetPassword(values);
+  } catch (e: any) {
+    throw e;
+  }
+};
+
 export const authService = {
   login,
   register,
   resendVerifyEmail,
+  resetPasswordGenerateToken,
+  resetPassword
 };
