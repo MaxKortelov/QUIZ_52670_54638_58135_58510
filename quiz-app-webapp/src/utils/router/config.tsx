@@ -37,6 +37,7 @@ import {
 
 const NotFound = lazy(() => import('features/ErrorPages/NotFound'));
 const Forbidden = lazy(() => import('features/ErrorPages/Forbidden'));
+const ChangePassword = lazy(() => import('features/ChangePassword'));
 const Support = lazy(() => import('features/Support'));
 const Notifications = lazy(() => import('features/Notifications'));
 const Home = lazy(() => import('features/Home'));
@@ -64,6 +65,12 @@ export const router = createBrowserRouter([
             path: URL_FORBIDDEN.route,
             element: (
                 <Forbidden />
+            ),
+          },
+          {
+            path: URL_CHANGE_PASSWORD.route,
+            element: (
+                <ChangePassword />
             ),
           },
         ],
