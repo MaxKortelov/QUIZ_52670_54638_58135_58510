@@ -1,0 +1,58 @@
+@import "styles/colors";
+@import "styles/constants";
+
+.ant-layout {
+  background: transparent;
+}
+
+.ant-layout .ant-layout-header, .mainLayout .mainLayoutContainer {
+  display: flex;
+  align-items: center;
+  max-width: $maxContentWidth;
+  margin: 0 auto;
+  width: 100%;
+  background: transparent;
+}
+
+.mainLayout {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 0 20px 0;
+}
+
+.mainLayoutContainer {
+  position: relative;
+  display: flex;
+  height: 100%;
+  gap: 20px;
+}
+
+.ant-layout-content.mainLayoutContent {
+  background: $white;
+  height: 100%;
+  border-radius: 30px;
+  padding: 60px;
+}
+
+@media (width > 1920px) {
+  .ant-layout-content.mainLayoutContent {
+    //padding: 48px 200px;
+  }
+}
+
+@media (width < 920px) {
+  //.ant-layout .ant-layout-header, .mainLayout .mainLayoutContainer {
+  //  padding: 0 20px;
+  //}
+}
+
+@media (width < 768px) {
+  //.ant-layout-content.mainLayoutContent {
+  //  padding: 20px 0;
+  //}
+}

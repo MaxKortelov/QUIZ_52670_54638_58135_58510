@@ -1,0 +1,19 @@
+@import "styles/colors";
+@import "styles/labels";
+
+.headerProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-left: auto;
+  cursor: pointer;
+
+  svg {
+    width: 28px;
+  }
+}
+
+.headerProfileName {
+  color: $white;
+}
