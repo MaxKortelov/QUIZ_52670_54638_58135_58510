@@ -25,7 +25,7 @@ export async function registerUser(req: Request, res: Response) {
       const emailOptions: EmailOptions = {
         to: [user.email],
         subject: "Verify your email",
-        html: verifyEmailTemplateHTML(`${ORIGIN}/reset_password?token=${token}`)
+        html: verifyEmailTemplateHTML(`${ORIGIN}/verify?token=${token}`)
       }
       return emailOptions;
     })
