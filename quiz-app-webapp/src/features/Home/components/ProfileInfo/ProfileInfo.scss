@@ -1,0 +1,54 @@
+@import "styles/colors";
+@import "styles/labels";
+
+.profileInfo {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+  width: 100%;
+}
+
+.profileInfoIcon {
+  max-width: 200px;
+  width: 100%;
+}
+
+.profileInfoContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 32px;
+}
+
+.profileInfoTitle {
+  label {
+    font-family: $montserratBold;
+    font-size: 32px;
+    color: #696F79;
+  }
+
+  p {
+    font-family: $montserratRegular;
+    font-size: 18px;
+    color: #696F79;
+  }
+}
+
+.profileInfoProgressBar {
+  background: #C8D5E1;
+  width: 100%;
+  height: 12px;
+  border-radius: 30px;
+
+  .profileInfoProgressBarValue {
+    background: $primary;
+    height: 12px;
+    border-radius: 10px;
+  }
+}
+
+.profileInfoStatistic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

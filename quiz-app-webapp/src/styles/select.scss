@@ -1,0 +1,46 @@
+@import "styles/colors";
+@import "styles/labels";
+
+.ant-select {
+  display: flex;
+  align-items: center;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector, .ant-select-multiple .ant-select-selector {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  padding-top: 0;
+  padding-bottom: 0;
+  background: $white;
+  border: $borderGray;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.015em;
+}
+
+.ant-select.ant-select-disabled {
+  .ant-select-selector {
+    border-color: $disabledFieldBorder;;
+    background: $disabledFieldBackground;
+  }
+}
+
+.ant-select-selection-search {
+  display: flex;
+  align-items: center;
+}
+
+.ant-select .ant-select-clear, .ant-select .ant-select-arrow, .anticon.anticon-down.ant-select-suffix {
+  width: 14px;
+  height: 14px;
+  top: 50%
+}
+
+.ant-select-selection-item {
+  width: 0;
+}

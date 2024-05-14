@@ -1,0 +1,21 @@
+.goBack {
+  width: fit-content;
+  cursor: pointer;
+}
+
+@media (width < 768px) {
+  .goBack {
+    font-size: 12px;
+
+    span svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+%pageWithGoBackButton {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

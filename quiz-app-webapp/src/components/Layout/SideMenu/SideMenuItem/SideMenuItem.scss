@@ -1,0 +1,29 @@
+@import "styles/colors";
+@import "styles/labels";
+
+.sideMenuItem {
+  display: flex;
+  align-items: center;
+
+  padding-left: 48px;
+  color: #696F79;
+  border-radius: 30px;
+  height: 50px;
+  width: 200px;
+  font-family: $montserratSemiBold;
+  cursor: pointer;
+
+  &.active, &:hover {
+    background: #8692A6;
+    color: $white;
+  }
+
+  &:active {
+    background: #6b7a8c;
+  }
+}
+
+.sideMenuLogOut {
+  position: sticky;
+  bottom: 20px;
+}

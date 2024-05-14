@@ -1,0 +1,26 @@
+@import "styles/labels";
+
+.quizList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 48px;
+}
+
+.quizListTitle {
+  font-family: $montserratBold;
+  font-size: 40px;
+  color: #696F79;
+  text-align: center;
+}
+
+.quizListContent {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  width: 100%;
+}

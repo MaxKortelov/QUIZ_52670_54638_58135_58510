@@ -1,0 +1,19 @@
+.ant-spin {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.listLazyLoad {
+    height: auto;
+  }
+}
+
+.ant-spin .ant-spin-dot {
+  font-size: 32px;
+}
+
+.ant-spin-dot .ant-spin-dot-item {
+  width: 14px;
+  height: 14px;
+}

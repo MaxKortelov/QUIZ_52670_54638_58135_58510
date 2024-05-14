@@ -1,0 +1,23 @@
+@import "styles/colors";
+@import "styles/labels";
+@import "styles/input";
+
+.authPageInfoText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  p {
+    font-family: $montserratMedium;
+    text-align: center;
+    color: #8692A6;
+  }
+}
+
+@media (width >= 1060px) {
+  .authPageInfoText {
+    max-width: $inputWidthMobile;
+  }
+}

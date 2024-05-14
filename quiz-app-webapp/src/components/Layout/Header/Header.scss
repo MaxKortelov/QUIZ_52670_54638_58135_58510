@@ -1,0 +1,26 @@
+@import "styles/constants";
+@import "styles/colors";
+@import "styles/labels";
+
+.ant-layout .ant-layout-header {
+  display: flex;
+  align-items: center;
+  max-width: $maxContentWidth;
+  margin: 0 auto;
+  width: 100%;
+  background: transparent;
+  padding: 0;
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.headerHello {
+  font-size: 24px;
+  font-family: $montserratBold;
+  color: $primary;
+}

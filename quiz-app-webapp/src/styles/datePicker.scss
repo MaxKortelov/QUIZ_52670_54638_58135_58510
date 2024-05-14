@@ -1,0 +1,29 @@
+@import "styles/colors";
+
+.ant-picker {
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  padding-top: 0;
+  padding-bottom: 0;
+  background: $white;
+  border: $borderGray;
+}
+
+.ant-picker .ant-picker-input > input {
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.ant-select-selection-search {
+  display: flex;
+  align-items: center;
+}
+
+.ant-select .ant-select-clear, .ant-picker-suffix .anticon.anticon-calendar, .anticon.anticon-close-circle {
+  width: 14px;
+  height: 14px;
+  top: 50%
+}
