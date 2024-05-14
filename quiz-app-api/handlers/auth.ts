@@ -35,7 +35,9 @@ export async function registerUser(req: Request, res: Response) {
       res.send(responseMessage("Message was successfully sent to email"));
       res.end();
     })
-    .catch(() => errorService.existedEntityError(res));
+    .catch((err) => {
+      errorService.validationError(res, err)
+    });
 }
 
 export async function login(req: Request, res: Response) {
