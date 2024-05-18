@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from 'utils/hooks/useAppSelector';
+import { useNavigate } from "react-router-dom";
+import { URL_VERIFY_INFO } from "utils/constants/clientUrl";
 import { Input, Form, notification, Checkbox } from 'antd';
 import { SubmitButton } from 'components/SubmitButton';
 import { LoginModel } from 'utils/dto/authorization';
@@ -10,10 +12,12 @@ import '../AuthForm.scss';
 export const SignUpForm = () => {
     const [form] = Form.useForm();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const onFinish = async (values: LoginModel) => {
         try {
             await dispatch(signUpAction(values));
+            navigate(URL_VERIFY_INFO.path());
         } catch (e: any) {
             notification.error({
                 message: 'Error',

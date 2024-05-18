@@ -4,6 +4,7 @@ export const URL_HOME = new makeUrl('/');
 export const URL_LOGIN = new makeUrl('/login');
 export const URL_SIGN_UP = new makeUrl('/sing-up');
 export const URL_VERIFY = new makeUrl('/verify');
+export const URL_VERIFY_INFO = new makeUrl('/verify-info');
 export const URL_RESET_PASSWORD_EMAIL = new makeUrl('/reset-password/email');
 export const URL_RESET_PASSWORD_EMAIL_INFO = new makeUrl('/reset-password/email/info');
 export const URL_RESET_PASSWORD = new makeUrl('/reset-password/:token');
