@@ -27,7 +27,7 @@ export async function registerUser(req: Request, res: Response) {
       const emailOptions: EmailOptions = {
         to: [user.email],
         subject: "Verify your email",
-        html: verifyEmailTemplateHTML(`${ORIGIN}/verify?token=${token}`)
+        html: verifyEmailTemplateHTML(`${ORIGIN}/verify?token=${token}&email=${user.email}`)
       }
       return emailOptions;
     })
@@ -72,7 +72,7 @@ export async function sendEmailResetPassword(req: Request, res: Response) {
         const emailOptions: EmailOptions = {
           to: [user.email],
           subject: "Reset your password",
-          html: resetPasswordTemplateHTML(`${ORIGIN}/reset_password?token=${token}`)
+          html: resetPasswordTemplateHTML(`${ORIGIN}/reset-password?token=${token}&email=${user.email}`)
         }
         return emailOptions;
       } else {

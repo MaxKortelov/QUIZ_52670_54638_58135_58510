@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useQueryParams } from "utils/hooks/useQueryParams";
+import { useNavigate } from "react-router-dom";
 import { URL_RESET_PASSWORD_SUCCESS } from "utils/constants/clientUrl";
 import { Input, Form, notification } from 'antd';
 import { SubmitButton } from 'components/SubmitButton';
@@ -9,14 +10,17 @@ import { authService } from "services/auth.service";
 import '../AuthForm.scss';
 
 export const ResetPassword = () => {
-    const { token } = useParams()
+    const query = useQueryParams();
     const [form] = Form.useForm();
     const navigate = useNavigate();
 
+    const token = query.get("token") || "";
+    const email = query.get("email") || "";
+
     const onFinish = async (values: ResetPasswordRequest) => {
         try {
-            token && await authService.resetPassword({ password: values.password, token, email: '' });
-            token && navigate(URL_RESET_PASSWORD_SUCCESS.path({ token }))
+            token && await authService.resetPassword({password: values.password, token, email});
+            token && navigate(URL_RESET_PASSWORD_SUCCESS.path({token}))
         } catch (e: any) {
             notification.error({
                 message: 'Error',
@@ -25,6 +29,11 @@ export const ResetPassword = () => {
             });
         }
     };
+
+    const passwordMinLength = {
+        min: 8,
+        message: 'Min length 8',
+    }
 
     return (
         <div className="authPage">
@@ -44,6 +53,7 @@ export const ResetPassword = () => {
                             required: true,
                             message: 'Please enter new password',
                         },
+                        passwordMinLength
                     ]}
                 >
                     <Input.Password className="authInput" placeholder="New password"/>
@@ -58,7 +68,7 @@ export const ResetPassword = () => {
                             required: true,
                             message: 'Confirm new password',
                         },
-                        ({ getFieldValue }) => ({
+                        ({getFieldValue}) => ({
                             validator(_, value) {
                                 if (!value || getFieldValue('password') === value) {
                                     return Promise.resolve();

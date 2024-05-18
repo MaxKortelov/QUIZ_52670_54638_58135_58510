@@ -21,3 +21,8 @@ export type ResetPasswordRequest = {
   password: string;
   token: string;
 };
+
+export type VerifyEmailModel = {
+  email: string;
+  token: string;
+};

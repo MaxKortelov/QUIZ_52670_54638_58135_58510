@@ -13,6 +13,7 @@ import {
   URL_LOGIN,
   URL_SIGN_UP,
   URL_VERIFY,
+  URL_VERIFY_INFO,
   URL_SUPPORT,
   URL_NOTIFICATIONS,
   URL_QUIZ_INTRO,
@@ -28,6 +29,7 @@ import {
   SignInForm,
   SignUpForm,
   VerifyAccount,
+  VerifyAccountInfo,
   ResetPasswordEmail,
   ResetPasswordEmailInfo,
   ResetPassword,
@@ -142,6 +144,14 @@ export const router = createBrowserRouter([
         element: (
             <Authorization>
               <SignUpForm />
+            </Authorization>
+        ),
+      },
+      {
+        path: URL_VERIFY_INFO.route,
+        element: (
+            <Authorization>
+              <VerifyAccountInfo />
             </Authorization>
         ),
       },
