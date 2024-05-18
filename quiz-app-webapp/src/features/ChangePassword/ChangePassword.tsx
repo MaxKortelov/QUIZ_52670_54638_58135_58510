@@ -1,25 +1,26 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
-import { URL_HOME } from "utils/constants/clientUrl";
-import { Input, Form, notification } from 'antd';
-import { SubmitButton } from 'components/SubmitButton';
-import { ChangePasswordRequest } from "utils/dto/profile";
-import { userService } from "services/user.service";
+import { useAppSelector } from "utils/hooks/useAppSelector";
+import { Button, notification } from 'antd';
+import { getCurrentUser } from "store/user/selectors";
+import { authService } from "services/auth.service";
 
 import './ChangePassword.scss';
 
 export const ChangePassword = () => {
-    const [form] = Form.useForm();
-    const navigate = useNavigate();
+    const { email } = useAppSelector(getCurrentUser)
 
-    const onFinish = async (values: ChangePasswordRequest) => {
+    const sendRequestToChangePassword = async () => {
         try {
-            await userService.changePassword(values);
-            navigate(URL_HOME.path());
-        } catch (e: any) {
+            await authService.resetPasswordGenerateToken(email);
+            notification.success({
+                message: 'Success',
+                description: 'Request to change password was sent to your email',
+                duration: 4,
+            })
+        } catch (e) {
             notification.error({
                 message: 'Error',
-                description: e?.response?.data?.errors[0],
+                description: 'Something went wrong',
                 duration: 4,
             });
         }
@@ -28,53 +29,10 @@ export const ChangePassword = () => {
     return (
         <div className="authPage">
             <h2 className="authLabel">Reset Your Password</h2>
-            <Form<ChangePasswordRequest>
-                form={form}
-                className="authForm"
-                layout="vertical"
-                requiredMark={false}
-                onFinish={onFinish}
-            >
-                <Form.Item
-                    name="newPassword"
-                    label="New password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please enter new password',
-                        },
-                    ]}
-                >
-                    <Input.Password className="authInput" placeholder="New password"/>
-                </Form.Item>
-                <Form.Item
-                    name="oldPassword"
-                    label="Confirm new password"
-                    dependencies={['newPassword']}
-                    hasFeedback
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Confirm new password',
-                        },
-                        ({ getFieldValue }) => ({
-                            validator(_, value) {
-                                if (!value || getFieldValue('newPassword') === value) {
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject(new Error('Password entries do not match!'));
-                            },
-                        }),
-                    ]}
-                >
-                    <Input.Password className="authInput" placeholder="Confirm new password"/>
-                </Form.Item>
-                <Form.Item>
-                    <SubmitButton id="authSubmit" htmlType="submit" className="authButton" showSpinner>
-                        Reset Password
-                    </SubmitButton>
-                </Form.Item>
-            </Form>
+
+            <Button type="primary" className="authButton" onClick={sendRequestToChangePassword}>
+                Send request to change password
+            </Button>
         </div>
     );
 };
