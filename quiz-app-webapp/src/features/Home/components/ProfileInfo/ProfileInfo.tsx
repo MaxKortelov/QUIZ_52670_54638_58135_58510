@@ -5,34 +5,31 @@ import { ReactComponent as Flag } from "assets/img/svg/flag.svg";
 import { ReactComponent as Clock } from "assets/img/svg/clock.svg";
 import { ReactComponent as Check } from "assets/img/svg/check.svg";
 import { ProfileInfoStatisticItem } from "./ProfileInfoStatisticItem";
-import { ProfileData } from "./ProfileInfoStatisticItem/types";
+import { StatisticItem } from "./ProfileInfoStatisticItem/types";
 import { getCurrentUser} from "store/user/selectors";
 
 import './ProfileInfo.scss';
 
-const profileInfoData: ProfileData = {
-    progress: 70,
-    statistic: [
+export const ProfileInfo = () => {
+    const currentUser = useAppSelector(getCurrentUser)
+
+    const profileStatistic: StatisticItem[] = [
         {
             icon: <Flag />,
-            title: '2',
+            title: currentUser?.quizAmountTaken,
             description: 'Tests Passed',
         },
         {
             icon: <Clock />,
-            title: '10min',
+            title: currentUser?.fastestTestTime,
             description: 'Fastest Time',
         },
         {
             icon: <Check />,
-            title: '19',
+            title: currentUser?.correctAnswers,
             description: 'Correct Answers',
         },
     ]
-}
-
-export const ProfileInfo = () => {
-    const currentUser = useAppSelector(getCurrentUser)
 
     return (
         <div className="profileInfo">
@@ -44,14 +41,8 @@ export const ProfileInfo = () => {
                     <label>{currentUser?.username}</label>
                     <p>Bonus booster 24lv</p>
                 </div>
-                <div className="profileInfoProgressBar">
-                    <div
-                        className="profileInfoProgressBarValue"
-                        style={{ width: `${profileInfoData.progress}%` }}
-                    />
-                </div>
                 <div className="profileInfoStatistic">
-                    {profileInfoData.statistic.map(i =>
+                    {profileStatistic.map(i =>
                         <ProfileInfoStatisticItem key={i.title} value={i} />)}
                 </div>
             </div>
