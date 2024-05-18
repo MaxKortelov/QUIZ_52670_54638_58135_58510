@@ -3,7 +3,7 @@ import {validateBody} from "../validators/entity.validator";
 import {GenerateQuizSession, NewQuiz, SaveQuizQuestion, StartQuizSession, SubmitQuiz} from "../types/quiz";
 import errorService from "../services/error.service";
 import * as quizDB from "../db/quiz";
-import {getQuizSession, getQuizTypeList, saveAndCountQuizResult} from "../db/quiz";
+import {getQuizSession, getQuizTypeList, saveAndCountQuizResult, updateUserQuizTableResults} from "../db/quiz";
 import {
   addQuestions,
   addQuizQuestionAnswer,
@@ -109,10 +109,11 @@ export async function submitQuiz(req: Request, res: Response) {
     const submitQuizData = await validateBody(req, SubmitQuiz) as SubmitQuiz;
     const user = await findUser(submitQuizData.email);
     const quizSessionResult = await saveAndCountQuizResult(submitQuizData.quizSessionId, user.uuid);
+    await updateUserQuizTableResults(user.uuid, submitQuizData.quizSessionId, quizSessionResult.correctAnswersCount)
 
     const data = {
       quizSessionId: submitQuizData.quizSessionId,
-      result: quizSessionResult + '%'
+      result: quizSessionResult.resultInPercentage
     }
 
     res.statusCode = 200;

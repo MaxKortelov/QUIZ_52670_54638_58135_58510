@@ -1,6 +1,6 @@
 import {IsEmail, IsString, MinLength} from "class-validator";
 import {FullQuizTableResultsDb} from "./quiz";
-import {dateDifference} from "../utils/date.util";
+import {dateDifferenceFormatted} from "../utils/date.util";
 
 export class User {
   uuid: string;
@@ -77,7 +77,7 @@ export function mapDbUserToUser(dbUser: DBUser, dbFullQuizTableResults: FullQuiz
     dateCreated: dbUser.date_created,
     dateUpdated: dbUser.date_updated,
     quizAmountTaken: dbFullQuizTableResults.quiz_amount_taken,
-    fastestTestTime: dateDifference(dbFullQuizTableResults.best_quiz_session?.date_started, dbFullQuizTableResults.best_quiz_session?.date_ended),
+    fastestTestTime: dateDifferenceFormatted(dbFullQuizTableResults.best_quiz_session?.date_started, dbFullQuizTableResults.best_quiz_session?.date_ended),
     correctAnswers: dbFullQuizTableResults.correct_answers
   }
 }

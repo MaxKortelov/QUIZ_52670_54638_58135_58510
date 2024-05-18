@@ -115,15 +115,19 @@ export async function addQuestionAnswer(quizSessionRequestData: SaveQuizQuestion
   return;
 }
 
-export async function saveAndCountQuizResult(quizSessionId: string, userId: string): Promise<any> {
+export async function saveAndCountQuizResult(quizSessionId: string, userId: string): Promise<{ correctAnswersCount: number; resultInPercentage: string; }> {
   const {question_answer, question_type_id} = await getQuizSession(quizSessionId, userId);
   const questions = await getQuizQuestions(question_type_id);
   const answersCheckList = questions.map(({correct_answers, uuid: questionId}) => question_answer[questionId] === correct_answers[0]);
+  const correctAnswersCount = answersCheckList.filter(it => it).length;
   const result = 100 * answersCheckList.filter(it => it).length / answersCheckList.length;
 
   await db.query('UPDATE quiz_session SET result = $1, date_ended = CURRENT_TIMESTAMP WHERE uuid = $2 AND user_id = $3 RETURNING quiz_session;', [result, quizSessionId, userId]);
 
-  return result;
+  return {
+    correctAnswersCount,
+    resultInPercentage: result + "%"
+  };
 }
 
 export async function createUserQuizTableResults(userId: string): Promise<QuizTableResultsDb>  {
@@ -131,9 +135,15 @@ export async function createUserQuizTableResults(userId: string): Promise<QuizTa
   return asJSONDB(result.rows[0]).row_to_json as QuizTableResultsDb;
 }
 
-export async function getUserQuizTableResults(userId: string)  {
-  let quizTableResult = await db.query('SELECT * FROM quiz_table_results WHERE user_id = $1;', [userId]);
-  return quizTableResult.rows[0];
+export async function updateUserQuizTableResults(userId: string, quizSessionId: string, correctAnswersCount: number): Promise<QuizTableResultsDb>  {
+    const currentQuizTableResults = await getUserQuizTableResults(userId);
+    const result = await db.query('UPDATE quiz_table_results SET best_quiz_session_id = $1, quiz_amount_taken = $2, correct_answers = $3 WHERE user_id = $4 RETURNING quiz_table_results;', [quizSessionId, currentQuizTableResults.quiz_amount_taken + 1, correctAnswersCount, userId]);
+    return asJSONDB(result.rows[0]).row_to_json as QuizTableResultsDb;
+}
+
+export async function getUserQuizTableResults(userId: string): Promise<QuizTableResultsDb>  {
+  const quizTableResult = await db.query('SELECT * FROM quiz_table_results WHERE user_id = $1;', [userId]);
+  return quizTableResult.rows[0] as QuizTableResultsDb;
 }
 
 export async function getFullUserQuizTableResults(userId: string): Promise<FullQuizTableResultsDb>  {
