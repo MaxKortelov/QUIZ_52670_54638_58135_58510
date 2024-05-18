@@ -1,0 +1,60 @@
+@import "styles/labels";
+@import "styles/colors";
+
+.quizIntroPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+}
+
+.quizIntroPageTitle {
+  font-family: $montserratBold;
+  font-size: 36px;
+}
+
+.quizIntroPageDescription {
+  font-size: 24px;
+
+  &.bold {
+    font-family: $montserratBold;
+  }
+}
+
+.quizIntroPageContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 100px;
+}
+
+.quizIntroPageOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quizIntroPageOptionsItem {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.quizIntroPageOptionsItemContent {
+  font-family: $montserratRegular;
+  font-size: 24px;
+
+  &.bold {
+    font-family: $montserratSemiBold;
+  }
+}
+
+.quizIntroPageInstructions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  p {
+    font-family: $montserratRegular;
+    font-size: 20px;
+  }
+}

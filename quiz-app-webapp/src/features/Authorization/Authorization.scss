@@ -1,0 +1,30 @@
+@import "styles/labels";
+
+.authContainer {
+  max-width: 100vw;
+  max-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 50vw);
+  align-items: center;
+}
+
+.authSection {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (width >= 1060px) {
+  .authSection {
+    padding: 0 100px;
+    justify-content: flex-end;
+  }
+}
+
+@media (width < 1060px) {
+  .authMainText {
+    font-size: 48px;
+  }
+}

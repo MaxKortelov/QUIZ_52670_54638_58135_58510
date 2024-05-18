@@ -1,33 +1,221 @@
-import express, {Response, Router} from "express";
-import {checkAnswers, findQuiz} from "../services/quizService";
-import {QUIZ} from "../models/quiz";
-import {ICustomRequest} from "../models/user";
+import express, {Router} from "express";
+import {
+  addQuizToDB,
+  generateQuizSession,
+  nextQuizQuestion,
+  quizSessions,
+  saveQuizQuestion,
+  startQuizSession,
+  submitQuiz
+} from "../handlers/quiz";
+import {validateQuizSession} from "../validators/quiz.validator";
 
 export const router: Router = express.Router();
 
-router.get('/', async (req: ICustomRequest, res: Response) => {
-  console.log(req.query.type)
-  await findQuiz(req.query.type as QUIZ)
-    .then(quiz => {
-      res.setHeader('Content-Type', 'application/json')
-      res.setHeader('Access-Control-Allow-Credentials', 'true')
-      res.statusCode = 200
-      res.end(JSON.stringify(quiz, null, 2))
-    })
-    .catch(err => {
-      res.statusCode = 500;
-      res.end(JSON.stringify({message: err}))
-    })
+/**
+ * @swagger
+ * tags:
+ *   name: Quiz
+ *   description: Quiz API
+ */
 
-})
+/**
+ * @swagger
+ * /quiz/add:
+ *   post:
+ *     summary: Add new quiz
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/NewQuiz'
+ *     responses:
+ *       201:
+ *         description: The quiz was successfully added
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseSuccess'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
+router.post('/add', addQuizToDB);
 
-router.post('/check', async (req: ICustomRequest, res: Response) => {
-  // No validation applied
-  checkAnswers(req.query.type as QUIZ, req.body).then((answers) => {
-    res.setHeader('Content-Type', 'application/json')
-    res.setHeader('Access-Control-Allow-Credentials', 'true')
+/**
+ * @swagger
+ * /quiz/list:
+ *   get:
+ *     summary: Returns the list of all quiz types
+ *     tags: [Quiz]
+ *     responses:
+ *       200:
+ *         description: The list successfully sent
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 quizSessions:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/QuizType'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
+router.get('/list', quizSessions);
 
-    res.statusCode = 200
-    res.end(JSON.stringify(answers, null, 2))
-  });
-})
+/**
+ * @swagger
+ * /quiz/generate:
+ *   post:
+ *     summary: Generate new quiz session
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/GenerateQuizSession'
+ *     responses:
+ *       201:
+ *         description: The quiz session was successfully added
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 quizSession:
+ *                   $ref: '#/components/schemas/QuizSessionInfo'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
+router.post('/generate', generateQuizSession);
+
+/**
+ * @swagger
+ * /quiz/start:
+ *   post:
+ *     summary: Start new quiz session
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/StartQuizSession'
+ *     responses:
+ *       200:
+ *         description: The quiz session was successfully started
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 quizSession:
+ *                   $ref: '#/components/schemas/QuizData'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
+router.post('/start', startQuizSession);
+
+/**
+ * @swagger
+ * /quiz/question/save:
+ *   post:
+ *     summary: Save answer to a question of a specific session
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SaveQuizQuestion'
+ *     responses:
+ *       200:
+ *         description: The quiz session was successfully started
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseSuccess'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
+router.post('/question/save', validateQuizSession, saveQuizQuestion);
+
+/**
+ * @swagger
+ * /quiz/question/next:
+ *   post:
+ *     summary: Save answer to a question of a specific session and returns next question
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SaveQuizQuestion'
+ *     responses:
+ *       200:
+ *         description: The quiz session was successfully started
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/QuizData'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
+router.post('/question/next', validateQuizSession, nextQuizQuestion);
+
+/**
+ * @swagger
+ * /quiz/submit:
+ *   post:
+ *     summary: Save answer to a question of a specific session and returns next question
+ *     tags: [Quiz]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SubmitQuiz'
+ *     responses:
+ *       200:
+ *         description: The quiz session was successfully started
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/QuizResult'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
+router.post('/submit', validateQuizSession, submitQuiz);

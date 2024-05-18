@@ -1,0 +1,9 @@
+@import "styles/colors";
+
+.submitLoading {
+  color: $white;
+}
+
+.ant-btn-primary:disabled {
+  background: $primary;
+}

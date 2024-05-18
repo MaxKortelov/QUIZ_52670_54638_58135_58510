@@ -1,0 +1,29 @@
+@import "styles/colors";
+
+%bullet {
+  &:is(ul) {
+    list-style-position: outside;
+
+    li {
+      display: flex;
+      gap: 8px;
+
+      &:before {
+        content: '\2022';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 24px;
+        height: 24px;
+        font-family: auto, serif;
+        font-size: 32px;
+        color: $primary;
+        background-image: radial-gradient(50% 50% at 50% 50%, rgba(70, 0, 160, 0.40) 0%, rgba(70, 0, 160, 0.00) 100%);
+      }
+
+      &::marker {
+        content: none;
+      }
+    }
+  }
+}

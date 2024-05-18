@@ -1,0 +1,26 @@
+.ant-modal-root .ant-modal-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+
+  .ant-modal {
+    top: 0;
+    padding-bottom: 0;
+
+    .ant-modal-content {
+      max-height: 90vh;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+}
+
+.confirmNavigationModal {
+  .ant-modal-confirm-content {
+    white-space: pre;
+  }
+}

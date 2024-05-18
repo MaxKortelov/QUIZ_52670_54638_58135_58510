@@ -1,0 +1,33 @@
+@import "styles/colors";
+@import "styles/labels";
+
+.sideMenuItem {
+  display: flex;
+  align-items: center;
+
+  padding-left: 48px;
+  color: #696F79;
+  border-radius: 30px;
+  height: 50px;
+  width: 200px;
+  font-family: $montserratSemiBold;
+  cursor: pointer;
+
+  &.active, &:hover:not(.disabled) {
+    background: #8692A6;
+    color: $white;
+  }
+
+  &:active:not(.disabled) {
+    background: #6b7a8c;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+.sideMenuLogOut {
+  position: sticky;
+  bottom: 20px;
+}

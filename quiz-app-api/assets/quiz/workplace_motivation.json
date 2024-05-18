@@ -1,0 +1,185 @@
+{
+  "quizType": "Workplace Motivation Test",
+  "questions": [
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "The fear of missing a deadline"
+        },
+        {
+          "id": "2",
+          "text": "The opportunity to learn new skills and grow professionally"
+        },
+        {
+          "id": "3",
+          "text": "The chance to socialize with colleagues after work"
+        }
+      ],
+      "answerId": "2",
+      "question": "You're working on a challenging project that requires extra effort. What keeps you motivated?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "A guaranteed raise at the end of the year"
+        },
+        {
+          "id": "2",
+          "text": "Avoiding getting in trouble with the boss"
+        },
+        {
+          "id": "3",
+          "text": "A sense of accomplishment and pride in their work"
+        }
+      ],
+      "answerId": "3",
+      "question": "You see a coworker consistently exceeding expectations. What motivates them the most likely?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "It can decrease your motivation and job satisfaction"
+        },
+        {
+          "id": "2",
+          "text": "It makes you work harder to impress them"
+        },
+        {
+          "id": "3",
+          "text": "It doesn't affect you at all"
+        }
+      ],
+      "answerId": "1",
+      "question": "Your manager rarely acknowledges your achievements. How does this affect your motivation?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Procrastinate on your tasks until the last minute"
+        },
+        {
+          "id": "2",
+          "text": "Take long breaks throughout the day"
+        },
+        {
+          "id": "3",
+          "text": "Set clear goals and track your progress"
+        }
+      ],
+      "answerId": "3",
+      "question": "What is a good way to increase your own motivation at work?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Offering opportunities for collaboration and teamwork"
+        },
+        {
+          "id": "2",
+          "text": "Micromanaging employees and criticizing their work constantly"
+        },
+        {
+          "id": "3",
+          "text": "Encouraging unhealthy competition among colleagues"
+        }
+      ],
+      "answerId": "1",
+      "question": "A positive and supportive work environment can contribute to employee motivation. What's an example of this?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "They are a waste of time and effort"
+        },
+        {
+          "id": "2",
+          "text": "They can help you feel more confident and capable in your role"
+        },
+        {
+          "id": "3",
+          "text": "They are just a way for the company to show off"
+        }
+      ],
+      "answerId": "2",
+      "question": "Your company offers training and development programs. How can these programs benefit your motivation? "
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Work long hours to catch up on your tasks"
+        },
+        {
+          "id": "2",
+          "text": "Skip meals and prioritize work over personal life"
+        },
+        {
+          "id": "3",
+          "text": "Take breaks throughout the day to recharge"
+        }
+      ],
+      "answerId": "3",
+      "question": "Feeling burnt out can decrease your motivation. What is a good way to manage stress and prevent burnout?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "It allows you to work more efficiently when you are at the office"
+        },
+        {
+          "id": "2",
+          "text": "It means neglecting your personal responsibilities"
+        },
+        {
+          "id": "3",
+          "text": "It leads to increased stress and anxiety"
+        }
+      ],
+      "answerId": "1",
+      "question": "What is a benefit of having a healthy work-life balance?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Receiving a bonus for completing a project"
+        },
+        {
+          "id": "2",
+          "text": "Working to avoid getting fired"
+        },
+        {
+          "id": "3",
+          "text": "Finding your work challenging and stimulating"
+        }
+      ],
+      "answerId": "3",
+      "question": "Intrinsic motivation comes from within the individual. What is an example of this?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Offering praise and acknowledging good work"
+        },
+        {
+          "id": "2",
+          "text": "Publicly criticizing mistakes made by employees"
+        },
+        {
+          "id": "3",
+          "text": "Ignoring employee accomplishments completely"
+        }
+      ],
+      "answerId": "1",
+      "question": "Recognizing and rewarding employee achievements can boost motivation. How can this be done?"
+    }
+  ]
+}

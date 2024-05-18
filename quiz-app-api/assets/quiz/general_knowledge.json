@@ -1,0 +1,221 @@
+{
+  "quizType": "General knowledge",
+  "questions": [
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "20 percent"
+        },
+        {
+          "id": "2",
+          "text": "40 percent"
+        },
+        {
+          "id": "3",
+          "text": "60 percent"
+        }
+      ],
+      "answerId": "3",
+      "question": "In all low-income countries across the world today, how many girls finish primary school?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39faf9f2b6cf6d6eae32",
+          "text": "Low-income countries"
+        },
+        {
+          "id": "63de387312a4b8fb4d139d4d",
+          "text": "Middle-income countries"
+        },
+        {
+          "id": "63de39faa6b3243c1f14eeb9",
+          "text": "High-income countries"
+        }
+      ],
+      "answerId": "63de387312a4b8fb4d139d4d",
+      "question": "Where does the majority of the world population live?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39fa841ebb3170189b9c",
+          "text": "almost doubled"
+        },
+        {
+          "id": "63de39fab37f7bf1f17d9abd",
+          "text": "remained more or less the same"
+        },
+        {
+          "id": "63de38734193f306c0943895",
+          "text": "almost halved"
+        }
+      ],
+      "answerId": "63de38734193f306c0943895",
+      "question": "In the last 20 years, the proportion of the world population living in extreme poverty has …"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39fa1402b6df95ec81ea",
+          "text": "50 years"
+        },
+        {
+          "id": "63de39fa152b06c65e4c7f30",
+          "text": "60 years"
+        },
+        {
+          "id": "63de3873491ecd6cc60f76e8",
+          "text": "70 years"
+        }
+      ],
+      "answerId": "63de3873491ecd6cc60f76e8",
+      "question": "What is the life expectancy of the world today?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39fab1ca9eb89760c5a6",
+          "text": "4 billion"
+        },
+        {
+          "id": "63de39fa1156409dc110cbeb",
+          "text": "3 billion"
+        },
+        {
+          "id": "63de387383745704d3ba8378",
+          "text": "2 billion"
+        }
+      ],
+      "answerId": "63de387383745704d3ba8378",
+      "question": "There are 2 billion children in the world today, aged 0 to 15 years old. How many children will there be in the year 2100, according to the United Nations?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39fad678b4758a8f52e3",
+          "text": "There will be more children (age below 15)"
+        },
+        {
+          "id": "63de3873747124eb8a46a239",
+          "text": "There will be more adults (age 15 to 74)"
+        },
+        {
+          "id": "63de39fa8be53b368db6ad32",
+          "text": "There will be more very old people (age 75 and older)"
+        }
+      ],
+      "answerId": "63de3873747124eb8a46a239",
+      "question": "The UN predicts that by 2100 the world population will have increased by another 4 billion people. What is the main reason?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39fa866167ecac6e0af8",
+          "text": "More than doubled"
+        },
+        {
+          "id": "63de39fae869ca3cf10f4a1d",
+          "text": "Remained about the same"
+        },
+        {
+          "id": "63de3873abd2edc93322a4b8",
+          "text": "Decreased to less than half"
+        }
+      ],
+      "answerId": "63de3873abd2edc93322a4b8",
+      "question": "How did the number of deaths per year from natural disasters change over the last hundred years?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39facf9f53cc7bee6440",
+          "text": "20 percent"
+        },
+        {
+          "id": "63de39faa4915f6c03c28551",
+          "text": "50 percent"
+        },
+        {
+          "id": "63de38732d3f287b819de92e",
+          "text": "80 percent"
+        }
+      ],
+      "answerId": "63de38732d3f287b819de92e",
+      "question": "How many of the world’s 1-year-old children today have been vaccinated against some disease?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de387317b62600700a5f48",
+          "text": "9 years"
+        },
+        {
+          "id": "63de39fa5a236a2055835835",
+          "text": "6 years"
+        },
+        {
+          "id": "63de39fad68b787855338e9f",
+          "text": "3 years"
+        }
+      ],
+      "answerId": "63de387317b62600700a5f48",
+      "question": "Worldwide, 30-year-old men have spent 10 years in school, on average. How many years have women of the same age spent in school?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39fab766857bf8020228",
+          "text": "Two of them"
+        },
+        {
+          "id": "63de39faf8046b8080e41d16",
+          "text": "One of them"
+        },
+        {
+          "id": "63de387307c8af34c05360ca",
+          "text": "None of them"
+        }
+      ],
+      "answerId": "63de387307c8af34c05360ca",
+      "question": "In 1996, tigers, giant pandas, and black rhinos were all listed as endangered. How many of these three species are more critically endangered today?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de39faf292d3183f5a5fe4",
+          "text": "20 percent"
+        },
+        {
+          "id": "63de39fabc6914c4f4a613c4",
+          "text": "50 percent"
+        },
+        {
+          "id": "63de3873ab55db4abbb988a2",
+          "text": "80 percent"
+        }
+      ],
+      "answerId": "63de3873ab55db4abbb988a2",
+      "question": "How many people in the world have some access to electricity?"
+    },
+    {
+      "answers": [
+        {
+          "id": "63de38739d4ea841ec61031f",
+          "text": "get warmer"
+        },
+        {
+          "id": "63de39fa340f821da07807a0",
+          "text": "remain the same"
+        },
+        {
+          "id": "63de39fafa138f6586f83594",
+          "text": "get colder"
+        }
+      ],
+      "answerId": "63de38739d4ea841ec61031f",
+      "question": "Global climate experts believe that, over the next 100 years, the average temperature will …"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+@import "styles/colors";
+
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 40px;
+}
+
+.errorPageLabel {
+  font-size: 120px;
+  color: $secondary;
+  width: fit-content;
+}
+
+.errorPageDescription {
+  font-size: 24px;
+  width: fit-content;
+  color: $white;
+}
+
+.errorPageButton {
+  width: fit-content;
+}
+
+@media (width < 576px) {
+  .errorPage{
+    gap: 32px;
+  }
+
+  .errorPageLabel {
+    font-size: 80px;
+  }
+
+  .errorPageDescription {
+    font-size: 20px;
+    text-align: center;
+  }
+}

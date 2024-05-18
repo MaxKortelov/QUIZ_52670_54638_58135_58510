@@ -1,0 +1,1 @@
+DROP TABLE quiz_table_results;

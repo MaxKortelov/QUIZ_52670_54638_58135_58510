@@ -1,0 +1,72 @@
+@import "styles/button";
+@import "styles/input";
+@import "styles/colors";
+
+%form {
+  display: flex;
+  flex-direction: column;
+}
+
+%formSectionLabel {
+  font-family: $montserratBold;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+%formItem {
+  &.buttons {
+    display: flex;
+    justify-content: end;
+    margin-top: 64px;
+    margin-left: auto;
+  }
+}
+
+%formInput {
+  width: $inputWidth;
+}
+
+%formButtons {
+  width: $buttonWidth;
+
+  &.cancel {
+    margin-right: 20px;
+  }
+}
+
+.ant-form-item-explain.ant-form-item-explain-connected {
+  transition: all 0.5s;
+
+  .ant-form-item-explain-error {
+    font-size: 14px;
+  }
+}
+
+.ant-form-item-has-error * .ant-form-item-control {
+  * {
+    border-color: $error;
+  }
+
+  div:not(.ant-form-item-control-input-content):last-child div:last-child {
+    min-height: 24px;
+    height: auto !important;
+    max-width: $inputWidth;
+    width: 100%;
+  }
+}
+
+@media (width < 576px) {
+  %formItem {
+    &.buttons {
+      margin-top: 40px;
+    }
+  }
+
+  %formInput {
+    width: 100%;
+  }
+
+  .ant-form-item-has-error * .ant-form-item-control div:not(.ant-form-item-control-input-content):last-child div:last-child {
+    width: auto;
+  }
+}

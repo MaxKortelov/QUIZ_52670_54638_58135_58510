@@ -1,0 +1,185 @@
+{
+  "quizType": "English Language Test",
+  "questions": [
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "That's a terrible idea!"
+        },
+        {
+          "id": "2",
+          "text": "I respectfully disagree, and here's why..."
+        },
+        {
+          "id": "3",
+          "text": "No way, that won't work"
+        }
+      ],
+      "answerId": "2",
+      "question": "During a meeting, your colleague makes a suggestion. How would you politely disagree?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Hey there!"
+        },
+        {
+          "id": "2",
+          "text": "Dear [Client Name], Thank you for your email. I'm happy to help..."
+        },
+        {
+          "id": "3",
+          "text": "What's up?"
+        }
+      ],
+      "answerId": "2",
+      "question": "You receive an email with a question from a client. How would you begin your response?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "I'll get started right away. Would it be possible to clarify the deadline?"
+        },
+        {
+          "id": "2",
+          "text": "Sure, no problem!"
+        },
+        {
+          "id": "3",
+          "text": "There's no way I can finish this by then"
+        }
+      ],
+      "answerId": "1",
+      "question": "Your manager asks you to complete a task by the end of the day. It's a large project, and you're unsure if you'll have enough time. What would you say?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Don't worry about it"
+        },
+        {
+          "id": "2",
+          "text": "That's not my fault"
+        },
+        {
+          "id": "3",
+          "text": "I understand your frustration. Let's see how I can help"
+        }
+      ],
+      "answerId": "3",
+      "question": "You're on the phone with a customer who seems frustrated. What would you say?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "I'm a little stuck on this. Would you mind taking a look?"
+        },
+        {
+          "id": "2",
+          "text": "Hey, can you do this for me?"
+        },
+        {
+          "id": "3",
+          "text": "I have no idea how to do this"
+        }
+      ],
+      "answerId": "1",
+      "question": "You need to ask your coworker for help with a specific task. How would you phrase your request?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Here's the file"
+        },
+        {
+          "id": "2",
+          "text": "Attached is the document for your review. Please let me know if you have any questions"
+        },
+        {
+          "id": "3",
+          "text": "Good luck with this!"
+        }
+      ],
+      "answerId": "2",
+      "question": "In an email, you're attaching a document for your colleagues to review. What would you write in the body of the email?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Bad"
+        },
+        {
+          "id": "2",
+          "text": "Successful"
+        },
+        {
+          "id": "3",
+          "text": "Confusing"
+        }
+      ],
+      "answerId": "2",
+      "question": "You're writing a short report about a project. What word best describes a successful outcome?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "It's kind of cool"
+        },
+        {
+          "id": "2",
+          "text": "Our new product offers innovative features that can benefit your business"
+        },
+        {
+          "id": "3",
+          "text": "It's something new"
+        }
+      ],
+      "answerId": "2",
+      "question": "Your company is launching a new product. How would you describe it to a potential customer?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "So, here's the stuff..."
+        },
+        {
+          "id": "2",
+          "text": "Good morning/afternoon everyone. Today I'd like to discuss..."
+        },
+        {
+          "id": "3",
+          "text": "Let's get this over with"
+        }
+      ],
+      "answerId": "2",
+      "question": "You're giving a presentation to your team. How would you begin?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Just a friendly reminder that our deadline is coming up soon. Let's keep working hard!"
+        },
+        {
+          "id": "2",
+          "text": "We're all going to be in trouble if this isn't done"
+        },
+        {
+          "id": "3",
+          "text": "You guys better hurry up!"
+        }
+      ],
+      "answerId": "1",
+      "question": "An important deadline is approaching. How would you remind your team to stay focused?"
+    }
+  ]
+}

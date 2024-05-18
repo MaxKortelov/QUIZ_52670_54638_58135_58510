@@ -1,0 +1,185 @@
+{
+  "quizType": "Team Communication Test",
+  "questions": [
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Actively listen, then politely share your perspective and offer alternative suggestions"
+        },
+        {
+          "id": "2",
+          "text": "Interrupt them and immediately voice your disagreement"
+        },
+        {
+          "id": "3",
+          "text": "Ignore the idea and wait for someone else to speak"
+        }
+      ],
+      "answerId": "1",
+      "question": "During a brainstorming session, a teammate suggests an idea you disagree with How should you respond?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Briefly answer their question in the email reply"
+        },
+        {
+          "id": "2",
+          "text": "Briefly answer and ask if they have any further questions"
+        },
+        {
+          "id": "3",
+          "text": "Reply with no problem without addressing their specific question"
+        }
+      ],
+      "answerId": "2",
+      "question": "Your colleague emails you a question about a project. What's the best way to ensure clear communication?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Briefly acknowledging what someone said and then moving on"
+        },
+        {
+          "id": "2",
+          "text": "Tuning out what someone is saying and thinking about your response"
+        },
+        {
+          "id": "3",
+          "text": "Paying close attention, asking clarifying questions, and showing you understand their point"
+        }
+      ],
+      "answerId": "3",
+      "question": "Effective communication involves active listening. What does this mean?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Assume you're wrong and move on"
+        },
+        {
+          "id": "2",
+          "text": "Ask clarifying questions to ensure you're on the same page"
+        },
+        {
+          "id": "3",
+          "text": "Stay silent and hope someone else clarifies for you"
+        }
+      ],
+      "answerId": "2",
+      "question": "Misunderstandings can happen in team communication. What should you do if you believe you haven't understood something clearly?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Regularly discuss progress, address any roadblocks, and delegate tasks effectivelya"
+        },
+        {
+          "id": "2",
+          "text": "Assume everyone knows what they need to do and avoid communication altogether"
+        },
+        {
+          "id": "3",
+          "text": "Work independently and only communicate if there's a major problem"
+        }
+      ],
+      "answerId": "1",
+      "question": "Your team is working on a tight deadline. How can clear communication help ensure success?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "There's no need to adapt, just stick to your own style"
+        },
+        {
+          "id": "2",
+          "text": "Pay attention to how others communicate and adjust your approach to be more clear and considerate"
+        },
+        {
+          "id": "3",
+          "text": "Ignore how others communicate and expect them to adapt to you"
+        }
+      ],
+      "answerId": "2",
+      "question": "Different communication styles exist. How can you adapt your communication style to better work with teammates?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Crossing your arms and looking away"
+        },
+        {
+          "id": "2",
+          "text": "Leaning back in your chair and looking bored"
+        },
+        {
+          "id": "3",
+          "text": "Maintaining eye contact and nodding occasionally"
+        }
+      ],
+      "answerId": "3",
+      "question": "Effective communication includes both verbal and nonverbal cues. What nonverbal cue shows you're actively listening?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Derailing from the agenda with unrelated discussions"
+        },
+        {
+          "id": "2",
+          "text": "Having a clear agenda and defined goals"
+        },
+        {
+          "id": "3",
+          "text": "Encouraging open discussion and participation from all team members"
+        }
+      ],
+      "answerId": "1",
+      "question": "Team meetings can be a valuable communication tool. What is NOT a characteristic of a productive meeting?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Use lots of jargon and technical terms"
+        },
+        {
+          "id": "2",
+          "text": "Proofread for typos and ensure your message is clear and concise"
+        },
+        {
+          "id": "3",
+          "text": "Use sarcasm and humor, which may not translate well in writing"
+        }
+      ],
+      "answerId": "2",
+      "question": "Written communication, like emails, can be misinterpreted. How can you improve the clarity of your written communication?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Be reliable, follow through on commitments, and communicate openly and honestly"
+        },
+        {
+          "id": "2",
+          "text": "Gossip about others and withhold important information"
+        },
+        {
+          "id": "3",
+          "text": "Take credit for others' work and avoid admitting mistakes"
+        }
+      ],
+      "answerId": "1",
+      "question": "Building trust is essential for strong team communication. How can you build trust with your teammates?"
+    }
+  ]
+}
