@@ -53,7 +53,7 @@ export const Quiz = () => {
                     Timer:
                     <Statistic.Countdown
                         className="quizPageTimer"
-                        value={deadline?.valueOf()}
+                        value={quizQuestion?.dateEnded?.getTime()}
                         format="mm:ss"
                         onFinish={onTimeOut}
                     />

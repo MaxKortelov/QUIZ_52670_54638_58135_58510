@@ -8,7 +8,6 @@ import { getQuizAction } from "store/quiz/actions";
 import { getQuiz, getQuizIsLoading, getQuizQuestionIsLoading } from "store/quiz/selectors";
 import { getCurrentUser } from "store/user/selectors";
 import Intro from "assets/img/intro.jpg";
-import { dateFormats } from "utils/helpers/formatValues";
 
 import './QuizIntro.scss';
 
@@ -31,6 +30,12 @@ export const QuizIntro = () => {
 
     const allAttemptsUsed = quiz?.quizSession.quizAttempts - quiz?.quizSession.quizAttemptsUsed <= 0;
 
+    const day = quiz?.quizSession.dateCreated.getDate();
+    const month = quiz?.quizSession.dateCreated.getMonth() + 1;
+    const monthFormatted = month < 10 ? `0${month}` : month;
+    const year = quiz?.quizSession.dateCreated.getFullYear();
+    const quizDateCreated = `${day}.${monthFormatted}.${year}`
+
     return isLoading ? (
         <Spin />
     ) : (
@@ -42,9 +47,7 @@ export const QuizIntro = () => {
                 <div className="quizIntroPageOptions">
                     <div className="quizIntroPageOptionsItem">
                         <div className="quizIntroPageOptionsItemContent bold">Date:</div>
-                        <div className="quizIntroPageOptionsItemContent">
-                            {quiz?.quizSession.dateCreated?.format(dateFormats.dateOnly)}
-                        </div>
+                        <div className="quizIntroPageOptionsItemContent">{quizDateCreated}</div>
                     </div>
                     <div className="quizIntroPageOptionsItem">
                         <div className="quizIntroPageOptionsItemContent bold">Time Limit:</div>
