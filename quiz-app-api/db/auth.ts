@@ -2,7 +2,7 @@ import db from "../db";
 import {DBUser, mapDbUserToUser, NewUser, User} from "../types/user";
 import {encryptPassword, uniqueId} from "../utils/crypto.util";
 import {EncryptedPassword} from "../types/utils/crypto";
-import {getUserQuizTable} from "./quiz";
+import {getUserQuizTableResults} from "./quiz";
 
 export async function addUser({username, email, password}: NewUser): Promise<User> {
   const user = await findUser(email);
@@ -17,7 +17,7 @@ export async function addUser({username, email, password}: NewUser): Promise<Use
   )
 
   const createdUser = await findUser(email);
-  return mapDbUserToUser(createdUser, getUserQuizTable(createdUser.uuid));
+  return mapDbUserToUser(createdUser, getUserQuizTableResults(createdUser.uuid));
 }
 
 export async function findUser(email: string): Promise<DBUser> {

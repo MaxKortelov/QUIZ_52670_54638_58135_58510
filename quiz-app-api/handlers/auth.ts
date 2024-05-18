@@ -16,12 +16,13 @@ import {sendEmail} from "../services/email.service";
 import {resetPasswordTemplateHTML, verifyEmailTemplateHTML} from "../utils/templates.util";
 import {ORIGIN} from "../@shared/env-vars";
 import {responseMessage} from "../utils/api.util";
-import {getUserQuizTable} from "../db/quiz";
+import {createUserQuizTableResults, getUserQuizTableResults} from "../db/quiz";
 
 export async function registerUser(req: Request, res: Response) {
   await validateBody(req, NewUser)
     .then((user) => addUser(user as NewUser))
     .then(async (user) => {
+      await createUserQuizTableResults(user.uuid);
       const token = await addVerifyEmailToken(user.email);
       const emailOptions: EmailOptions = {
         to: [user.email],
@@ -48,7 +49,7 @@ export async function login(req: Request, res: Response) {
       const user = await findUser(loginUser.email);
       validatePassword(loginUser.password, user.password_hash, user.password_salt);
       if(!user.user_confirmed) errorService.validationError(res, ["User email is not confirmed"])
-      return mapDbUserToUser(user, getUserQuizTable(user.uuid));
+      return mapDbUserToUser(user, getUserQuizTableResults(user.uuid));
     })
     .then(user => {
       res.statusCode = 200;

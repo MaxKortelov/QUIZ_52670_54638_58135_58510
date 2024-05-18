@@ -126,10 +126,15 @@ export async function saveAndCountQuizResult(quizSessionId: string, userId: stri
   return result;
 }
 
-export function getUserQuizTable(userId: string)  {
+export async function createUserQuizTableResults(userId: string)  {
+  const result = await db.query('INSERT INTO quiz_table_results (user_id) VALUES ($1) RETURNING row_to_json(quiz_table_results);', [userId])
+  return asJSONDB(result.rows[0]).row_to_json;
+}
+
+export function getUserQuizTableResults(userId: string)  {
   return {
     quiz_amount_taken: 2,
     fastest_quiz_time: "19 min 42 sec",
     correct_answers: 15
-}
+  }
 }
