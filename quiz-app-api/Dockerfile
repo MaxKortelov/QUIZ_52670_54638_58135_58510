@@ -11,4 +11,4 @@ COPY . /app/
 
 RUN npm run build
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "migrate", "&&", "npm", "run", "start"]

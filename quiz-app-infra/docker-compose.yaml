@@ -26,13 +26,10 @@ services:
     container_name: backend
     ports:
       - "3001:3001"
-    depends_on:
-      db:
-        condition: service_healthy
+    depends_on: ["db"]
     networks:
       - rest-api
       - database
-
   webapp:
     build:
       dockerfile: Dockerfile
