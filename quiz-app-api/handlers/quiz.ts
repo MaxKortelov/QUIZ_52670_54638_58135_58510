@@ -118,7 +118,7 @@ export async function submitQuiz(req: Request, res: Response) {
 
     res.statusCode = 200;
     res.send(data);
-  } catch (_) {
+  } catch (e) {
     errorService.serverError(res, ["Something went wrong"])
   }
 }

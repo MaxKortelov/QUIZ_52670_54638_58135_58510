@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import {getQuizSessionById} from "../db/quiz";
 import errorService from "../services/error.service";
+import {submitQuiz} from "../handlers/quiz";
 
 export async function validateQuizSession(req: Request, res: Response, next: NextFunction) {
   try {
