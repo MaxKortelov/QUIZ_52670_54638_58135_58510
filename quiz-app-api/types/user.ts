@@ -6,6 +6,9 @@ export class User {
   username: string;
   dateCreated: string; //Date
   dateUpdated: string; //Date
+  quizAmountTaken: number;
+  fastestTestTime: string;
+  correctAnswers: number;
 }
 
 export class NewUser {
@@ -63,13 +66,16 @@ export class DBUser {
   user_confirmed: string;
 }
 
-export function mapDbUserToUser(dbUser: DBUser): User {
+export function mapDbUserToUser(dbUser: DBUser, dbQuizTable: any): User {
   return {
     uuid: dbUser.uuid,
     email: dbUser.email,
     username: dbUser.username,
     dateCreated: dbUser.date_created,
-    dateUpdated: dbUser.date_updated
+    dateUpdated: dbUser.date_updated,
+    quizAmountTaken: dbQuizTable.quiz_amount_taken,
+    fastestTestTime: dbQuizTable.fastest_quiz_time,
+    correctAnswers: dbQuizTable.correct_answers
   }
 }
 

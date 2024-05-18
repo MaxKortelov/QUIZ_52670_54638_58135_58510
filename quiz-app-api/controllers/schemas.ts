@@ -65,12 +65,24 @@
  *         dateUpdated:
  *           type: Date
  *           description: Date of user update (Time zone should be converted)
+ *         quizAmountTaken:
+ *           type: number
+ *           description: How many quizzes were passed by user
+ *         fastestTestTime:
+ *           type: string
+ *           description: Fastest time for the quiz
+ *         correctAnswers:
+ *           type: number
+ *           description: General number of correct answers
  *       example:
  *         uuid: 5a66d6f4-9d08-45d8-8a43-1ce148cbebd1
  *         email: test@test.com
  *         username: Ivan Smith
  *         dateCreated: 2024-04-24T00:00:00.000Z
  *         dateUpdated: 2024-04-24T00:00:00.000Z
+ *         quizAmountTaken: 2
+ *         fastestTestTime: 19 min 42 sec
+ *         correctAnswers: 15
  *
  *     Email:
  *       type: object

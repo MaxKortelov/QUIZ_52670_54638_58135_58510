@@ -10,7 +10,14 @@ export async function getUser(req: Request, res: Response) {
     .then(async (it) => {
       const {email} = it as Email;
       const user = await findUser(email);
-      return mapDbUserToUser(user);
+
+      const mockedData = {
+        quiz_amount_taken: 2,
+        fastest_quiz_time: "19 min 42 sec",
+        correct_answers: 15
+      }
+
+      return mapDbUserToUser(user, mockedData);
     })
     .then(user => {
       res.statusCode = 200;
