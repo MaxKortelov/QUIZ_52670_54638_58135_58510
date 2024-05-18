@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
-import { URL_HOME, URL_NOT_FOUND } from "utils/constants/clientUrl";
+import { URL_NOT_FOUND } from "utils/constants/clientUrl";
 import { useAppDispatch, useAppSelector } from "utils/hooks/useAppSelector";
 import { Spin, Statistic } from "antd";
 import { QuizQuestion } from "./components/QuizQuestion";
-import { getQuizAction, startQuizAction } from "store/quiz/actions";
+import { getQuizAction, getQuizResultAction, startQuizAction } from "store/quiz/actions";
 import { getCurrentUser } from "store/user/selectors";
 import { getQuiz, getQuizIsLoading, getQuizQuestion } from "store/quiz/selectors";
 
@@ -35,10 +35,12 @@ export const Quiz = () => {
         }))
     }, [quiz]);
 
-    const onTimeOut = () => navigate(URL_HOME.path())
-
-    const timezone = new Date().getTimezoneOffset() / 60 - 1
-    const deadline = timezone > 0 ? quizQuestion?.dateEnded?.subtract(timezone, 'hours') : quizQuestion?.dateEnded?.add(timezone, 'hours')
+    const onTimeOut = async () => {
+        await dispatch(getQuizResultAction({
+            quizSessionId: quiz?.quizSession?.quizSessionId,
+            email: currentUser?.email,
+        }))
+    }
 
     return quizIsLoading ? (
         <Spin />
