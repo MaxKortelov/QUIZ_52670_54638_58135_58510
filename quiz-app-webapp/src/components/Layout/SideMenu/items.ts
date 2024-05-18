@@ -12,6 +12,7 @@ export type SideMenuItemType = {
     value?: SideMenuItemsEnum,
     className?: string,
     onClick: () => void,
+    disabled?: boolean,
 }
 
 export const sideMenuItems = () => {
@@ -24,13 +25,14 @@ export const sideMenuItems = () => {
         onClick: () => {
             navigate(URL_HOME.path());
         },
-    };
+    } as SideMenuItemType;
     const changePassword = {
         label: 'Support',
         value: SideMenuItemsEnum.SUPPORT,
         onClick: () => {
             navigate(URL_SUPPORT.path());
         },
+        disabled: true,
     };
     const logOutItem = {
         label: 'Notification',
@@ -38,6 +40,7 @@ export const sideMenuItems = () => {
         onClick: () => {
             navigate(URL_NOTIFICATIONS.path());
         },
+        disabled: true,
     };
 
     return [profile, changePassword, logOutItem] as SideMenuItemType[];
