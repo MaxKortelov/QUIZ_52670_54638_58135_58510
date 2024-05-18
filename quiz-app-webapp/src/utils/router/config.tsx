@@ -73,6 +73,18 @@ export const router = createBrowserRouter([
                 <ChangePassword />
             ),
           },
+          {
+            path: URL_QUIZ_INTRO.route,
+            element: (
+                <QuizIntro />
+            ),
+          },
+          {
+            path: URL_QUIZ.route,
+            element: (
+                <Quiz />
+            ),
+          },
         ],
       },
       {
@@ -104,18 +116,6 @@ export const router = createBrowserRouter([
             path: URL_HOME.route,
             element: (
                 <Home />
-            ),
-          },
-          {
-            path: URL_QUIZ_INTRO.route,
-            element: (
-                <QuizIntro />
-            ),
-          },
-          {
-            path: URL_QUIZ.route,
-            element: (
-                <Quiz />
             ),
           },
         ],
