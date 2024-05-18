@@ -17,6 +17,7 @@ type Props = {
   onClick?: () => void;
   showSpinner?: boolean;
   spinnerTrigger?: boolean;
+  disabled?: boolean;
 };
 
 export const SubmitButton = ({
@@ -29,6 +30,7 @@ export const SubmitButton = ({
   onClick,
   showSpinner = false,
   spinnerTrigger,
+  disabled = false
 }: Props) => {
   const submitIsLoading = useAppSelector(getSubmitIsLoading);
 
@@ -40,7 +42,7 @@ export const SubmitButton = ({
       type={type}
       onClick={onClick}
       htmlType={htmlType}
-      disabled={spinnerTrigger || submitIsLoading}
+      disabled={spinnerTrigger || submitIsLoading || disabled}
     >
       {children}{' '}
       {showSpinner && (spinnerTrigger || submitIsLoading) && (
