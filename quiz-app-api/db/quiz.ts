@@ -125,3 +125,11 @@ export async function saveAndCountQuizResult(quizSessionId: string, userId: stri
 
   return result;
 }
+
+export function getUserQuizTable(userId: string)  {
+  return {
+    quiz_amount_taken: 2,
+    fastest_quiz_time: "19 min 42 sec",
+    correct_answers: 15
+}
+}
