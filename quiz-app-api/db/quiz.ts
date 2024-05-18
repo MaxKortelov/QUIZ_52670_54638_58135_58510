@@ -1,11 +1,11 @@
 import db from "./index";
 import {
-  Answer,
+  Answer, FullQuizTableResultsDb,
   NewAnswer,
   NewQuestion,
   QuestionDB,
   QuestionWithAnswersDB,
-  QuizSessionDB,
+  QuizSessionDB, QuizTableResultsDb,
   QuizType,
   SaveQuizQuestion
 } from "../types/quiz";
@@ -126,15 +126,29 @@ export async function saveAndCountQuizResult(quizSessionId: string, userId: stri
   return result;
 }
 
-export async function createUserQuizTableResults(userId: string)  {
+export async function createUserQuizTableResults(userId: string): Promise<QuizTableResultsDb>  {
   const result = await db.query('INSERT INTO quiz_table_results (user_id) VALUES ($1) RETURNING row_to_json(quiz_table_results);', [userId])
-  return asJSONDB(result.rows[0]).row_to_json;
+  return asJSONDB(result.rows[0]).row_to_json as QuizTableResultsDb;
 }
 
-export function getUserQuizTableResults(userId: string)  {
-  return {
-    quiz_amount_taken: 2,
-    fastest_quiz_time: "19 min 42 sec",
-    correct_answers: 15
+export async function getUserQuizTableResults(userId: string)  {
+  let quizTableResult = await db.query('SELECT * FROM quiz_table_results WHERE user_id = $1;', [userId]);
+  return quizTableResult.rows[0];
+}
+
+export async function getFullUserQuizTableResults(userId: string): Promise<FullQuizTableResultsDb>  {
+  const quizTableResult = await getUserQuizTableResults(userId);
+  try {
+    const best_quiz_session = await getQuizSessionById(quizTableResult.best_quiz_session_id);
+
+    return {
+      ...quizTableResult,
+      best_quiz_session
+    }
+  } catch (_) {
+    return {
+      ...quizTableResult,
+      best_quiz_session: null
+    }
   }
 }

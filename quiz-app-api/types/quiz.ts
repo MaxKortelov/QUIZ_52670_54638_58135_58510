@@ -218,3 +218,15 @@ export class SubmitQuiz {
   @IsString()
   quizSessionId: string;
 }
+
+export class QuizTableResultsDb {
+  uuid: string;
+  quiz_amount_taken: number;
+  correct_answers: number;
+  best_quiz_session_id: string;
+  user_id: string;
+}
+
+export class FullQuizTableResultsDb extends QuizTableResultsDb {
+  best_quiz_session: QuizSessionDB | null;
+}
