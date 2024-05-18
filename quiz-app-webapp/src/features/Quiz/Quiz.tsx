@@ -29,7 +29,7 @@ export const Quiz = () => {
     }, [id]);
 
     useEffect(() => {
-        quiz?.quizSession?.quizSessionId && !quizQuestion?.dateEnded && dispatch(startQuizAction({
+        quiz?.quizSession?.quizSessionId && dispatch(startQuizAction({
             quizSessionId: quiz?.quizSession?.quizSessionId,
             email: currentUser?.email
         }))
