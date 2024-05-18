@@ -18,7 +18,7 @@
     color: $white;
   }
 
-  &:active {
+  &:active:not(.disabled) {
     background: #6b7a8c;
   }
 
