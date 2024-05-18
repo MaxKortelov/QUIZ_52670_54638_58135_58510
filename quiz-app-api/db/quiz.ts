@@ -12,6 +12,7 @@ import {
 import {toArrayText} from "../utils/db.util";
 import {SessionOptions} from "../types/services/quiz.service";
 import {asJSONDB} from "../types/db";
+import {calculateBestQuizSession} from "../services/quiz.service";
 
 export async function addQuestionType(value: string): Promise<string> {
   const {rows} = await db.query('SELECT * FROM question_type WHERE description = $1', [value]);
@@ -137,7 +138,12 @@ export async function createUserQuizTableResults(userId: string): Promise<QuizTa
 
 export async function updateUserQuizTableResults(userId: string, quizSessionId: string, correctAnswersCount: number): Promise<QuizTableResultsDb>  {
     const currentQuizTableResults = await getUserQuizTableResults(userId);
-    const result = await db.query('UPDATE quiz_table_results SET best_quiz_session_id = $1, quiz_amount_taken = $2, correct_answers = $3 WHERE user_id = $4 RETURNING row_to_json(quiz_table_results);', [quizSessionId, currentQuizTableResults.quiz_amount_taken + 1, correctAnswersCount, userId]);
+    const oldQuizSession = await getQuizSessionById(currentQuizTableResults.best_quiz_session_id);
+    const newQuizSession = await getQuizSessionById(quizSessionId);
+
+    const bestQuizSession = calculateBestQuizSession(oldQuizSession, newQuizSession).uuid;
+
+    const result = await db.query('UPDATE quiz_table_results SET best_quiz_session_id = $1, quiz_amount_taken = $2, correct_answers = $3 WHERE user_id = $4 RETURNING row_to_json(quiz_table_results);', [bestQuizSession, currentQuizTableResults.quiz_amount_taken + 1, correctAnswersCount, userId]);
 
     return asJSONDB(result.rows[0]).row_to_json as QuizTableResultsDb;
 }

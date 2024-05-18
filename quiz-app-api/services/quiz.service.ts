@@ -4,7 +4,7 @@ import {
   NewAnswer,
   NewQuestion,
   NewQuiz, questionWithAnswersDBToQuizQuestion,
-  QuizData, QuizQuestion,
+  QuizData, QuizQuestion, QuizSessionDB,
   QuizSessionInfo, SaveQuizQuestion
 } from "../types/quiz";
 import * as quizDB from "../db/quiz"
@@ -22,6 +22,7 @@ import {
 import {bufferToJson, listFilesSync, readFileSync} from "../utils/fs.util";
 import {SessionOptions} from "../types/services/quiz.service";
 import {ATTEMPTS_PER_QUIZ, TIME_PER_QUESTION} from "../@shared/env-vars";
+import {dateDifferenceInSeconds} from "../utils/date.util";
 
 export async function addQuestions(questionTypeId: string, questions: Array<NewQuestion>): Promise<void> {
   for await (let question of questions) {
@@ -103,4 +104,18 @@ export async function initiateQuizSession(quizSessionId: string, userId: string)
 export async function addQuizQuestionAnswer(quizSessionRequestData: SaveQuizQuestion, userId: string) {
   await addQuestionAnswer(quizSessionRequestData, userId);
   return;
+}
+
+export function calculateBestQuizSession(oldQuizSession: QuizSessionDB, newQuizSession: QuizSessionDB): QuizSessionDB {
+  if(!oldQuizSession || !newQuizSession) {
+    throw new Error("calculateBestQuizSession - Quiz session wasn't found");
+  }
+
+  const bestTimeOldQuizSession = dateDifferenceInSeconds(oldQuizSession.date_started, oldQuizSession.date_ended);
+  const bestTimeNewQuizSession = dateDifferenceInSeconds(newQuizSession.date_started, newQuizSession.date_ended);
+
+  console.log("bestTimeOldQuizSession", bestTimeOldQuizSession);
+  console.log("bestTimeNewQuizSession", bestTimeNewQuizSession);
+
+  return bestTimeOldQuizSession < bestTimeNewQuizSession ? oldQuizSession : newQuizSession;
 }
