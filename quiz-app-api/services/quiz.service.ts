@@ -114,8 +114,5 @@ export function calculateBestQuizSession(oldQuizSession: QuizSessionDB, newQuizS
   const bestTimeOldQuizSession = dateDifferenceInSeconds(oldQuizSession.date_started, oldQuizSession.date_ended);
   const bestTimeNewQuizSession = dateDifferenceInSeconds(newQuizSession.date_started, newQuizSession.date_ended);
 
-  console.log("bestTimeOldQuizSession", bestTimeOldQuizSession);
-  console.log("bestTimeNewQuizSession", bestTimeNewQuizSession);
-
   return bestTimeOldQuizSession < bestTimeNewQuizSession ? oldQuizSession : newQuizSession;
 }
