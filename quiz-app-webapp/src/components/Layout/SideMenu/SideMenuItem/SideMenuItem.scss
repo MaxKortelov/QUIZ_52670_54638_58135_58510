@@ -13,13 +13,17 @@
   font-family: $montserratSemiBold;
   cursor: pointer;
 
-  &.active, &:hover {
+  &.active, &:hover:not(.disabled) {
     background: #8692A6;
     color: $white;
   }
 
-  &:active {
+  &:active:not(.disabled) {
     background: #6b7a8c;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
   }
 }
 

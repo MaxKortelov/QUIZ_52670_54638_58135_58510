@@ -7,6 +7,9 @@ export type ProfileModel = {
   username: string;
   dateCreated: Moment | undefined;
   dateUpdated: Moment | undefined;
+  quizAmountTaken: number,
+  fastestTestTime: string,
+  correctAnswers: number,
 };
 
 export type ProfileResponse = {
@@ -15,6 +18,9 @@ export type ProfileResponse = {
   username: string;
   dateCreated: string;
   dateUpdated: string;
+  quizAmountTaken: number,
+  fastestTestTime: string,
+  correctAnswers: number,
 };
 
 export const profileResponseToModel = (data: ProfileResponse): ProfileModel => ({

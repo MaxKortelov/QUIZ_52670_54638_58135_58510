@@ -9,15 +9,16 @@ type Props = {
 }
 
 export const SideMenuItem = ({ item, activeItem }: Props) => {
-    const { label, value, className, onClick } = item;
+    const { label, value, className, onClick, disabled } = item;
 
     const extraClass = className ? className : '';
     const isActive = activeItem && value === activeItem ? 'active' : '';
+    const isDisabled = disabled ? 'disabled' : '';
 
     return (
         <div
-            className={`sideMenuItem ${extraClass} ${isActive}`}
-            onClick={onClick}
+            className={`sideMenuItem ${extraClass} ${isActive} ${isDisabled}`}
+            onClick={() => !disabled && onClick()}
         >
             {label}
         </div>

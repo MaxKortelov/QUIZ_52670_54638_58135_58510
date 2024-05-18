@@ -29,6 +29,8 @@ export const QuizIntro = () => {
 
     const goQuiz = () => navigate(URL_QUIZ.path({ id: String(id) }));
 
+    const allAttemptsUsed = quiz?.quizSession.quizAttempts - quiz?.quizSession.quizAttemptsUsed <= 0;
+
     return isLoading ? (
         <Spin />
     ) : (
@@ -50,7 +52,7 @@ export const QuizIntro = () => {
                     </div>
                     <div className="quizIntroPageOptionsItem">
                         <div className="quizIntroPageOptionsItemContent bold">Attempts:</div>
-                        <div className="quizIntroPageOptionsItemContent">{quiz?.quizSession.quizAttempts}</div>
+                        <div className="quizIntroPageOptionsItemContent">{quiz?.quizSession.quizAttempts - quiz?.quizSession.quizAttemptsUsed}</div>
                     </div>
                     <div className="quizIntroPageOptionsItem">
                         <div className="quizIntroPageOptionsItemContent bold">Points:</div>
@@ -73,7 +75,7 @@ export const QuizIntro = () => {
                     To start, click the "Start" button. When finished, click the "Submit " button.
                 </p>
             </div>
-            <SubmitButton onClick={goQuiz} showSpinner spinnerTrigger={quizQuestionIsLoading}>
+            <SubmitButton disabled={allAttemptsUsed} onClick={goQuiz} showSpinner spinnerTrigger={quizQuestionIsLoading}>
                 Start
             </SubmitButton>
         </div>
