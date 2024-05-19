@@ -1,6 +1,6 @@
 import { axiosInstance } from './axiosInstance';
-import { LoginRequest, ResetPasswordRequest } from '../dto/authorization';
-import {ProfileResponse} from "../dto/profile";
+import { LoginRequest, ResetPasswordRequest, VerifyEmailModel } from '../dto/authorization';
+import { ProfileResponse } from "../dto/profile";
 
 export const login = (values: LoginRequest) => {
   return axiosInstance.post<ProfileResponse>(
@@ -16,11 +16,10 @@ export const register = (values: LoginRequest) => {
   ).then(res => res?.data);
 };
 
-export const resendVerifyEmail = (email: string) => {
-  return true;
+export const verifyEmail = (values: VerifyEmailModel) => {
   return axiosInstance.post(
-      '/auth/user/',
-      { email },
+      '/auth/user/email/verify',
+      values,
   )
 };
 

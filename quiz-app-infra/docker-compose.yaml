@@ -30,7 +30,6 @@ services:
     networks:
       - rest-api
       - database
-
   webapp:
     build:
       dockerfile: Dockerfile

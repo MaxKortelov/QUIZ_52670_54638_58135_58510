@@ -1,12 +1,9 @@
-import { Moment } from 'moment';
-import { createNewDate } from '../helpers/formatValues';
-
 export type ProfileModel = {
   uuid: string;
   email: string;
   username: string;
-  dateCreated: Moment | undefined;
-  dateUpdated: Moment | undefined;
+  dateCreated: Date;
+  dateUpdated: Date;
   quizAmountTaken: number,
   fastestTestTime: string,
   correctAnswers: number,
@@ -25,11 +22,6 @@ export type ProfileResponse = {
 
 export const profileResponseToModel = (data: ProfileResponse): ProfileModel => ({
   ...data,
-  dateCreated: createNewDate(data.dateCreated),
-  dateUpdated: createNewDate(data.dateUpdated),
+  dateCreated: new Date(data.dateCreated),
+  dateUpdated: new Date(data.dateUpdated),
 });
-
-export type ChangePasswordRequest = {
-  oldPassword: string;
-  newPassword: string;
-};

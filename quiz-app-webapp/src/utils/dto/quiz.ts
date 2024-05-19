@@ -1,6 +1,3 @@
-import { Moment } from "moment";
-import { createNewDate } from "../helpers/formatValues";
-
 export type QuizListInfoModel = {
     uuid: string;
     description: string;
@@ -35,7 +32,7 @@ export type QuizInfoModel = {
     quizDuration: number,
     quizAttempts: number,
     quizAttemptsUsed: number,
-    dateCreated: Moment | undefined,
+    dateCreated: Date,
 };
 
 export type QuizInfoResponse = {
@@ -49,7 +46,7 @@ export type QuizInfoResponse = {
 
 export const quizInfoResponseToModel = (data: QuizInfoResponse): QuizInfoModel => ({
     ...data,
-    dateCreated: createNewDate(data?.dateCreated)
+    dateCreated: new Date(data?.dateCreated)
 });
 
 export type QuizModel = {
@@ -93,8 +90,8 @@ export type QuizQuestionModel = {
         answers: QuizAnswer[],
         quizType: string
     },
-    dateStarted: Moment | undefined,
-    dateEnded: Moment | undefined,
+    dateStarted: Date,
+    dateEnded: Date,
     currentQuestionCount: number,
     questionsAmount: number,
 };
@@ -114,6 +111,6 @@ export type QuizQuestionResponse = {
 
 export const quizQuestionResponseToModel = (data: QuizQuestionResponse): QuizQuestionModel => ({
     ...data,
-    dateStarted: createNewDate(data?.dateStarted),
-    dateEnded: createNewDate(data?.dateEnded),
+    dateStarted: new Date(data?.dateStarted),
+    dateEnded: new Date(data?.dateEnded),
 });
