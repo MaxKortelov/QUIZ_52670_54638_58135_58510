@@ -106,13 +106,21 @@ export async function addQuizQuestionAnswer(quizSessionRequestData: SaveQuizQues
   return;
 }
 
-export function calculateBestQuizSession(oldQuizSession: QuizSessionDB, newQuizSession: QuizSessionDB): QuizSessionDB {
-  if(!oldQuizSession || !newQuizSession) {
-    throw new Error("calculateBestQuizSession - Quiz session wasn't found");
+export function calculateBestQuizSession(oldQuizSession: QuizSessionDB | null, newQuizSession: QuizSessionDB | null): QuizSessionDB {
+  if(!oldQuizSession && newQuizSession) {
+    return newQuizSession;
   }
 
-  const bestTimeOldQuizSession = dateDifferenceInSeconds(oldQuizSession.date_started, oldQuizSession.date_ended);
-  const bestTimeNewQuizSession = dateDifferenceInSeconds(newQuizSession.date_started, newQuizSession.date_ended);
+  if(!newQuizSession && oldQuizSession) {
+    return oldQuizSession;
+  }
 
-  return bestTimeOldQuizSession < bestTimeNewQuizSession ? oldQuizSession : newQuizSession;
+  if(oldQuizSession && newQuizSession) {
+    const bestTimeOldQuizSession = dateDifferenceInSeconds(oldQuizSession.date_started, oldQuizSession.date_ended);
+    const bestTimeNewQuizSession = dateDifferenceInSeconds(newQuizSession.date_started, newQuizSession.date_ended);
+
+    return bestTimeOldQuizSession < bestTimeNewQuizSession ? oldQuizSession : newQuizSession;
+  }
+
+  throw new Error("calculateBestQuizSession - Quiz session wasn't found");
 }

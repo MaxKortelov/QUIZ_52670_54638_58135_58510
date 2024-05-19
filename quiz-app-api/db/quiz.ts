@@ -138,7 +138,7 @@ export async function createUserQuizTableResults(userId: string): Promise<QuizTa
 
 export async function updateUserQuizTableResults(userId: string, quizSessionId: string, correctAnswersCount: number): Promise<QuizTableResultsDb>  {
     const currentQuizTableResults = await getUserQuizTableResults(userId);
-    const oldQuizSession = await getQuizSessionById(currentQuizTableResults.best_quiz_session_id);
+    const oldQuizSession = currentQuizTableResults.best_quiz_session_id ? await getQuizSessionById(currentQuizTableResults.best_quiz_session_id) : null;
     const newQuizSession = await getQuizSessionById(quizSessionId);
 
     const bestQuizSession = calculateBestQuizSession(oldQuizSession, newQuizSession).uuid;
