@@ -1,4 +1,4 @@
-FROM node:18.16.0
+FROM node:20.11.0
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ COPY . /app/
 
 RUN npm run build
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "migrate", "&&", "npm", "run", "start"]
