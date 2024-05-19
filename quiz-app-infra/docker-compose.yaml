@@ -28,7 +28,6 @@ services:
       - "3001:3001"
     depends_on: ["db"]
     networks:
-      - rest-api
       - database
   webapp:
     build:
@@ -43,11 +42,7 @@ services:
     restart: always
     depends_on:
       - backend
-    networks:
-      - rest-api
 networks:
-  rest-api:
-    driver: bridge
   database:
 volumes:
   quiz-db:
