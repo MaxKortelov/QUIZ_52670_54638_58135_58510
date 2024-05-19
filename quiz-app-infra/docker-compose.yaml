@@ -29,6 +29,8 @@ services:
     depends_on: ["db"]
     networks:
       - database
+    restart: always
+
   webapp:
     build:
       dockerfile: Dockerfile
