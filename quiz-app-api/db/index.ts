@@ -1,6 +1,6 @@
 import { Client, types } from "pg";
 import { databaseOptions } from "../@shared/env-vars";
-import { parse, parseISO } from "date-fns"
+import { parse } from "date-fns"
 
 const parseFn = function(val: string | null) {
   if (!val) return null
