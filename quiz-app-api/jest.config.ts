@@ -7,5 +7,6 @@ const config: Config.InitialOptions = {
   },
   globalSetup: "./tests/jestGlobalSetup.ts",
   globalTeardown: "./tests/jestGlobalTeardown.ts",
+  setupFiles: ["./tests/setupTests.ts"]
 };
 export default config;

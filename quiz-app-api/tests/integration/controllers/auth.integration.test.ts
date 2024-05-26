@@ -1,7 +1,7 @@
 import request from "supertest";
 import app from "../../../app";
 import db from "../../../db";
-import {after} from "node:test";
+import {newUserMock} from "../../mocks/user";
 
 const rootPath = "/auth"
 
@@ -27,15 +27,10 @@ describe("Test the auth route",  () => {
 
   test("It should return message that user is registered", () => {
     const path = '/user/register';
-    const payload = {
-      "username": "ivan",
-      "email": "test@test.com",
-      "password": "12+5_*RF8"
-    }
 
     return request(app)
       .post(rootPath + path)
-      .send(payload)
+      .send(newUserMock)
       .expect(201, {
         message: "Message was successfully sent to email"
       });
