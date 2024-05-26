@@ -4,8 +4,9 @@ import {loadInitialQuizzes} from "./services/quiz.service";
 import {setControllers} from "./controllers";
 import swaggerDocs from "./utils/swagger.util";
 import app from "./app";
+import {Server} from "http";
 
-export function startServer(): void {
+export async function startServer(): Promise<void> {
   app.listen(port, async function () {
     console.log("CORS-enabled web server listening on port 3001");
 
@@ -18,7 +19,6 @@ export function startServer(): void {
 
     await loadInitialQuizzes();
 
-    setControllers(app);
     swaggerDocs(app, port);
   });
 }

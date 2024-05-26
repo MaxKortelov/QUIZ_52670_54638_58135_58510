@@ -1,4 +1,4 @@
-import { Client, types } from "pg";
+import {Client, Pool, types} from "pg";
 import { databaseOptions } from "../@shared/env-vars";
 import { parse } from "date-fns"
 
@@ -11,6 +11,6 @@ const parseFn = function(val: string | null) {
 types.setTypeParser(types.builtins.TIMESTAMPTZ, parseFn)
 types.setTypeParser(types.builtins.TIMESTAMP, parseFn)
 
-const db = new Client(databaseOptions);
+const db = process.env.NODE_ENV === "test" ? new Pool(databaseOptions) : new Client(databaseOptions);
 
 export default db;

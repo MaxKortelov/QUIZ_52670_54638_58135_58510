@@ -11,7 +11,7 @@
     "migrate": "node migrate migrate",
     "migration:rollback": "node migrate rollback",
     "dependency-graph": "npx depcruise . --output-type dot | dot -T svg > dependency-graph.svg",
-    "test:integration": "cd ./tests/integration && chmod +x start_integration_tests.sh && ./start_integration_tests.sh"
+    "test:integration": "rm -rf dist && cd ./tests/integration && chmod +x start_integration_tests.sh && ./start_integration_tests.sh"
   },
   "keywords": [],
   "author": "",

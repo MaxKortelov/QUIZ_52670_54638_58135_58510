@@ -21,17 +21,17 @@ import {createUserQuizTableResults, getFullUserQuizTableResults} from "../db/qui
 export async function registerUser(req: Request, res: Response) {
   await validateBody(req, NewUser)
     .then((user) => addUser(user as NewUser))
-    .then(async (user) => {
-      await createUserQuizTableResults(user.uuid);
-      const token = await addVerifyEmailToken(user.email);
-      const emailOptions: EmailOptions = {
-        to: [user.email],
-        subject: "Verify your email",
-        html: verifyEmailTemplateHTML(`${ORIGIN}/verify?token=${token}&email=${user.email}`)
-      }
-      return emailOptions;
-    })
-    .then(sendEmail)
+    // .then(async (user) => {
+    //   await createUserQuizTableResults(user.uuid);
+    //   const token = await addVerifyEmailToken(user.email);
+    //   const emailOptions: EmailOptions = {
+    //     to: [user.email],
+    //     subject: "Verify your email",
+    //     html: verifyEmailTemplateHTML(`${ORIGIN}/verify?token=${token}&email=${user.email}`)
+    //   }
+    //   return emailOptions;
+    // })
+    // .then(sendEmail)
     .then(() => {
       res.statusCode = 201;
       res.send(responseMessage("Message was successfully sent to email"));
