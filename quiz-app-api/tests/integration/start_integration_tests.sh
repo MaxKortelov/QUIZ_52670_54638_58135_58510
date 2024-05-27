@@ -31,6 +31,8 @@ export DB_HOST=localhost
 export DB_NAME=$dbContainerName
 export DB_PASSWORD=$dbPassword
 export DB_PORT=$dbPort
+export TIME_PER_QUESTION=2
+export ATTEMPTS_PER_QUIZ=10
 
 # running tests
 npm run migrate

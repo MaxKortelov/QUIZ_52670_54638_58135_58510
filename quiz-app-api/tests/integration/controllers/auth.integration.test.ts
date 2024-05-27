@@ -90,8 +90,6 @@ describe("Test the auth routes in sequence register -> verify email -> login -> 
 
     const user = await findUser(userMock.email);
 
-    const userResult = mapDbUserToUser(user, await getFullUserQuizTableResults(user.uuid));
-
     userPasswordUpdate.token = user.reset_password_token;
 
     return request(app)

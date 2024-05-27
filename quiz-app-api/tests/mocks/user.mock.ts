@@ -20,8 +20,19 @@ export const userPasswordUpdate = {
   password
 }
 
-export const user2Mock = {
+export const user2Mock: NewUser = {
   username: "user routes",
   email: "user-routes@test.com",
   password: "test_#Jbvt*"
+}
+
+export const userQuizMock: NewUser = {
+  username: "user quiz",
+  email: "user-quiz@test.com",
+  password: "test_#Jbvt*123"
+}
+
+export const generateQuizSessionPayload = {
+  email: userQuizMock.email,
+  quizTypeId: ""
 }
