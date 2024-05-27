@@ -19,3 +19,9 @@ export const userPasswordUpdate = {
   token: "",
   password
 }
+
+export const user2Mock = {
+  username: "user routes",
+  email: "user-routes@test.com",
+  password: "test_#Jbvt*"
+}
