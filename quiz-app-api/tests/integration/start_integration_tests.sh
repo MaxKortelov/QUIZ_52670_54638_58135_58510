@@ -33,11 +33,11 @@ export DB_PASSWORD=$dbPassword
 export DB_PORT=$dbPort
 export TIME_PER_QUESTION=2
 export ATTEMPTS_PER_QUIZ=10
+export TZ="Factory"
 
 # running tests
 npm run migrate
-npx jest --testPathPattern=tests/integration --forceExit
-
+npx jest --testPathPattern=tests/integration --forceExit --coverage
 
 # after tests are finished clean up docker
 docker container stop $dbContainerName

@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import {validateBody} from "../validators/entity.validator";
-import {GenerateQuizSession, NewQuiz, SaveQuizQuestion, StartQuizSession, SubmitQuiz} from "../types/quiz";
+import {GenerateQuizSession, NewQuiz, QuizData, SaveQuizQuestion, StartQuizSession, SubmitQuiz} from "../types/quiz";
 import errorService from "../services/error.service";
 import * as quizDB from "../db/quiz";
 import {getQuizSession, getQuizTypeList, saveAndCountQuizResult, updateUserQuizTableResults} from "../db/quiz";
@@ -89,7 +89,7 @@ export async function nextQuizQuestion(req: Request, res: Response) {
     if (!question) return errorService.conflict(res, [`No unanswered questions left in the quiz. Please submit.`])
 
     const quizSession = await getQuizSession(quizSessionRequestData.quizSessionId, user.uuid);
-    const data = {
+    const data: QuizData = {
       question,
       questionsAmount: quizSession.question_sequence.length,
       currentQuestionCount: quizSession.question_sequence.findIndex(it => it === question.questionId) + 1,

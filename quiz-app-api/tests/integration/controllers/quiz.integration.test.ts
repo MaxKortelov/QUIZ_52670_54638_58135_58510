@@ -1,23 +1,18 @@
 import request from "supertest";
 import app from "../../../app";
 import db from "../../../db";
-import {
-  userMock,
-  userEmailVerify,
-  userPasswordUpdate,
-  user2Mock,
-  userQuizMock,
-  generateQuizSessionPayload
-} from "../../mocks/user.mock";
+import {userQuizMock,} from "../../mocks/user.mock";
 import {findUser} from "../../../db/auth";
-import {mapDbUserToUser} from "../../../types/user";
-import {getFullUserQuizTableResults, getQuizTypeList} from "../../../db/quiz";
-import {quizTest} from "../../mocks/quiz.mock";
+import {getQuizQuestions, getQuizTypeList} from "../../../db/quiz";
+import {generateQuizSessionPayload, quizSessionData, quizTest} from "../../mocks/quiz.mock";
+import {QuizData} from "../../../types/quiz";
 
 const rootPath = "/quiz";
 const authPath = "/auth";
 
 let generatedQuizSessionId: string;
+let quizTypeId: string;
+let currentQuestion: QuizData;
 
 describe("Test quiz routes",  () => {
   beforeAll(async () => {
@@ -68,9 +63,10 @@ describe("Test quiz routes",  () => {
       .send({...userQuizMock, token})
       .expect(200)
 
-    const quizSessions = await getQuizTypeList()
+    const quizzes = await getQuizTypeList()
 
-    generateQuizSessionPayload.quizTypeId = quizSessions[0].uuid;
+    generateQuizSessionPayload.quizTypeId = quizzes[0].uuid;
+    quizTypeId = quizzes[0].uuid
 
     return request(app)
       .post(rootPath + quizSessionGenerate)
@@ -78,6 +74,71 @@ describe("Test quiz routes",  () => {
       .expect(201)
       .then((response) => {
         generatedQuizSessionId = response.body.quizSession.quizSessionId;
+      });
+  });
+
+  test("It should pass quiz session", async () => {
+    const startQuizSession = "/start";
+    const nextQuizSessionQuestion = "/question/next";
+    quizSessionData.quizSessionId = generatedQuizSessionId;
+
+    const question = await request(app)
+      .post(rootPath + startQuizSession)
+      .send(quizSessionData)
+      .expect(200);
+
+    currentQuestion = question.body;
+
+    const questions = await getQuizQuestions(quizTypeId);
+
+    let counter = 1;
+
+    for await (let _ of questions) {
+      if(counter >= questions.length) break;
+      let newQuestion = await request(app)
+        .post(rootPath + nextQuizSessionQuestion)
+        .send({...quizSessionData, questionId: currentQuestion.question.questionId, answerId: currentQuestion.question.answers[0].id})
+        .expect(200)
+      currentQuestion = newQuestion.body;
+      counter ++;
+    }
+  });
+
+  test("It should save quiz question", async () => {
+    const saveQuizQuestion = "/question/save";
+
+    quizSessionData.quizSessionId = generatedQuizSessionId;
+
+    return request(app)
+      .post(rootPath + saveQuizQuestion)
+      .send({...quizSessionData, questionId: currentQuestion.question.questionId, answerId: currentQuestion.question.answers[0].id})
+      .expect(200);
+  });
+
+  test("It should return 409 error when trigger next on the last question", async () => {
+    const nextQuizSessionQuestion = "/question/next";
+
+    quizSessionData.quizSessionId = generatedQuizSessionId;
+
+    return request(app)
+      .post(rootPath + nextQuizSessionQuestion)
+      .send({...quizSessionData, questionId: currentQuestion.question.questionId, answerId: currentQuestion.question.answers[0].id})
+      .expect(409, {
+        errors: [ 'No unanswered questions left in the quiz. Please submit.' ]
+      })
+  });
+
+  test("It should return quiz result", async () => {
+    const submitQuiz = "/submit"
+
+    quizSessionData.quizSessionId = generatedQuizSessionId;
+
+    return request(app)
+      .post(rootPath + submitQuiz)
+      .send(quizSessionData)
+      .expect(200, {
+        quizSessionId: generatedQuizSessionId,
+        "result": "0%"
       });
   });
 });

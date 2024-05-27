@@ -32,7 +32,3 @@ export const userQuizMock: NewUser = {
   password: "test_#Jbvt*123"
 }
 
-export const generateQuizSessionPayload = {
-  email: userQuizMock.email,
-  quizTypeId: ""
-}
