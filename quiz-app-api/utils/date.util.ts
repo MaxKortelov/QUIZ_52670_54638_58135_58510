@@ -16,6 +16,6 @@ export function dateDifferenceFormatted(dateFrom: InputDateType, dateTo: InputDa
   const difInSeconds = dateDifferenceInSeconds(dateFrom, dateTo);
   const minutes = Math.floor((difInSeconds / 60));
   const seconds = difInSeconds % 60;
-  console.log(minutes, seconds);
+
   return `${minutes} min ${seconds} sec`;
 }
