@@ -7,6 +7,9 @@ describe("Test date utils", () => {
 
     expect(dateDifferenceInSeconds(date1, date2)).toEqual(40);
     expect(dateDifferenceInSeconds(date2, date1)).toEqual(40);
+    expect(dateDifferenceInSeconds(undefined, date1)).toEqual(0);
+    expect(dateDifferenceInSeconds(date2, undefined)).toEqual(0);
+    expect(dateDifferenceInSeconds(undefined, undefined)).toEqual(0);
   });
 
   test("It should return date difference formatted - dateDifferenceFormatted", () => {
