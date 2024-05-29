@@ -16,9 +16,7 @@ services:
     volumes:
       - quiz-test-volume:/data
     ports:
-      - "5432:5432"
-    expose:
-      - 5432
+      - "5432"
     networks:
       - database
     healthcheck:
@@ -32,8 +30,6 @@ services:
       dockerfile: Dockerfile.test
       context: ./../../
     container_name: backend-integration-tests
-#    ports:
-#      - "9998:3001"
     depends_on:
       db:
         condition: service_healthy

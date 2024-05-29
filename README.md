@@ -1,6 +1,13 @@
-# aeh-team-project
+# quiz-project
 
 Quiz application
+
+[Link to app](http://113.30.149.109:3000/)
+
+### Before starting application locally: 
+
+- make sure docker is installed on your machine
+- please check that ports 3000 and 5432 are not used
 
 ### To start application locally:
 
@@ -11,17 +18,6 @@ docker-compose up -d
 
 Then open browser on http://localhost:3000
 
-
-### Users to login:
-
-```
-email: moore_wall@bedder.abbott
-password: pass
-
-email: tamika_larsen@gorganic.kddi
-password: pass
-```
-
 ### To run backend application locally:
 
 #### NOTE: Database should be up and running!
@@ -29,7 +25,7 @@ password: pass
 From project root:
 ```
 cd ./quiz-app-api
-npm i
+npm ci
 npm run migrate
 npm run dev
 
@@ -38,3 +34,32 @@ npm run dev
 Then open browser on http://localhost:3001
 
 RESTFUL API documentation on http://localhost:3001/docs
+
+### To run integration tests:
+
+#### Locally (MacOS):
+
+From project root:
+```
+cd ./quiz-app-api/
+npm ci
+npm run test:integration
+```
+
+#### In Docker container:
+
+From project root:
+
+MacOS | Windows
+```
+cd ./quiz-app-api/tests/integration
+chmod u+x start_integration_tests_docker.sh
+./start_integration_tests_docker.sh
+```
+
+Linux
+```
+cd ./quiz-app-api/tests/integration
+chmod u+x start_integration_tests_docker.sh
+start_integration_tests_docker.sh
+```
