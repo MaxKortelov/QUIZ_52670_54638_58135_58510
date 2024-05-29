@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  db:
+    build:
+      dockerfile: Dockerfile
+      context: ../../../quiz-app-infra/db
+    container_name: db-integration-tests
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: quiz-test
+#      TZ: Factory
+#      PGTZ: Factory
+    volumes:
+      - quiz-test-volume:/data
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    networks:
+      - database
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U root -d quiz-test" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend-integration-tests:
+    build:
+      dockerfile: Dockerfile.test
+      context: ./../../
+    container_name: backend-integration-tests
+#    ports:
+#      - "9998:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - database
+    environment:
+      DB_USER: postgres
+      DB_HOST: db-integration-tests
+      DB_NAME: quiz-test
+      DB_PASSWORD: postgres
+      DB_PORT: 5432
+      TIME_PER_QUESTION: 2
+      ATTEMPTS_PER_QUIZ: 10
+      TZ: "Factory"
+
+networks:
+  database:
+volumes:
+  quiz-test-volume:
