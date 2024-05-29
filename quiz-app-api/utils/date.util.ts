@@ -1,7 +1,5 @@
-import {differenceInSeconds} from "date-fns"
-
-type InputDateType = Date | string | null | undefined;
-
+import {differenceInSeconds} from "date-fns";
+import {InputDateType} from "../types/utils/date";
 export function dateDifferenceInSeconds(dateFrom: InputDateType, dateTo: InputDateType): number {
   if(!dateFrom || !dateTo) {
     return 0;
@@ -16,7 +14,8 @@ export function dateDifferenceFormatted(dateFrom: InputDateType, dateTo: InputDa
   }
 
   const difInSeconds = dateDifferenceInSeconds(dateFrom, dateTo);
-  const minutes = Number((difInSeconds / 60).toFixed());
+  const minutes = Math.floor((difInSeconds / 60));
   const seconds = difInSeconds % 60;
+  console.log(minutes, seconds);
   return `${minutes} min ${seconds} sec`;
 }
