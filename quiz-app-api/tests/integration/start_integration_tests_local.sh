@@ -37,7 +37,7 @@ export TZ="Factory"
 
 # running tests
 npm run migrate
-npx jest --testPathPattern=tests/integration --forceExit --coverage
+npx jest --testPathPattern=tests/integration --forceExit --coverage --coveragePathIgnorePatterns='types|fs|tests|@shared|utils|validators|services|auth|db|quiz'
 
 # after tests are finished clean up docker
 docker container stop $dbContainerName
@@ -46,4 +46,4 @@ docker container rm $dbContainerName
 
 docker volume rm $dbVolumeName
 
-#docker image rm postgres:13
+docker image rm postgres:13

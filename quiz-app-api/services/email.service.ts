@@ -35,5 +35,4 @@ export async function sendEmail(emailOptions: EmailOptions): Promise<string> {
       return resolve("Message was successfully sent")
     });
   })
-
 }
