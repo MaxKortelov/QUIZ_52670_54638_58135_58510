@@ -84,6 +84,8 @@ export async function findEmptyQuizSession(quizTypeId: string, userId: string): 
 
 export async function startQuizSession(quizSessionId: string, userId: string): Promise<void> {
   const quizSession = await getQuizSession(quizSessionId, userId);
+  if(quizSession.attempts - quizSession.attempts_used <= 0) throw Error("All attempts are used");
+
   const duration = `${quizSession.duration} minutes`;
   await db.query('UPDATE quiz_session SET date_started = CURRENT_TIMESTAMP, date_ended = CURRENT_TIMESTAMP + $1::INTERVAL, attempts_used = attempts_used + 1, question_answer = $2 WHERE uuid = $3 AND user_id = $4;', [duration, {}, quizSessionId, userId]);
 
