@@ -4,7 +4,7 @@ import db from "../../../db";
 import {userQuizMock,} from "../../mocks/user.mock";
 import {findUser} from "../../../db/auth";
 import {getQuizQuestions, getQuizTypeList} from "../../../db/quiz";
-import {generateQuizSessionPayload, quizSessionData, quizTest} from "../../mocks/quiz.mock";
+import {generateQuizSessionPayload, quizSessionData, newQuizTest} from "../../mocks/quiz.mock";
 import {QuizData} from "../../../types/quiz";
 
 const rootPath = "/quiz";
@@ -33,7 +33,7 @@ describe("Test quiz routes",  () => {
 
     return request(app)
       .post(rootPath + addQuiz)
-      .send(quizTest)
+      .send(newQuizTest)
       .expect(201, {
         message: "Quiz was successfully added."
       });

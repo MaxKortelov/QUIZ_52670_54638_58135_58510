@@ -1,6 +1,19 @@
 import {userQuizMock} from "./user.mock";
+import {
+  Answer,
+  AnswerDB,
+  NewAnswer,
+  NewQuiz,
+  QuestionDB,
+  QuestionWithAnswersDB,
+  QuizQuestion,
+  QuizSessionDB, SaveQuizQuestion
+} from "../../types/quiz";
+import {uniqueId} from "../../utils/crypto.util";
+import {ArrayMinSize, IsArray, IsEmail, IsString, MinLength, ValidateNested} from "class-validator";
+import {IsValidArrayOfObjects} from "../../utils/decorators.util";
 
-export const quizTest = {
+export const newQuizTest: NewQuiz = {
   "quizType": "Company Policy Test",
   "questions": [
   {
@@ -86,4 +99,84 @@ export const generateQuizSessionPayload = {
 export const quizSessionData = {
   email: userQuizMock.email,
   quizSessionId: ""
+}
+
+export const quizQuestion = (answersAmount = 1): QuizQuestion => ({
+  questionId: "1",
+  question: "Test question",
+  answers: Array(answersAmount).map(newAnswer),
+  quizType: "Test type"
+});
+
+export const newAnswer = (): NewAnswer => ({
+  id: uniqueId(),
+  text: "Test answer"
+});
+
+export const answer = (): Answer => ({
+  uuid: uniqueId(),
+  answer_text: "Test answer",
+  question_id: `${uniqueId()}`
+});
+
+export const mockQuizSessionDB: QuizSessionDB = {
+  uuid: uniqueId(),
+  question_sequence: ["testquestionId", "testquestionId1"],
+  question_answer: {"testquestionId": "testAnswerId"},
+  question_type_id: uniqueId(),
+  user_id: uniqueId(),
+  duration: 20,
+  date_created: new Date().toString(),
+  date_started: new Date().toString(),
+  date_ended: new Date().toString(),
+  attempts: 10,
+  attempts_used: 0,
+  result: null
+}
+
+export const mockEmptyQuizSessionDB: QuizSessionDB = {
+  uuid: uniqueId(),
+  question_sequence: [],
+  question_answer: {},
+  question_type_id: uniqueId(),
+  user_id: uniqueId(),
+  duration: 20,
+  date_created: new Date().toString(),
+  date_started: new Date().toString(),
+  date_ended: new Date().toString(),
+  attempts: 10,
+  attempts_used: 0,
+  result: null
+}
+
+export const mockQuestionDB: QuestionDB =  {
+  uuid: uniqueId(),
+  question_text: "test question",
+  correct_answers: [],
+  question_type_id: "test type id"
+}
+
+export const mockQuizQuestion = (answersAmount = 1): QuizQuestion => ({
+  questionId: uniqueId(),
+  question: "Test question",
+  answers: Array(answersAmount).map(newAnswer),
+  quizType: "testQuizType"
+})
+
+export const mockAnswerDB: AnswerDB = {
+  uuid: uniqueId(),
+  answer_text: "answer text",
+  question_id: uniqueId()
+}
+
+export const questionWithAnswerDB: QuestionWithAnswersDB = {
+  ...mockQuestionDB,
+  answers: [mockAnswerDB]
+}
+
+export const mockSaveQuizQuestion: SaveQuizQuestion = {
+  email: "test@test.com",
+  quizSessionId: uniqueId(),
+  questionId: uniqueId(),
+  answerId: uniqueId()
 }

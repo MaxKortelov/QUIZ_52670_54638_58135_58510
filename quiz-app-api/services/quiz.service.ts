@@ -3,21 +3,27 @@ import {
   mapQuizSessionDBToQuizSessionInfo,
   NewAnswer,
   NewQuestion,
-  NewQuiz, questionWithAnswersDBToQuizQuestion,
-  QuizData, QuizQuestion, QuizSessionDB,
-  QuizSessionInfo, SaveQuizQuestion
+  NewQuiz,
+  questionWithAnswersDBToQuizQuestion,
+  QuizData,
+  QuizQuestion,
+  QuizSessionDB,
+  QuizSessionInfo,
+  SaveQuizQuestion
 } from "../types/quiz";
-import * as quizDB from "../db/quiz"
 import {
   addAnswer,
   addCorrectAnswersToQuestion,
-  addQuestion, addQuestionAnswer,
+  addQuestion,
+  addQuestionAnswer, addQuestionType,
   addQuizSession,
   findEmptyQuizSession,
   getQuizQuestion,
   getQuizQuestions,
   getQuizSession,
-  getQuizType, getQuizTypeById, startQuizSession
+  getQuizType,
+  getQuizTypeById,
+  startQuizSession
 } from "../db/quiz"
 import {bufferToJson, listFilesSync, readFileSync} from "../utils/fs.util";
 import {SessionOptions} from "../types/services/quiz.service";
@@ -49,7 +55,7 @@ export async function loadInitialQuizzes() {
     const quiz = bufferToJson(readFileSync("assets/quiz/" + quizFile)) as unknown as NewQuiz;
     const quizExists = await checkQuiz(quiz.quizType);
     if(quizExists) continue;
-    const quizTypeId = await quizDB.addQuestionType(quiz.quizType);
+    const quizTypeId = await addQuestionType(quiz.quizType);
     await addQuestions(quizTypeId, quiz.questions);
     console.log(`Quiz ${quiz.quizType} added to database`);
   }
@@ -78,6 +84,7 @@ export async function createQuizSession(quizTypeId: string, userId: string): Pro
 
 export async function findNextQuizQuestion(quizSessionId: string, userId: string): Promise<QuizQuestion | undefined> {
   const quizSession = await getQuizSession(quizSessionId, userId);
+  console.log("quizSession", quizSession)
   const answeredQuestions = Object.keys(quizSession.question_answer);
   const currentQuestionId = quizSession.question_sequence.find(q => !answeredQuestions.includes(q)); // Find first question that is not answered
   const { description: quizType} = await getQuizTypeById(quizSession.question_type_id);
@@ -89,7 +96,6 @@ export async function initiateQuizSession(quizSessionId: string, userId: string)
   await startQuizSession(quizSessionId, userId).catch(() => {throw new Error("Quiz was not started")});
 
   const question = await findNextQuizQuestion(quizSessionId, userId);
-
   if (!question) throw new Error("Quiz is not valid");
   const quizSession = await getQuizSession(quizSessionId, userId);
   return {
