@@ -18,6 +18,8 @@ docker-compose up -d
 
 Then open browser on http://localhost:3000
 
+## BACKEND
+
 ### To run backend application locally:
 
 #### NOTE: Database should be up and running!
@@ -35,7 +37,7 @@ Then open browser on http://localhost:3001
 
 RESTFUL API documentation on http://localhost:3001/docs
 
-### To run integration tests:
+### To run backend integration tests:
 
 #### Locally (MacOS):
 
@@ -63,3 +65,18 @@ cd ./quiz-app-api/tests/integration
 chmod u+x start_integration_tests_docker.sh
 start_integration_tests_docker.sh
 ```
+
+### To run backend unit tests:
+
+#### Locally (MacOS/Windows/Linux):
+
+##### NOTE - You need Node.js (v18.13.0) and npm (8.19.3) installed on your machine
+
+From project root:
+```
+cd ./quiz-app-api/
+npm ci
+npm run test:unit
+```
+
+_____
