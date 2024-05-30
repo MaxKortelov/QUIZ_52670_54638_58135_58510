@@ -84,7 +84,6 @@ export async function createQuizSession(quizTypeId: string, userId: string): Pro
 
 export async function findNextQuizQuestion(quizSessionId: string, userId: string): Promise<QuizQuestion | undefined> {
   const quizSession = await getQuizSession(quizSessionId, userId);
-  console.log("quizSession", quizSession)
   const answeredQuestions = Object.keys(quizSession.question_answer);
   const currentQuestionId = quizSession.question_sequence.find(q => !answeredQuestions.includes(q)); // Find first question that is not answered
   const { description: quizType} = await getQuizTypeById(quizSession.question_type_id);
@@ -98,6 +97,7 @@ export async function initiateQuizSession(quizSessionId: string, userId: string)
   const question = await findNextQuizQuestion(quizSessionId, userId);
   if (!question) throw new Error("Quiz is not valid");
   const quizSession = await getQuizSession(quizSessionId, userId);
+
   return {
     question,
     questionsAmount: quizSession.question_sequence.length,

@@ -42,7 +42,7 @@ jest.mock('../../../db/quiz', () => ({
   findEmptyQuizSession: jest.fn().mockReturnValueOnce(mockQuizSessionDB).mockReturnValue(undefined),
   addQuizSession: jest.fn().mockReturnValue(mockQuizSessionDB),
   getQuizTypeById: jest.fn().mockReturnValue({description: "test description"}),
-  getQuizSession: jest.fn().mockReturnValueOnce(mockQuizSessionDB).mockReturnValueOnce(mockQuizSessionDB).mockReturnValue(mockEmptyQuizSessionDB),
+  getQuizSession: jest.fn().mockReturnValueOnce(mockQuizSessionDB).mockReturnValueOnce(mockQuizSessionDB).mockReturnValueOnce(mockQuizSessionDB).mockReturnValue(mockEmptyQuizSessionDB),
   startQuizSession: jest.fn().mockReturnValue(Promise.resolve()),
   getQuizQuestion: jest.fn().mockReturnValue(questionWithAnswerDB),
   addQuestionAnswer: jest.fn()
@@ -111,8 +111,9 @@ describe("Test quiz service", () => {
   });
 
   test("It should execute initiateQuizSession correctly", async () => {
-    await initiateQuizSession("testQuizSessionId", "testUserId");
+    const result = await initiateQuizSession("testQuizSessionId", "testUserId");
 
+    expect(result.currentQuestionCount).toBe(0);
     expect(startQuizSession).toHaveBeenCalled();
     expect(startQuizSession).toHaveBeenCalledWith("testQuizSessionId", "testUserId");
     expect(getQuizSession).toHaveBeenCalled();
