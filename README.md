@@ -72,6 +72,8 @@ start_integration_tests_docker.sh
 
 ##### NOTE - You need Node.js (v18.13.0) and npm (8.19.3) installed on your machine
 
+##### !!!!! Before running unit tests you need to remove folder quiz-app-api/dist
+
 From project root:
 ```
 cd ./quiz-app-api/
