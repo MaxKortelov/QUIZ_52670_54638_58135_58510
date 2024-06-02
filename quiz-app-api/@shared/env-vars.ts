@@ -13,7 +13,7 @@ export const databaseOptions: ClientConfig = {
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: Number(process.env.DB_PORT),
-  ssl: true
+  // ssl: true
 };
 
 export const nodeMailerOptions = {
