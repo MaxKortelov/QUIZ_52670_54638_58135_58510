@@ -4,14 +4,13 @@ quiz-app-webapp/build/
 quiz-app-webapp/node_modules/
 quiz-app-webapp/.env.development
 quiz-app-webapp/.env.production
-quiz-app-webapp/.env
 quiz-app-webapp/.env.*
 
 #quiz-app-api/public/
 quiz-app-api/dist/
 quiz-app-api/node_modules/
+quiz-app-api/coverage/
 
-.env
 **/.env.*
 
 Makefile
