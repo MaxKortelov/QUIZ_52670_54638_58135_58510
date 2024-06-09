@@ -1,0 +1,185 @@
+{
+  "quizType": "Workplace Safety Test",
+  "questions": [
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Ignore it, someone else will take care of it"
+        },
+        {
+          "id": "2",
+          "text": "Report it immediately to your supervisor"
+        },
+        {
+          "id": "3",
+          "text": "Try to fix it yourself"
+        }
+      ],
+      "answerId": "2",
+      "question": "What should you do if you notice a potential safety hazard in the workplace?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Grab your belongings"
+        },
+        {
+          "id": "2",
+          "text": "Calmly and quickly follow the designated evacuation route"
+        },
+        {
+          "id": "3",
+          "text": "Hide under your desk"
+        }
+      ],
+      "answerId": "2",
+      "question": "What is the most important thing during an emergency evacuation?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Minimum Standard Safety Distance"
+        },
+        {
+          "id": "2",
+          "text": "Material Safety Data Sheet"
+        },
+        {
+          "id": "3",
+          "text": "Mandatory Safety Drill Schedule"
+        }
+      ],
+      "answerId": "2",
+      "question": "What does MSDS stand for?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Repetitive strain injuries"
+        },
+        {
+          "id": "2",
+          "text": "Slips, trips, and falls"
+        },
+        {
+          "id": "3",
+          "text": "Electrical hazards"
+        }
+      ],
+      "answerId": "2",
+      "question": "Keeping walkways clear is important to prevent:"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Use them when frayed or damaged"
+        },
+        {
+          "id": "2",
+          "text": "Never"
+        },
+        {
+          "id": "3",
+          "text": "Overload electrical outlets with multiple devices"
+        }
+      ],
+      "answerId": "2",
+      "question": "CWhat should you never do with electrical cords?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "False"
+        },
+        {
+          "id": "2",
+          "text": "True "
+        },
+        {
+          "id": "3",
+          "text": "I don't know"
+        }
+      ],
+      "answerId": "2",
+      "question": "Fire extinguishers are labeled for different types of fires. It's important to use the one appropriate for the type of fire you're facing. (True/False)"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Increased productivity"
+        },
+        {
+          "id": "2",
+          "text": "Serious injuries"
+        },
+        {
+          "id": "3",
+          "text": "A more relaxed atmosphere"
+        }
+      ],
+      "answerId": "2",
+      "question": "Horseplay and joking around in the workplace can lead to:"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Gossip with colleagues"
+        },
+        {
+          "id": "2",
+          "text": "Report hazards and concerns"
+        },
+        {
+          "id": "3",
+          "text": "Ignore instructions"
+        }
+      ],
+      "answerId": "2",
+      "question": "Good communication in the workplace is important for safety because it allows you to:"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "Lift with your back"
+        },
+        {
+          "id": "2",
+          "text": "Bend your knees and lift with your legs"
+        },
+        {
+          "id": "3",
+          "text": "Ask a coworker to lift it without proper training"
+        }
+      ],
+      "answerId": "2",
+      "question": "What's the best way to lift a heavy object?"
+    },
+    {
+      "answers": [
+        {
+          "id": "1",
+          "text": "True"
+        },
+        {
+          "id": "2",
+          "text": "False (Food and drinks can create a slip hazard or conduct electricity.)"
+        },
+        {
+          "id": "3",
+          "text": "I don't know"
+        }
+      ],
+      "answerId": "2",
+      "question": "Eating and drinking near electrical equipment is okay. (True/False)"
+    }
+  ]
+}
