@@ -44,7 +44,7 @@ export const sideMenuItems = () => {
         disabled: true,
     };
     const createQuiz = {
-        label: 'Create quiz',
+        label: 'Add new test',
         value: SideMenuItemsEnum.CREATE_QUIZ,
         onClick: () => {
             navigate(URL_CREATE_QUIZ.path());
