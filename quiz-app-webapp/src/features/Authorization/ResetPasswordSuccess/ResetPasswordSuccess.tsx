@@ -11,7 +11,7 @@ export const ResetPasswordSuccess = () => {
     const goLogin = () => navigate(URL_LOGIN.path())
 
     return (
-        <div className="authPage">
+        <div className="authPage" data-testid="ResetPasswordSuccessPage">
             <h2 className="authLabel">Password Changed</h2>
             <div className="authPageInfoText">
                 <p>

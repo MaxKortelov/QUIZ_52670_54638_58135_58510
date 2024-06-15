@@ -20,7 +20,7 @@ export const Home = () => {
     return isLoading ? (
         <Spin />
     ) : (
-        <div className="homePage">
+        <div className="homePage" data-testid="HomePage">
             <ProfileInfo />
             <QuizList />
         </div>

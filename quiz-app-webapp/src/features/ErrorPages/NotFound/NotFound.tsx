@@ -9,7 +9,7 @@ export const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="errorPage">
+    <div className="errorPage" data-testid="NotFoundPage">
       <h1 className="errorPageLabel">404</h1>
       <p className="errorPageDescription">Page not found</p>
       <Button

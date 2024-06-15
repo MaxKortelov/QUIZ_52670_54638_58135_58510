@@ -28,7 +28,7 @@ export const SignUpForm = () => {
     };
 
     return (
-        <div className="authPage">
+        <div className="authPage" data-testid="SingUpPage">
             <h2 className="authLabel">Register New Account</h2>
             <Form<LoginModel>
                 form={form}

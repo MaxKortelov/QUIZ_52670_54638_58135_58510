@@ -4,7 +4,7 @@ import './Support.scss';
 
 export const Support = () => {
     return (
-        <div className="">
+        <div className="supportPage" data-testid="SupportPage">
 
         </div>
     );

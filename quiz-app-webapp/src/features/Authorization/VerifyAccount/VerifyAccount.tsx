@@ -34,7 +34,7 @@ export const VerifyAccount = () => {
     const goLogin = () => navigate(URL_LOGIN.path());
 
     return isVerified === null ? <Spin /> : (
-        <div className="authPage">
+        <div className="authPage" data-testid="VerifyAccountPage">
             {isVerified ?
                 <>
                     <h2 className="authLabel">Congratulations!</h2>

@@ -39,7 +39,7 @@ export const QuizIntro = () => {
     return isLoading ? (
         <Spin />
     ) : (
-        <div className="quizIntroPage">
+        <div className="quizIntroPage" data-testid="QuizInfoPage">
             <div className="quizIntroPageTitle">Workplace safety</div>
             <div className="quizIntroPageDescription">Read the following instructions</div>
             <div className="quizIntroPageContent">
@@ -78,7 +78,7 @@ export const QuizIntro = () => {
                     To start, click the "Start" button. When finished, click the "Submit " button.
                 </p>
             </div>
-            <SubmitButton disabled={allAttemptsUsed} onClick={goQuiz} showSpinner spinnerTrigger={quizQuestionIsLoading}>
+            <SubmitButton id="startQuiz" onClick={goQuiz} showSpinner spinnerTrigger={quizQuestionIsLoading}>
                 Start
             </SubmitButton>
         </div>

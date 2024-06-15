@@ -9,7 +9,7 @@ export const Forbidden = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="errorPage">
+    <div className="errorPage" data-testid="ForbiddenPage">
       <h1 className="errorPageLabel">403</h1>
       <p className="errorPageDescription">
         The page you were trying to visit <br />

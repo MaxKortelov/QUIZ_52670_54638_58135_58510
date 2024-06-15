@@ -27,7 +27,7 @@ export const ChangePassword = () => {
     };
 
     return (
-        <div className="authPage">
+        <div className="authPage" data-testid="ChangePasswordPage">
             <h2 className="authLabel">Reset Your Password</h2>
 
             <Button type="primary" className="authButton" onClick={sendRequestToChangePassword}>

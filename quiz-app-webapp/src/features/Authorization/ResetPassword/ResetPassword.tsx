@@ -36,7 +36,7 @@ export const ResetPassword = () => {
     }
 
     return (
-        <div className="authPage">
+        <div className="authPage" data-testid="ResetPasswordPage">
             <h2 className="authLabel">Reset Your Password</h2>
             <Form<ResetPasswordRequest>
                 form={form}

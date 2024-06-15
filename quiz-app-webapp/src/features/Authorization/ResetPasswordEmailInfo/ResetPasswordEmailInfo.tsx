@@ -11,7 +11,7 @@ export const ResetPasswordEmailInfo = () => {
     const goLogin = () => navigate(URL_LOGIN.path())
 
     return (
-        <div className="authPage">
+        <div className="authPage" data-testid="ResetPasswordEmailInfoPage">
             <h2 className="authLabel">Check Your Email Inbox</h2>
             <div className="authPageInfoText">
                 <p>

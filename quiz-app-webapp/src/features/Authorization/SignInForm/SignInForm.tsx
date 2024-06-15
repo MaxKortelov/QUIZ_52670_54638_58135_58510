@@ -24,14 +24,14 @@ export const SignInForm = () => {
         } catch (e: any) {
             notification.error({
                 message: 'Error',
-                description: e.response.data.errors[0],
+                description: e?.response?.data?.errors[0],
                 duration: 4,
             });
         }
     };
 
     return (
-        <div className="authPage">
+        <div className="authPage" data-testid="SingInPage">
             <h1 className="authWelcome">Hi, Welcome!</h1>
             <h2 className="authLabel">Login to Your Account</h2>
             <Form<LoginModel>

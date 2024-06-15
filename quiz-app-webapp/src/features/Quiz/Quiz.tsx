@@ -45,7 +45,7 @@ export const Quiz = () => {
     return quizIsLoading ? (
         <Spin />
     ) : (
-        <div className="quizPage">
+        <div className="quizPage" data-testid="QuizPage">
             <div className="quizPageHeader">
                 <div>
                     <div className="quizPageTitle">Workplace safety</div>

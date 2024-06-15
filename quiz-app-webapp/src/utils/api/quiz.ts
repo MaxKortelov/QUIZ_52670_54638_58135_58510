@@ -1,5 +1,5 @@
 import { axiosInstance } from './axiosInstance';
-import {QuizListResponse, QuizResponse, QuizQuestionResponse, QuizResultResponse} from '../dto/quiz';
+import {QuizListResponse, QuizResponse, QuizQuestionResponse, QuizResultResponse, CreateQuizRequest} from '../dto/quiz';
 
 export const getQuizList = () => {
   return axiosInstance.get<QuizListResponse>('/quiz/list').then((res) => res?.data);
@@ -44,5 +44,10 @@ export const getQuizQuestion = (values: QuizQuestionActionType) => {
 
 export const quizQuestionSave = (values: QuizQuestionActionType) => {
   return axiosInstance.post<QuizQuestionResponse>('/quiz/question/save', values)
+      .then((res) => res?.data);
+};
+
+export const createQuiz = (values: CreateQuizRequest) => {
+  return axiosInstance.post('/quiz/add', values)
       .then((res) => res?.data);
 };

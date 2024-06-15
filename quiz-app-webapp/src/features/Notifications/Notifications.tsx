@@ -4,7 +4,7 @@ import './Notifications.scss';
 
 export const Notifications = () => {
     return (
-        <div className="">
+        <div className="notificationsPage" data-testid="NotificationsPage">
 
         </div>
     );

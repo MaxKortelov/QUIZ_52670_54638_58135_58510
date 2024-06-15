@@ -11,7 +11,7 @@ export const VerifyAccountInfo = () => {
     const goLogin = () => navigate(URL_LOGIN.path());
 
     return (
-        <div className="authPage">
+        <div className="authPage" data-testid="VerifyAccountInfoPage">
             <h2 className="authLabel">Verify Your Account</h2>
 
             <div className="authPageInfoText">

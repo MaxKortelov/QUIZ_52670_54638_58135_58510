@@ -78,7 +78,10 @@ export const QuizQuestion = () => {
                         )}
                     </Radio.Group>
                 </Form.Item>
-                <SubmitButton htmlType="submit" className="quizQuestionButton">
+                <SubmitButton
+                    htmlType="submit"
+                    id={isLastQuestion ? 'submitQuizButton' : 'nextQuestionButton'}
+                    className="quizQuestionButton">
                     {isLastQuestion ? 'Submit' : 'Next'}
                 </SubmitButton>
             </Form>

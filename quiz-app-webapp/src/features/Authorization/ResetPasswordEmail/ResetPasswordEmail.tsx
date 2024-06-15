@@ -26,7 +26,7 @@ export const ResetPasswordEmail = () => {
     };
 
     return (
-        <div className="authPage">
+        <div className="authPage" data-testid="ResetPasswordEmailPage">
             <h2 className="authLabel">Reset Your Password</h2>
             <Form<LoginModel>
                 form={form}

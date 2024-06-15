@@ -82,3 +82,25 @@ npm run test:unit
 ```
 
 _____
+
+## FRONTEND
+### To run frontend unit tests:
+From project root:
+```
+cd ./quiz-app-webapp/
+npm ci
+npm run test:unit
+```
+
+### To run frontend e2e tests:
+From project root:
+```
+cd ./quiz-app-webapp/
+npm ci
+npm start or npm run start:dev
+npm run test:e2e
+```
+
+In opened window select `E2E Testing`, after `Choose a browser`.
+
+Select e2e-test from list you like to test.
