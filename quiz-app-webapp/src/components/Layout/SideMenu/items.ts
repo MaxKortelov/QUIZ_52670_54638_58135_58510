@@ -1,10 +1,11 @@
 import {useNavigate} from "react-router-dom";
-import {URL_HOME, URL_NOTIFICATIONS, URL_SUPPORT} from "utils/constants/clientUrl";
+import {URL_CREATE_QUIZ, URL_HOME, URL_NOTIFICATIONS, URL_SUPPORT} from "utils/constants/clientUrl";
 
 export enum SideMenuItemsEnum {
     DASHBOARD = 'DASHBOARD',
     SUPPORT = 'SUPPORT',
     NOTIFICATION = 'NOTIFICATION',
+    CREATE_QUIZ = 'CREATE_QUIZ',
 }
 
 export type SideMenuItemType = {
@@ -26,7 +27,7 @@ export const sideMenuItems = () => {
             navigate(URL_HOME.path());
         },
     } as SideMenuItemType;
-    const changePassword = {
+    const support = {
         label: 'Support',
         value: SideMenuItemsEnum.SUPPORT,
         onClick: () => {
@@ -34,7 +35,7 @@ export const sideMenuItems = () => {
         },
         disabled: true,
     };
-    const logOutItem = {
+    const notification = {
         label: 'Notification',
         value: SideMenuItemsEnum.NOTIFICATION,
         onClick: () => {
@@ -42,6 +43,14 @@ export const sideMenuItems = () => {
         },
         disabled: true,
     };
+    const createQuiz = {
+        label: 'Create quiz',
+        value: SideMenuItemsEnum.CREATE_QUIZ,
+        onClick: () => {
+            navigate(URL_CREATE_QUIZ.path());
+        },
+    };
 
-    return [profile, changePassword, logOutItem] as SideMenuItemType[];
+
+    return [profile, support, notification, createQuiz] as SideMenuItemType[];
 };

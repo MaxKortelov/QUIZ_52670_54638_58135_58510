@@ -1,0 +1,31 @@
+@import "styles/colors";
+@import "styles/labels";
+@import "styles/input";
+
+.createQuizQuestionSection {
+  padding: 32px;
+
+  background: #fefefe;
+  border: 1px solid #f5f6fb;
+  border-radius: 10px;
+  box-shadow: 0 -5px 30px 0 hsla(0, 0%, 77%, .05), -5px 0 30px 0 hsla(0, 0%, 77%, .05), 5px 0 30px 0 hsla(0, 0%, 77%, .05), 0 5px 30px 0 hsla(0, 0%, 77%, .05);
+  cursor: auto;
+}
+
+.createQuizQuestionField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.answerSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  width: 100%;
+}
+
+.createQuizQuestionItem {
+  width: 100%;
+}

@@ -114,3 +114,47 @@ export const quizQuestionResponseToModel = (data: QuizQuestionResponse): QuizQue
     dateStarted: new Date(data?.dateStarted),
     dateEnded: new Date(data?.dateEnded),
 });
+
+export type CreateQuizQuestionAnswer = {
+    id: string,
+    text: string,
+}
+
+export type CreateQuizQuestion = {
+    answers: CreateQuizQuestionAnswer[],
+    answerId?: string,
+    question: string,
+}
+
+export type CreateQuizRequest = {
+    quizType: string,
+    questions: CreateQuizQuestion[]
+}
+
+
+export type CreateQuizQuestionAnswerModel = {
+    id: number,
+    answer: string,
+    correctAnswer: number,
+}
+
+export type CreateQuizQuestionModel = {
+    answers: CreateQuizQuestionAnswerModel[],
+    question: string,
+}
+
+export type CreateQuizModel = {
+    quizName: string,
+    questions: CreateQuizQuestionModel[]
+}
+
+const createQuizQuestionModelToRequest = (data: CreateQuizQuestionModel): CreateQuizQuestion  => ({
+    question: data.question,
+    answerId: String((data.answers.find(({ correctAnswer }) => correctAnswer)?.correctAnswer || 0) + 1),
+    answers: data.answers.map(({ answer}, index) =>  ({ id: String(index+1), text: answer }))
+})
+
+export const createQuizModelToRequest = (data: CreateQuizModel): CreateQuizRequest => ({
+    quizType: data?.quizName,
+    questions: data.questions.map((i) => createQuizQuestionModelToRequest(i))
+});

@@ -1,5 +1,7 @@
 import { api } from 'utils/api';
 import {
+  CreateQuizModel,
+  createQuizModelToRequest,
   quizListResponseToModel,
   quizQuestionResponseToModel,
   quizResponseToModel,
@@ -37,6 +39,11 @@ export const quizQuestionSave = async (values: QuizQuestionActionType) => {
   return quizQuestionResponseToModel(quizQuestion);
 };
 
+export const createQuiz = async (values: CreateQuizModel) => {
+  const data = createQuizModelToRequest(values)
+  return api.quiz.createQuiz(data);
+};
+
 export const quizService = {
   getQuizList,
   quizGenerate,
@@ -44,4 +51,5 @@ export const quizService = {
   quizSubmit,
   getQuizQuestion,
   quizQuestionSave,
+  createQuiz,
 };

@@ -1,0 +1,67 @@
+@import "styles/colors";
+@import "styles/labels";
+@import "styles/input";
+
+.createQuizForm, .createQuizPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.createQuizPage {
+  gap: 32px;
+  width: 100%;
+}
+
+.createQuizForm {
+  width: 100%;
+
+  .ant-form-item .ant-form-item-label >label {
+    color: $primary;
+  }
+}
+
+.createQuizInput {
+  width: $inputWidth;
+}
+
+.createQuizButton {
+  width: $inputWidth;
+  margin-top: 6px;
+}
+
+.createQuizLabel {
+  font-family: $montserratBold;
+  margin-bottom: 22px;
+  font-size: 36px;
+  color: $primary;
+}
+
+.authFormAgree {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.createQuizItemCheckbox {
+  width: 100%;
+  margin-right: auto;
+}
+
+.editCVSectionAction {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+
+  &.delete {
+    margin-left: auto;
+  }
+}
+
+@media (width < 920px) {
+  .createQuizInput, .createQuizButton {
+    width: $inputWidthMobile;
+  }
+}
