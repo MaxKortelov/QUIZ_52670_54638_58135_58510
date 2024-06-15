@@ -27,7 +27,7 @@ export class NewAnswer {
 
 export class NewQuestion {
   @IsString()
-  @MinLength(8)
+  @MinLength(2)
   question: string;
 
   @IsArray()
