@@ -35,6 +35,7 @@ export const QuizIntro = () => {
     const monthFormatted = month < 10 ? `0${month}` : month;
     const year = quiz?.quizSession.dateCreated.getFullYear();
     const quizDateCreated = `${day}.${monthFormatted}.${year}`
+    const attempts = quiz?.quizSession.quizAttempts - quiz?.quizSession.quizAttemptsUsed
 
     return isLoading ? (
         <Spin />
@@ -55,7 +56,7 @@ export const QuizIntro = () => {
                     </div>
                     <div className="quizIntroPageOptionsItem">
                         <div className="quizIntroPageOptionsItemContent bold">Attempts:</div>
-                        <div className="quizIntroPageOptionsItemContent">{quiz?.quizSession.quizAttempts - quiz?.quizSession.quizAttemptsUsed}</div>
+                        <div className="quizIntroPageOptionsItemContent">{attempts > 0 ? attempts : 0}</div>
                     </div>
                     <div className="quizIntroPageOptionsItem">
                         <div className="quizIntroPageOptionsItemContent bold">Points:</div>

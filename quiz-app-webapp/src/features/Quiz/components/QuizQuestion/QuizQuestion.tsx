@@ -10,6 +10,8 @@ import { getCurrentUser } from "store/user/selectors";
 import { getQuiz, getQuizQuestion, getQuizResult } from "store/quiz/selectors";
 
 import './QuizQuestion.scss';
+import {getCurrentUserAction} from "store/user/actions";
+import {QUIZ_EMAIL} from "utils/constants";
 
 export const QuizQuestion = () => {
     const [form] = Form.useForm();
@@ -52,7 +54,13 @@ export const QuizQuestion = () => {
         }
     };
 
-    const goDashboard = () => navigate(URL_HOME.path())
+    const goDashboard = () => {
+        const emailJson = localStorage.getItem(QUIZ_EMAIL);
+        const email = emailJson ? JSON.parse(emailJson) : '';
+
+        dispatch(getCurrentUserAction(email))
+        navigate(URL_HOME.path())
+    }
 
     return (
         <div className="quizQuestion">
