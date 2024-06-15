@@ -29,6 +29,8 @@ export async function addQuizToDB(req: Request, res: Response) {
       } catch (_) {
         errorService.serverError(res, ["Something went wrong"])
       }
+    }).catch(e => {
+      errorService.validationError(res, e);
     })
 }
 
