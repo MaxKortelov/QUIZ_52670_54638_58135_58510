@@ -1,5 +1,5 @@
 import express, {Router} from "express";
-import {getQuestions} from "../handlers/chat";
+import {getAnswer, getQuestions} from "../handlers/chat";
 
 export const router: Router = express.Router();
 
@@ -31,3 +31,31 @@ export const router: Router = express.Router();
  *               $ref: '#/components/schemas/ResponseError'
  */
 router.get('/getQuestions', getQuestions);
+
+/**
+ * @swagger
+ * /chat/send:
+ *   post:
+ *     summary: Get answer for chat prompt
+ *     tags: [Chat]
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Prompt'
+ *     responses:
+ *       200:
+ *         description: answer
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Answer'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ResponseError'
+ */
+router.post('/send', getAnswer);

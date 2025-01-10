@@ -368,4 +368,20 @@
  *          $ref: '#/components/schemas/ChatQuestion'
  *      example:
  *        questions: [{id: "f317bdb3-6d9b-481d-a17e-0bd73970c021", question: "What is your name?"}, {id: "g317bdb3-6d9b-481d-a17e-0bd73970c022", question: "How old are you?"}]
+ *
+ *     Prompt:
+ *      type: object
+ *      properties:
+ *        prompt:
+ *          type: string
+ *      example:
+ *        { prompt: "What is your name" }
+ *
+ *     Answer:
+ *      type: object
+ *      properties:
+ *        answer:
+ *          type: string
+ *      example:
+ *        { answer: "My name is chat" }
  */
