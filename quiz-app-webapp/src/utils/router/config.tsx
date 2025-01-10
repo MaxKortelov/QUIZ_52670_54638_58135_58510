@@ -22,7 +22,7 @@ import {
   URL_RESET_PASSWORD_EMAIL_INFO,
   URL_RESET_PASSWORD,
   URL_RESET_PASSWORD_SUCCESS,
-  URL_CHANGE_PASSWORD, URL_CREATE_QUIZ
+  URL_CHANGE_PASSWORD, URL_CREATE_QUIZ, URL_CHAT
 } from '../constants/clientUrl';
 
 import {
@@ -46,6 +46,7 @@ const Home = lazy(() => import('features/Home'));
 const QuizIntro = lazy(() => import('features/QuizIntro'));
 const Quiz = lazy(() => import('features/Quiz'));
 const CreateQuiz = lazy(() => import('features/CreateQuiz'));
+const Chat = lazy(() => import('features/Chat'));
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,12 @@ export const router = createBrowserRouter([
             path: URL_NOT_FOUND.route,
             element: (
                 <NotFound />
+            ),
+          },
+          {
+            path: URL_CHAT.route,
+            element: (
+                <Chat />
             ),
           },
           {
