@@ -1,10 +1,9 @@
 import {port} from "./@shared/env-vars";
 import db from "./db";
 import {loadInitialQuizzes} from "./services/quiz.service";
-import {setControllers} from "./controllers";
 import swaggerDocs from "./utils/swagger.util";
 import app from "./app";
-import {Server} from "http";
+import {loadInitialChatQA} from "./services/chat.service";
 
 export async function startServer(): Promise<void> {
   app.listen(port, async function () {
@@ -18,6 +17,7 @@ export async function startServer(): Promise<void> {
       .catch(() => console.error("Failed to connect to quiz database"));
 
     await loadInitialQuizzes();
+    await loadInitialChatQA();
 
     swaggerDocs(app, port);
   });

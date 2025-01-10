@@ -347,4 +347,25 @@
  *           description: List of error messages
  *       example:
  *         errors: ["Error 1", "Error 2"]
+ *
+ *     ChatQuestion:
+ *      type: object
+ *      properties:
+ *        id:
+ *          type: string
+ *          description: id of the question
+ *        question:
+ *          type: string
+ *          description: Chat question
+ *      example:
+ *        {id: "f317bdb3-6d9b-481d-a17e-0bd73970c021", question: "What is your name?"}
+ *
+ *     ChatQuestions:
+ *      type: object
+ *      properties:
+ *        questions:
+ *          type: array
+ *          $ref: '#/components/schemas/ChatQuestion'
+ *      example:
+ *        questions: [{id: "f317bdb3-6d9b-481d-a17e-0bd73970c021", question: "What is your name?"}, {id: "g317bdb3-6d9b-481d-a17e-0bd73970c022", question: "How old are you?"}]
  */
