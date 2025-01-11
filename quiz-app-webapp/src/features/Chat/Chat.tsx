@@ -45,11 +45,9 @@ export const Chat = () => {
 
     const handleSearch = (value: string) => {
         setSearch(value);
-        setOptions((prev) =>
-            prev?.filter(({question}) =>
-                question.includes(value)
-            )
-        )
+        setOptions(defaultQuestions?.questions?.filter(({question}) =>
+            question.includes(value)
+        ))
     };
 
     const handleKeyDown = (event: any) => {
