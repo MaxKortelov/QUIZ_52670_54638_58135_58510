@@ -21,7 +21,7 @@ export function kmpSearch(pattern: string, text: string): number {
     if (text[i]  == pattern[j]) {
       j++; // Next char matched, increment position
       if (j == pattern.length) {
-        return i - (j - 1);
+        return j;
       }
     }
   }

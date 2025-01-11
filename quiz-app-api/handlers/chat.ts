@@ -33,11 +33,13 @@ export async function getAnswer(req: Request, res: Response) {
     }
 
     const answer = await findBestMatch(prompt);
+    console.log("answer", answer);
 
     if(!answer) {
       res.statusCode = 200;
       res.send({ answer: "Please try another question." });
       res.end();
+      return;
     }
 
     res.statusCode = 200;
