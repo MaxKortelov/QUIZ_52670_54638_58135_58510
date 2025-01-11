@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {AutoComplete, Empty, Input, InputRef, Spin} from "antd";
 import {Message} from "./Message";
 import {ReactComponent as Send} from "assets/img/svg/chat/send.svg";
@@ -9,6 +9,7 @@ import './Chat.scss';
 
 export const Chat = () => {
     const inputRef = useRef<InputRef | null>(null);
+    const [chatHeight, setChatHeight] = useState<number>(0);
 
     const [defaultQuestions, setDefaultQuestions] = useState<Questions>();
     const [defaultQuestionsIsLoading, setDefaultQuestionsIsLoading] = useState(false);
@@ -57,8 +58,13 @@ export const Chat = () => {
         }
     };
 
+    useLayoutEffect(() => {
+        const content = document.querySelector(".mainLayoutContent");
+        setChatHeight((content?.scrollHeight || 120) - 120);
+    }, []);
+
     return defaultQuestionsIsLoading ? (<Spin />) : (
-        <div className="chatPage">
+        <div className="chatPage" style={{ height: chatHeight, maxHeight: chatHeight }}>
             {chat?.length ? (
                 <div className="chatContent">
                     {chat.map(({text, isMy}, index) => (
