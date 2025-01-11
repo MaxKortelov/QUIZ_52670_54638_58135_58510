@@ -16,11 +16,6 @@ input:-webkit-autofill:focus {
   padding-bottom: 0;
   border: $borderGray;
   font-family: $montserratMedium;
-
-  &:not(.ant-input-affix-wrapper) {
-    background: $white !important;
-    background-color: $white !important;
-  }
 }
 
 .ant-input, .ant-input-password, .ant-input-number {

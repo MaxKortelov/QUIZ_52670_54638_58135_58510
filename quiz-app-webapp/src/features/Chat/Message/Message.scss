@@ -1,0 +1,31 @@
+.message {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  width: fit-content;
+  max-width: 500px;
+
+  &.my {
+    margin-left: auto;
+    justify-content: end;
+    margin-right: 10px;
+
+    .content {
+      color: #FFFFFF;
+      background: #4EA9E6;
+      border-radius: 25px 25px 0 25px;
+    }
+  }
+
+  .icon {
+    min-width: 45px;
+  }
+
+  .content {
+    padding: 16px 24px;
+    color: #505050;
+    background: #EEEEEE;
+    border-radius: 25px 25px 25px 0;
+    max-width: 70%;
+  }
+}

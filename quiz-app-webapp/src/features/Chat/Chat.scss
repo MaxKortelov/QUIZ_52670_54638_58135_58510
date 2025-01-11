@@ -1,0 +1,48 @@
+.chatPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.chatContent {
+  overflow-y: auto;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #bcbcbc;
+    border-radius: 10px;
+  }
+}
+
+.chatInputAutoComplete {
+  width: 100%;
+  margin-top: auto;
+
+  .ant-select-selector {
+    width: 100%;
+  }
+}
+
+.chatInput {
+  margin-top: auto;
+}
+
+.chatInputSend {
+  cursor: pointer;
+}

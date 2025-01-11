@@ -17,3 +17,4 @@ export const URL_NOTIFICATIONS = new makeUrl('/notifications');
 export const URL_QUIZ_INTRO = new makeUrl('/quiz/:id/intro');
 export const URL_QUIZ = new makeUrl('/quiz/:id');
 export const URL_CREATE_QUIZ = new makeUrl('/create-quiz');
+export const URL_CHAT = new makeUrl('/chat');

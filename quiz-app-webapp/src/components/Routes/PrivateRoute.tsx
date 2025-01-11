@@ -29,3 +29,4 @@ export const PrivateRoute = () => {
 
   return isLoading || !user ? <Spin /> : <Outlet />;
 };
+
