@@ -24,7 +24,7 @@ export async function getAnswer(req: Request, res: Response) {
   await validateBody(req, Prompt).then(async (it) => {
     const { prompt } = it as Prompt;
 
-    const isEnglish = languageDetect.detect(prompt, 10).filter(([lang, match]) => lang === 'english' && match > 0.09).length > 0;
+    const isEnglish = languageDetect.detect(prompt, 15).filter(([lang, match]) => lang === 'english' && match > 0.05).length > 0;
     if(!isEnglish) {
       res.statusCode = 200;
       res.send({ answer: "Please write your question in English." });
@@ -33,7 +33,6 @@ export async function getAnswer(req: Request, res: Response) {
     }
 
     const answer = await findBestMatch(prompt);
-    console.log("answer", answer);
 
     if(!answer) {
       res.statusCode = 200;

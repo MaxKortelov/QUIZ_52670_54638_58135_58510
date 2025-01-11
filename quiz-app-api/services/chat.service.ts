@@ -50,31 +50,23 @@ export async function findBestMatch(prompt: string): Promise<ChatQAPatterns | un
     const qa = await getAllChatQA();
     const patterns = qa.map(it => it.questionPattern);
 
-    const flexibleMatchResult = findBestFlexibleMatch(patterns, prompt);
-    const naturalMatchResult = findBestNaturalMatch(patterns, prompt);
+    const clearedFlexiblePrompt = toFlexiblePattern(prompt);
+    const clearedNaturalPrompt = toNaturalPattern(prompt);
+
+    const flexibleMatchResult = findBestTextMatch(patterns, clearedFlexiblePrompt);
+    const naturalMatchResult = findBestTextMatch(patterns, clearedNaturalPrompt);
 
     const bestResult = findHighestPercentage([flexibleMatchResult, naturalMatchResult]);
     return qa[bestResult.indexAnswer];
 }
 
-export function findBestFlexibleMatch(patterns: string[], prompt: string): MatchResult {
-    const clearedPrompt = toFlexiblePattern(prompt);
+export function findBestTextMatch(patterns: string[], prompt: string): MatchResult {
 
-    const results = patterns.map(pattern => getPercentage(kmpSearch(clearedPrompt, pattern), pattern.length));
-
-    const bestResults = findHighestNumberIndexes(results, 4).filter(it => results[it] > 0);
-
-    return {indexAnswer: bestResults[0] || -1, matchPercentage: results[bestResults[0] || -1]};
-}
-
-export function findBestNaturalMatch(patterns: string[], prompt: string): MatchResult {
-    const clearedPrompt = toNaturalPattern(prompt);
-
-    const results = patterns.map(pattern => getPercentage(kmpSearch(clearedPrompt, pattern), pattern.length));
+    const results = patterns.map(pattern => getPercentage(kmpSearch(prompt, pattern), pattern.length));
 
     const bestResults = findHighestNumberIndexes(results, 4).filter(it => results[it] > 0);
 
-    return {indexAnswer: bestResults[0], matchPercentage: results[bestResults[0]]};
+    return {indexAnswer: bestResults[0], matchPercentage: results[bestResults[0] || 0]};
 }
 
 function findHighestPercentage(results: MatchResult[]): MatchResult {
