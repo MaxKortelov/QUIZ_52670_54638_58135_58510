@@ -1,5 +1,5 @@
 import db from "./index";
-import {ChatQA, ChatQuestion} from "../types/chat";
+import {ChatQA, ChatQADB, ChatQAPatterns, ChatQuestion, mapChatQADBToChatQA} from "../types/chat";
 
 export async function addChatQuestions(questions: Array<string>): Promise<boolean> {
   try {
@@ -34,10 +34,10 @@ export async function saveQAPatternsToDB(qa: ChatQA[]): Promise<boolean> {
   return true
 }
 
-export async function getChatQA(): Promise<ChatQuestion[]> {
+export async function getAllChatQA(): Promise<ChatQAPatterns[]> {
   const questions = await db.query('SELECT * FROM chat_qa', []);
 
   if (questions.rows.length === 0) throw new Error("QAs not found. Please try again");
 
-  return questions.rows as ChatQuestion[];
+  return (questions.rows as ChatQADB[]).map(mapChatQADBToChatQA);
 }

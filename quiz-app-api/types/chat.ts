@@ -15,3 +15,23 @@ export class Prompt {
   @MinLength(3)
   prompt: string;
 }
+
+export interface ChatQAPatterns {
+  uuid: string;
+  questionPattern: string;
+  answer: string;
+}
+
+export interface ChatQADB {
+  uuid: string;
+  question_pattern: string;
+  answer: string;
+}
+
+export function mapChatQADBToChatQA(chatQADB: ChatQADB): ChatQAPatterns {
+  return {
+    uuid: chatQADB.uuid,
+    questionPattern: chatQADB.question_pattern,
+    answer: chatQADB.answer
+  }
+}

@@ -1,7 +1,10 @@
 import {bufferToJson, readFileSync} from "../utils/fs.util";
 import {ChatQA} from "../types/chat";
-import {addChatQuestions, getChatQA, getChatQuestions, saveQAPatternsToDB} from "../db/chat";
-import {toFlexiblePattern, toNaturalPattern} from "../utils/text.util";
+import {addChatQuestions, getAllChatQA, getChatQuestions, saveQAPatternsToDB} from "../db/chat";
+import {clearText, toFlexiblePattern, toNaturalPattern} from "../utils/text.util";
+import {getPercentage} from "../utils/math.util";
+import {kmpSearch} from "../utils/algorithms.util";
+import {findHighestNumberIndexes} from "../utils/search.util";
 
 export async function loadInitialChatQA() {
     const { QA } = bufferToJson(readFileSync("assets/chatQA.json")) as unknown as { QA: ChatQA[] };
@@ -21,7 +24,7 @@ async function saveQuestionsToDB(questions: ChatQA[]) {
 
 async function saveQAPatterns(questions: ChatQA[]) {
     try {
-        await getChatQA();
+        await getAllChatQA();
     } catch (_) {
         const qa = await generateQAPatterns(questions);
 
@@ -40,4 +43,20 @@ async function generateQAPatterns(questions: ChatQA[]): Promise<ChatQA[]> {
     console.log("Natural patterns created");
 
     return [...flexiblePatternQA, ...naturalPatternQA];
+}
+
+export async function findBestMatch(prompt: string) {
+    const clearedPrompt = clearText(prompt);
+    const qa = await getAllChatQA();
+
+    const patterns = qa.map(it => it.questionPattern);
+
+    const results = patterns.map(pattern => getPercentage(kmpSearch(clearedPrompt, pattern), pattern.length));
+
+    // const patternResult = patterns.map((pattern, i) => [pattern, results[i]])
+    const bestResults = findHighestNumberIndexes(results, 4).filter(it => results[it] > 0);
+
+    const answers = bestResults.map(index => qa[index]);
+
+    return answers[0];
 }
