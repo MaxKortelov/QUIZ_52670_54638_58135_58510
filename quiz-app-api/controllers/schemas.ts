@@ -414,7 +414,7 @@
  *          type: array
  *          $ref: '#/components/schemas/Feedback'
  *      example:
- *        questions: [{id: "f317bdb3-6d9b-481d-a17e-0bd73970c021", name: "name", surname: "surname", email: "test@test.com", phoneNumber: 123123, rate: 5, headline: "test headline", text: "text text text"}]
+ *        feedbacks: [{id: "f317bdb3-6d9b-481d-a17e-0bd73970c021", name: "name", surname: "surname", email: "test@test.com", phoneNumber: 123123, rate: 5, headline: "test headline", text: "text text text"}]
  *
  *     NewFeedback:
  *      type: object
