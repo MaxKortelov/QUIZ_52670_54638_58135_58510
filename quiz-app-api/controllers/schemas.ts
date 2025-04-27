@@ -384,4 +384,55 @@
  *          type: string
  *      example:
  *        { answer: "My name is chat" }
+ *
+ *     Feedback:
+ *      type: object
+ *      properties:
+ *        uuid:
+ *          type: string
+ *        name:
+ *          type: string
+ *        surname:
+ *          type: string
+ *        email:
+ *          type: string
+ *        phone_number:
+ *          type: number
+ *        rate:
+ *          type: number
+ *        headline:
+ *          type: string
+ *        text:
+ *          type: string
+ *      example:
+ *        {id: "f317bdb3-6d9b-481d-a17e-0bd73970c021", name: "name", surname: "surname", email: "test@test.com", phoneNumber: 123123, rate: 5, headline: "test headline", text: "text text text"}
+ *
+ *     Feedbacks:
+ *      type: object
+ *      properties:
+ *        feedbacks:
+ *          type: array
+ *          $ref: '#/components/schemas/Feedback'
+ *      example:
+ *        questions: [{id: "f317bdb3-6d9b-481d-a17e-0bd73970c021", name: "name", surname: "surname", email: "test@test.com", phoneNumber: 123123, rate: 5, headline: "test headline", text: "text text text"}]
+ *
+ *     NewFeedback:
+ *      type: object
+ *      properties:
+ *        name:
+ *          type: string
+ *        surname:
+ *          type: string
+ *        email:
+ *          type: string
+ *        phone_number:
+ *          type: number
+ *        rate:
+ *          type: number
+ *        headline:
+ *          type: string
+ *        text:
+ *          type: string
+ *      example:
+ *        {name: "name", surname: "surname", email: "test@test.com", phoneNumber: 123123, rate: 5, headline: "test headline", text: "text text text"}
  */

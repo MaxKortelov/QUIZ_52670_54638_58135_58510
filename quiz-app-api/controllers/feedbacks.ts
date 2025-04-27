@@ -43,14 +43,14 @@ router.get('/', getFeedbacks);
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/feedbacks/add'
+ *            $ref: '#/components/schemas/NewFeedback'
  *     responses:
  *       200:
  *         description: feedback added
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/FeedbackAdded'
+ *               $ref: '#/components/schemas/Feedback'
  *       500:
  *         description: Internal server error
  *         content:
