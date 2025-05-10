@@ -17,7 +17,12 @@ export const CreateFeedbacksForm = () => {
             await feedbackService.postFeedback(values);
             notification.success({
                 message: 'Success',
-                description: 'Feedback was successfully sent',
+                description:
+                    <div>
+                        Feedback was successfully sent
+                        <br />
+                        Thank you for your opinion!
+                    </div>,
                 duration: 4,
             })
             navigate(URL_FEEDBACKS.path())
