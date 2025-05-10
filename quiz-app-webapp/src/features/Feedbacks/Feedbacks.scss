@@ -1,0 +1,10 @@
+@import "styles/colors";
+@import "styles/labels";
+@import "styles/input";
+
+.feedbacksPage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}

@@ -1,0 +1,19 @@
+@import "styles/colors";
+@import "styles/labels";
+@import "styles/input";
+
+.createFeedbackForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.createFeedbackLabel {
+  font-family: $montserratBold;
+  margin-bottom: 16px;
+  font-size: 24px;
+  color: $primary;
+}
+
+.createQuizPage .ant-list-lg .ant-list-item {
+  padding: 0;
+}

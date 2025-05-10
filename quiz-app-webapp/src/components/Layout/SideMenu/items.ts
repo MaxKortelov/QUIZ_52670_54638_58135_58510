@@ -1,11 +1,10 @@
 import {useNavigate} from "react-router-dom";
-import {URL_CREATE_QUIZ, URL_HOME, URL_NOTIFICATIONS, URL_SUPPORT} from "utils/constants/clientUrl";
+import {URL_CREATE_QUIZ, URL_FEEDBACKS, URL_HOME, URL_NOTIFICATIONS, URL_SUPPORT} from "utils/constants/clientUrl";
 
 export enum SideMenuItemsEnum {
     DASHBOARD = 'DASHBOARD',
-    SUPPORT = 'SUPPORT',
-    NOTIFICATION = 'NOTIFICATION',
     CREATE_QUIZ = 'CREATE_QUIZ',
+    FEEDBACKS = 'FEEDBACKS',
 }
 
 export type SideMenuItemType = {
@@ -27,22 +26,6 @@ export const sideMenuItems = () => {
             navigate(URL_HOME.path());
         },
     } as SideMenuItemType;
-    const support = {
-        label: 'Support',
-        value: SideMenuItemsEnum.SUPPORT,
-        onClick: () => {
-            navigate(URL_SUPPORT.path());
-        },
-        disabled: true,
-    };
-    const notification = {
-        label: 'Notification',
-        value: SideMenuItemsEnum.NOTIFICATION,
-        onClick: () => {
-            navigate(URL_NOTIFICATIONS.path());
-        },
-        disabled: true,
-    };
     const createQuiz = {
         label: 'Add new test',
         value: SideMenuItemsEnum.CREATE_QUIZ,
@@ -50,7 +33,14 @@ export const sideMenuItems = () => {
             navigate(URL_CREATE_QUIZ.path());
         },
     };
+    const feedbacks = {
+        label: 'Feedbacks',
+        value: SideMenuItemsEnum.FEEDBACKS,
+        onClick: () => {
+            navigate(URL_FEEDBACKS.path());
+        },
+    };
 
 
-    return [profile, support, notification, createQuiz] as SideMenuItemType[];
+    return [profile, createQuiz, feedbacks] as SideMenuItemType[];
 };

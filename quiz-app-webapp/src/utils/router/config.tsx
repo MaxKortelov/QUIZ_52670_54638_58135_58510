@@ -14,15 +14,17 @@ import {
   URL_SIGN_UP,
   URL_VERIFY,
   URL_VERIFY_INFO,
-  URL_SUPPORT,
-  URL_NOTIFICATIONS,
   URL_QUIZ_INTRO,
   URL_QUIZ,
   URL_RESET_PASSWORD_EMAIL,
   URL_RESET_PASSWORD_EMAIL_INFO,
   URL_RESET_PASSWORD,
   URL_RESET_PASSWORD_SUCCESS,
-  URL_CHANGE_PASSWORD, URL_CREATE_QUIZ, URL_CHAT
+  URL_CHANGE_PASSWORD,
+  URL_CREATE_QUIZ,
+  URL_CHAT,
+  URL_FEEDBACKS,
+  URL_FEEDBACKS_CREATE
 } from '../constants/clientUrl';
 
 import {
@@ -40,13 +42,13 @@ import {
 const NotFound = lazy(() => import('features/ErrorPages/NotFound'));
 const Forbidden = lazy(() => import('features/ErrorPages/Forbidden'));
 const ChangePassword = lazy(() => import('features/ChangePassword'));
-const Support = lazy(() => import('features/Support'));
-const Notifications = lazy(() => import('features/Notifications'));
 const Home = lazy(() => import('features/Home'));
 const QuizIntro = lazy(() => import('features/QuizIntro'));
 const Quiz = lazy(() => import('features/Quiz'));
 const CreateQuiz = lazy(() => import('features/CreateQuiz'));
 const Chat = lazy(() => import('features/Chat'));
+const Feedbacks = lazy(() => import('features/Feedbacks'));
+const CreateFeedbacksForm = lazy(() => import('features/Feedbacks/CreateFeedbacksForm'));
 
 export const router = createBrowserRouter([
   {
@@ -109,23 +111,23 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        element: <Layout activeMenuItem={SideMenuItemsEnum.SUPPORT} />,
+        element: <Layout activeMenuItem={SideMenuItemsEnum.FEEDBACKS} />,
         children: [
           {
-            path: URL_SUPPORT.route,
+            path: URL_FEEDBACKS.route,
             element: (
-                <Support />
+                <Feedbacks />
             ),
           },
         ],
       },
       {
-        element: <Layout activeMenuItem={SideMenuItemsEnum.NOTIFICATION} />,
+        element: <Layout activeMenuItem={SideMenuItemsEnum.FEEDBACKS} />,
         children: [
           {
-            path: URL_NOTIFICATIONS.route,
+            path: URL_FEEDBACKS_CREATE.route,
             element: (
-                <Notifications />
+                <CreateFeedbacksForm />
             ),
           },
         ],
