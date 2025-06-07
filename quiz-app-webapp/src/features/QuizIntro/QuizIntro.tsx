@@ -28,14 +28,12 @@ export const QuizIntro = () => {
 
     const goQuiz = () => navigate(URL_QUIZ.path({ id: String(id) }));
 
-    const allAttemptsUsed = quiz?.quizSession.quizAttempts - quiz?.quizSession.quizAttemptsUsed <= 0;
-
-    const day = quiz?.quizSession.dateCreated.getDate();
-    const month = quiz?.quizSession.dateCreated.getMonth() + 1;
+    const day = quiz?.quizSession?.dateCreated?.getDate();
+    const month = quiz?.quizSession?.dateCreated?.getMonth() + 1;
     const monthFormatted = month < 10 ? `0${month}` : month;
-    const year = quiz?.quizSession.dateCreated.getFullYear();
+    const year = quiz?.quizSession?.dateCreated?.getFullYear();
     const quizDateCreated = `${day}.${monthFormatted}.${year}`
-    const attempts = quiz?.quizSession.quizAttempts - quiz?.quizSession.quizAttemptsUsed
+    const attempts = quiz?.quizSession?.quizAttempts - quiz?.quizSession?.quizAttemptsUsed
 
     return isLoading ? (
         <Spin />
@@ -52,7 +50,7 @@ export const QuizIntro = () => {
                     </div>
                     <div className="quizIntroPageOptionsItem">
                         <div className="quizIntroPageOptionsItemContent bold">Time Limit:</div>
-                        <div className="quizIntroPageOptionsItemContent">{quiz?.quizSession.quizDuration} Mins</div>
+                        <div className="quizIntroPageOptionsItemContent">{quiz?.quizSession?.quizDuration} Mins</div>
                     </div>
                     <div className="quizIntroPageOptionsItem">
                         <div className="quizIntroPageOptionsItemContent bold">Attempts:</div>
